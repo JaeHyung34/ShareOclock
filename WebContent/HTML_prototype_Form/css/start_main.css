@@ -1,0 +1,38 @@
+.container {
+    height: 300vh;
+}
+.top {
+    height:15vh;
+    background-color: blanchedalmond;
+    opacity: 0.8;
+}
+.box1 {
+    height:80vh;
+    background-color: cornflowerblue;
+}
+.box2 {
+    height:80vh;
+    background-color: crimson;
+}
+.box3 {
+    height:50vh;
+    background-color: blueviolet;
+}
+#loginBtn {
+    background-color: #0fbcf9;
+}
+#joinBtn {
+    background-color: rgb(38, 222, 129);
+}
+#joinMenu {
+    /* background: url("../img/joinBackground.jpg");
+    background-position: center;
+    background-repeat: no-repeat; */
+    background-color: rgb(5, 196, 107,0.4);
+}
+#loginMenu {
+    /* background: url("../img/loginBackground.jpg");
+    background-position: center;
+    background-repeat: no-repeat; */
+    background-color: rgb(5, 196, 107,0.4);
+}
