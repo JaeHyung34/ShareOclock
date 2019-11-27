@@ -14,6 +14,15 @@
 
   <title>메세지</title>
 <jsp:include page="/cdn/cdn.jsp" flush="false"/>
+
+<style>
+	a {
+		text-decoration: none;
+		cursor: pointer;
+		width: 100%;
+		height: 100%;
+	}
+</style>
 </head>
 
 <body id="page-top">
@@ -55,7 +64,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="${pageContext.request.contextPath}/view.msg">
           <i class="fas fa-project-diagram"></i>
           <span>쪽지함</span>
             <span class="badge badge-danger badge-pill">new</span>
@@ -223,7 +232,7 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown">
-                <img class="img-profile rounded-circle" src="img/default_profile.png">
+                <img class="img-profile rounded-circle" src="${pageContext.request.contextPath}/message/img/default_profile.png">
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in">
@@ -250,63 +259,62 @@
         <!-- md 이상일 때의 쪽지함 -->
     <div class="d-none d-md-block">
     <h2>쪽지함</h2>
-    <p>The .table-hover class enables a hover state on table rows:</p>            
-          <div id="btns" class="row">
-              <div class="col-md-2"><input type="button" value="쪽지 쓰기"></div>
-              <div class="col-md-2"><input type="button" value="모두 읽음으로 표시"></div>
-              <div class="col-md-2"><input type="button" value="삭제"></div>
-              <div class="d-md-block col-md-2"></div>
-              <div class="col-md-2"><input class="id" type="button" value="운영자에게 신고하기"></div>
-          </div>
+    <p>ID의 쪽지함입니다. 읽지 않은 쪽지는 현재 0개 입니다</p>            
     <table class="table table-hover ">
       <thead>
         <tr>
-          <th><input class="selectAll" type="checkbox"></th>
+          <th><input id="selectAll" type="checkbox"></th>
           <th class="">보낸이</th>
           <th class="">내용</th>
           <th class="">날짜</th>
       </thead>
       <tbody>
+      <c:forEach items="${list}" var="i" varStatus="idx">
         <tr>
-          <td><input type="checkbox"></td>
-          <td>1</td>
-          <td class="msgContent">있는 그들은 현저하게 온갖 자신과 칼이다. 싶이 관현악이며</td>
-          <td class="">1111.11.11 10:10:10</td>
-          <td class="d-md-none">11.11</td>
+          <td><input class="ck" name="ck" value="${i.message_seq}" type="checkbox"></td>
+          <td>${i.message_sender}</td>
+          <td class="msgContent">
+          ${i.message_contents}
+          <c:if test="${i.message_read == \"n\"}"> 
+		<span class="badge badge-pill">new</span>
+		</c:if>
+			  </td>
+          <td class="">${i.message_time}</td>
         </tr>
-        <tr>
-          <td><input type="checkbox"></td>
-          <td>1</td>
-          <td class="msgContent">현저하게 온갖 자신과 칼이다. 싶이 관현악이며</td>
-          <td class="">1111.11.11 10:10:10</td>
-          <td class="d-md-none">11.11</td>
-        </tr>
+        </c:forEach>
       </tbody>
     </table>
+          <div id="btns" class="row">
+              <div class="col-md-2"><input id="writeMsg" type="button" value="쪽지 쓰기"></div>
+              <div class="col-md-2"><input id="readAll" type="button" value="모두 읽음으로 표시"></div>
+              <div class="col-md-2"><input id="delete" type="button" value="삭제"></div>
+              <div class="d-md-block col-md-2"></div>
+              <div class="col-md-2"><input id="callAdmin" type="button" value="운영자에게 신고하기"></div>
+          </div>
   </div>
 <!-- md이상일 때에 보이는 부분 끝 -->
-     <!-- 모바일 화면 -->
 
-        
+     <!-- 모바일 화면 -->
     <div class="d-md-none">
+    <h3>쪽지함</h3>
+    <c:forEach items="${list}" var="i" varStatus="idx">
+      <div class="row mb-2">
+        <div class="col-1">${idx.index}</div>
+        <div class="col-8">${i.message_sender}
+        <c:if test="${i.message_read == \"n\"}">
+		<span class="badge badge-danger badge-pill">new</span>
+		</c:if>
+        </div>
+        <div class="col-3"><small>${i.message_mTime}</small></div>
+        <hr>
+        <div class="col-12 mContent">${i.message_mContents}</div>
+        <div class="w-100"></div>
+      </div>
+      </c:forEach>
       <div class="row mb-4">
-        <div class="col-12 border mb-3"><small>운영자에게 신고하기</small></div>
-        <div class="col-6 border">쪽지 쓰기</div>
+        <div class="col-6 border"><a href="${pageContext.request.contextPath}/message/sendMsg.jsp">쪽지 쓰기</a></div>
         <div class="col-6 border"><small>모두 읽음으로 표시</small></div>
-      </div>
-      <div class="row mb-2">
-        <div class="col-1">1</div>
-        <div class="col-8" style="overflow: hidden;">helloworldhelloworld</div>
-        <div class="col-3"><small>11.11</small></div>
-        <div class="w-100"></div>
-        <div class="col-12 mContent "></div>
-      </div>
-      <div class="row mb-2">
-        <div class="col-1">1</div>
-        <div class="col-8" style="overflow: hidden;">helloworldhelloworld</div>
-        <div class="col-3"><small>11.11</small></div>
-        <div class="w-100"></div>
-        <div class="col-12 mContent "></div>
+        <div class="col-12 border mb-3"><small>운영자에게 신고하기</small></div>
       </div>
   </div>
      <!-- 모바일 화면 끝 -->
@@ -317,20 +325,29 @@
 </div>
 
     <script>
-      // pc 내용을 모바일내용으로 전환
-        let modContent;
-        var content = $(".msgContent").text();
-          console.log(content);
-          if (content.length > 10) {
-            modContent = content.substr(0, 16);
-          }
-            console.log('mod ' + modContent);
-            $(".mContent").text(modContent + '...');
-      // pc 내용을 모바일내용으로 전환 - 끝
+    // 쪽지 쓰기
+    $("#writeMsg").on("click", function() {
+    	location.href="${pageContext.request.contextPath}/message/sendMsg.jsp";
+    })
+    // 쪽지 쓰기 - 끝
+    // 모두 읽음으로 표시
+	$("#readAll").on("click", function() {
+		location.href="${pageContext.request.contextPath}/readAll.msg"
+	})	
+    // 모두 읽음으로 표시 - 끝
+    // 삭제 
+    // 삭제 - 끝
+    // 운영자에게 신고하기
+    // 운영자에게 신고하기 - 끝
       // 전체 선택
-          $(".selectAll").on("click", function() {
-
+          $("#selectAll").on("click", function() {
+			if (this.checked) {
+				$(".ck").prop("checked", true);	
+			} else {
+				$(".ck").prop("checked", false);
+			}
           })
+      // 전체 선택 - 끝
     </script>
   </body>
 </html>

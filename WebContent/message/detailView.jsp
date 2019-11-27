@@ -58,8 +58,9 @@
 			<hr class="sidebar-divider my-0">
 
 			<!-- Nav Item - Dashboard -->
-			<li class="nav-item active"><a class="nav-link" href="${pageContext.request.contextPath}/message/msg_index.jsp"> <i
-					class="fas fa-project-diagram"></i> <span>쪽지함</span> <span
+			<li class="nav-item active"><a class="nav-link"
+				href="${pageContext.request.contextPath}/message/msg_index.jsp">
+					<i class="fas fa-project-diagram"></i> <span>쪽지함</span> <span
 					class="badge badge-danger badge-pill">new</span>
 			</a></li>
 
@@ -196,8 +197,9 @@
 
 					<!-- Nav Item - Alerts -->
 					<li class="nav-item dropdown no-arrow mx-1"><a
-						class="nav-link" href="${pageContext.request.contextPath}/message/msg_index.jsp"> <i
-							class="fas fa-bell fa-fw"></i> <!-- Counter - Alerts --> <span
+						class="nav-link"
+						href="${pageContext.request.contextPath}/message/msg_index.jsp">
+							<i class="fas fa-bell fa-fw"></i> <!-- Counter - Alerts --> <span
 							id="msgAlert" class="badge badge-danger badge-counter">N</span>
 					</a></li>
 
@@ -226,13 +228,52 @@
 			<!-- End of Topbar -->
 
 			<!-- 메인 콘텐츠 시작 부분 -->
-			
-
+        <div class="container mt-5 border">
+          <div class="row mt-4 ml-2 d-none d-md-block">
+            <h3>쪽지 보기</h3>
+          </div>
+          <div class="row mt-3">
+            <div class="col-3 col-md-1 border-right">제목 : </div>
+            <div class="col">hello world-2</div>
+          </div>
+          <div class="row mt-1">
+            <div class="col-3 col-md-1 border-right">날짜 : </div>
+            <div class="col">1111.11.11 10:10</div>
+          </div>
+          <div class="row mt-4">
+            <div class="d-none d-md-block col-md-1 border-right border-bottom">내용 : </div>
+            <div class="col border-bottom">This is content...
+                  This is content...<br>
+                  This is content...<br>
+                  This is content...<br>
+                  This is content...<br>
+                  This is content...<br>
+            </div>
+          </div>
+          <div class="row my-5 w-100 d-flex justify-content-center">
+            <button class="button mx-3">답장</button>
+            <button class="button mx-3">삭제</button>
+            <button class="button mx-3">뒤로가기</button>
+          </div>
+        </div>
 			<!-- 메인 콘텐츠 끝 -->
 
 		</div>
 	</div>
-
+	<script>
+    $("#send").on("click", function() {
+      $("#tArea").val($("#inputMsg").html());
+      if ($("#receiver").val() == "") {
+    	  alert("받으실 분을 입력하세요");
+    	  return false;
+	  }
+      if ($("#tArea").val() == "") {
+    	  alert("내용을 입력하세요");
+    	  return false;
+      }
+      $("#frm").submit();  
+    }) 
+  </script>
 </body>
 </html>
 

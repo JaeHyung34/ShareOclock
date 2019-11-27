@@ -13,8 +13,13 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>제목을 입력하세요</title>
+<title>메세지 보내기</title>
 <jsp:include page="/cdn/cdn.jsp" flush="false" />
+<style>
+	#receiver {
+		width: 100%;
+	}
+</style>
 </head>
 
 <body id="page-top">
@@ -50,16 +55,17 @@
 
 			<!-- Nav Item - Dashboard -->
 			<li class="nav-item active"><a class="nav-link" href="#"> <i
-					class="fas fa-project-diagram"></i> <span>새 프로젝트 <span
-						class="badge badge-danger badge-pill">new</span>
+					class="fas fa-project-diagram"></i> <span>새 프로젝트 
+					<span class="badge badge-danger badge-pill">new</span>
 				</span></a></li>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider my-0">
 
 			<!-- Nav Item - Dashboard -->
-			<li class="nav-item active"><a class="nav-link" href="${pageContext.request.contextPath}/message/msg_index.jsp"> <i
-					class="fas fa-project-diagram"></i> <span>쪽지함</span> <span
+			<li class="nav-item active"><a class="nav-link"
+				href="${pageContext.request.contextPath}/message/msg_index.jsp">
+					<i class="fas fa-project-diagram"></i> <span>쪽지함</span> <span
 					class="badge badge-danger badge-pill">new</span>
 			</a></li>
 
@@ -196,8 +202,9 @@
 
 					<!-- Nav Item - Alerts -->
 					<li class="nav-item dropdown no-arrow mx-1"><a
-						class="nav-link" href="${pageContext.request.contextPath}/message/msg_index.jsp"> <i
-							class="fas fa-bell fa-fw"></i> <!-- Counter - Alerts --> <span
+						class="nav-link"
+						href="${pageContext.request.contextPath}/message/msg_index.jsp">
+							<i class="fas fa-bell fa-fw"></i> <!-- Counter - Alerts --> <span
 							id="msgAlert" class="badge badge-danger badge-counter">N</span>
 					</a></li>
 
@@ -226,13 +233,54 @@
 			<!-- End of Topbar -->
 
 			<!-- 메인 콘텐츠 시작 부분 -->
-			
+
+			<form id="frm" action="${pageContext.request.contextPath}/send.msg"
+				method="post">
+				<div class="container mt-5 rounded">
+					<div class="row mt-2 border">
+						<div class="d-none d-md-block col-md-2 text-right">받으실 분 :</div>
+						<div class="col-10 border col-sm-10 col-md-6 px-0">
+							<input id="receiver" name="receiver" type="text"
+								placeholder="받으실 분을 입력하세요">
+						</div>
+						<div class="col-2 border col-sm-2 col-md-1">
+							<input type="button" value="찾기">
+						</div>
+					</div>
+					<div class="row mt-4">
+						<div class="col px-0">
+							<div id="inputMsg" name="content" class="border px-0"
+								contenteditable="true">hello</div>
+							<textarea class="d-none" id="tArea" name="tArea"></textarea>
+						</div>
+						<div class="w-100"></div>
+						<div class="row w-100 mt-4">
+							<div class="col-12 text-center">
+								<button id="send">전송</button>
+								<button id="cancel" class="ml-5" type="button">취소</button>
+							</div>
+						</div>
+					</div>
+			</form>
 
 			<!-- 메인 콘텐츠 끝 -->
 
 		</div>
 	</div>
-
+	<script>
+    $("#send").on("click", function() {
+      $("#tArea").val($("#inputMsg").html());
+      if ($("#receiver").val() == "") {
+    	  alert("받으실 분을 입력하세요");
+    	  return false;
+	  }
+      if ($("#tArea").val() == "") {
+    	  alert("내용을 입력하세요");
+    	  return false;
+      }
+      $("#frm").submit();  
+    }) 
+  </script>
 </body>
 </html>
 
