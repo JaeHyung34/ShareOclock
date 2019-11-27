@@ -8,132 +8,41 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import configuration.Encrpytion;
+
 @WebServlet("*.member")
 public class MemberController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String reqURI = request.getRequestURI();
-		String Path = request.getContextPath();
-		String realpath = reqURI.substring(Path.length());
-		System.out.println(realpath);
         response.setContentType("application/json;charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
+        
+    	String reqURI = request.getRequestURI();
+		String Path = request.getContextPath();
+		String realpath = reqURI.substring(Path.length());
+		System.out.println("reqURI" + realpath + "realpath" + realpath);
+        
 		if(realpath.contentEquals("/login.member")) {
 			String email = request.getParameter("email");
 			String pw = request.getParameter("pw");
 			Member_DTO result = null;
 			try {
-				result = Member_DAO.getInstance().getLogin(email, pw);
-				System.out.println(result.getMb_email());
-				System.out.println(result.getMb_nickname());
-				
-//				if(result) {
-//					request.getSession().setAttribute("id", email);
-//				}
-			}catch(Exception e) {
-				System.out.print("DB ¿À·ù");
-				e.printStackTrace();
-			}
-			
-		}else if(realpath.contentEquals("/member/loginCheck.member")) {
-			String id = request.getParameter("id");
-			System.out.println("id" + id);
-			try {
-				//boolean result = Member_DAO.getInstance().idCheck(id);
-//				System.out.println("result" + result);
-//				if(!result) {
-//					request.setAttribute("result", 1);
-//					request.getRequestDispatcher("loginCheck.jsp").forward(request, response);
-//				}else {
-//					request.setAttribute("result", 0);
-//					request.getRequestDispatcher("loginCheck.jsp").forward(request, response);
-//				}
-			} catch (Exception e) {
-				System.out.print("id check ?˜¤ë¥?!! ::::: ");
-				e.printStackTrace();
-			}
-			
-		}else if(realpath.contentEquals("/memberRemove.member")) {
-			String id = (String) request.getSession().getAttribute("id");
-			int result = 0 ;
-			try {
-				//result = Member_DAO.getInstance().remove(id);
-				if(result > 0) {
-					request.getSession().invalidate();
-					response.sendRedirect("index.jsp");
+				result = Member_DAO.getInstance().getLogin(email, Encrpytion.encrpyt(pw));
+				System.out.println(result);
+				if(result != null) {
+					request.getSession().setAttribute("logininfo", email);
+					response.sendRedirect("ë©”ì¸í™”ë©´ê°ˆê±°ë‹¹");
+				}else {
+					response.sendRedirect("/Project/login.jsp");
 				}
 			}catch(Exception e) {
-				System.out.print("DB ¿À·ù");
+				System.out.print("DB ì˜¤ë¥˜");
 				e.printStackTrace();
 			}
+		}else if(realpath.contentEquals("/loginforget.member")) {
 			
-		}else if(realpath.contentEquals("/myInfo.member")) {	
-		    String id = (String) request.getSession().getAttribute("id");
-			Member_DTO dto = null;
-			try {
-				//dto = Member_DAO.getInstance().selectInfo(id);		
-				request.setAttribute("dto", dto);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}					
-			request.getRequestDispatcher("member/myInfo.jsp").forward(request, response);
 			
-		}else if(realpath.contentEquals("/memberModifyView.member")) {	
-		    String id = (String) request.getSession().getAttribute("id");
-			Member_DTO dto = null;
-			try {
-				//dto = Member_DAO.getInstance().selectInfo(id);		
-				request.setAttribute("dto", dto);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}					
-			request.getRequestDispatcher("member/memberModify.jsp").forward(request, response);
-		
-		}else if(realpath.contentEquals("/memberModify.member")) {
-			String id = request.getParameter("id");
-			String pw = request.getParameter("pw");
-			String name = request.getParameter("name");
-			String phone = request.getParameter("phone");
-			String email = request.getParameter("email");
-			String zipcode = request.getParameter("zipcode");
-			String address1 = request.getParameter("address1");
-			String address2 = request.getParameter("address2");
-			//Member_DTO dto = new Member_DTO(id, pw, name, phone, email, zipcode, address1, address2);
-			int result = 0;
-			try {
-			//	result = Member_DAO.getInstance().modify(dto);
-			}catch(Exception e) {
-				System.out.print("DB ¿À·ù´Ù");
-				e.printStackTrace();
-			}
-			if(result > 0) {
-				response.sendRedirect("index.jsp");
-			}
-		}else if(realpath.contentEquals("/member/signup.member")) {
-
-			String id = request.getParameter("id");
-			String pw = request.getParameter("pw");
-			String name = request.getParameter("name");
-			String phone = request.getParameter("phone");
-			String email = request.getParameter("email");
-			String zipcode = request.getParameter("zipcode");
-			String address1 = request.getParameter("address1");
-			String address2 = request.getParameter("address2");
-
-			//Member_DTO dto = new Member_DTO(id, pw, name, phone, email, zipcode, address1, address2);
-			int result = 0;
-			try {
-				//result = Member_DAO.getInstance().insert(dto);
-			} catch (Exception e) {	
-				System.out.print("DB ¿À·ù´Ù");
-				e.printStackTrace();
-			}
-			if(result>0) {
-				request.setAttribute("name", name);
-				request.getRequestDispatcher("signupCheck.jsp").forward(request, response);
-
-			}
 		}
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
