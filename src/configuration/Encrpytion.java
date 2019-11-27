@@ -1,10 +1,10 @@
-package Util;
+package configuration;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
 
 public class Encrpytion {
-	
+
 	public static String encrpyt(String str) {
 		String sha ="";
 		try {
@@ -14,10 +14,7 @@ public class Encrpytion {
 			sha= String.format("%0128x", new BigInteger(1,digest.digest()));
 		}catch(Exception e) {
 			e.printStackTrace();
-			
 		}
 		return sha;
-		
 	}
-
 }

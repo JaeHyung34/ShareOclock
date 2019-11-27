@@ -7,14 +7,14 @@ import java.sql.SQLException;
 
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 
-import Util.Encrpytion;
 import configuration.Configuration;
+import configuration.Encrpytion;
 
 public class Member_DAO {
 	public static Member_DAO instance;
 	public synchronized static Member_DAO getInstance() {
 		if (instance == null) {
-			System.out.println("ªı∑Œ µ∫Ò ª˝º∫«œø¥¥Ÿ.");
+			System.out.println("ÎîîÎπÑÍ∞Ä ÏÉùÏÑ±ÎêòÏóàÎã§.");
 			instance = new Member_DAO();
 		}
 		return instance;
@@ -39,6 +39,31 @@ public class Member_DAO {
 			}
 		}
 	}
+	public boolean emailCheck(String email) throws SQLException, Exception {
+		String sql = "select * from tb_member where mb_email = ?";
+		try (
+			Connection conn = getConnection(); 
+			PreparedStatement pstat = conn.prepareStatement(sql);) {
+			pstat.setString(1, email);
+			try (ResultSet rs = pstat.executeQuery();) {
+				return rs.next();
+			}
+		}
+	}
+	public int modifyPw(String email, String pw) throws SQLException, Exception {
+		String sql = "update tb_member set mb_pw=? where mb_email=?";
+		try (Connection con = getConnection();
+			PreparedStatement pstat = con.prepareStatement(sql);) {
+			System.out.println("ÎîîÎπÑÍ∞Ä Ïã§Ìñâ" + pw);
+			System.out.println("ÎîîÎπÑÍ∞Ä Ïã§Ìñâ" + email);
+			pstat.setString(1, Encrpytion.encrpyt(pw));
+			pstat.setString(2, email);
+			System.out.println("ÎîîÎπÑÍ∞Ä Ïã§Ìñâ" + Encrpytion.encrpyt(pw));
+			int result = pstat.executeUpdate();
+			con.commit();
+			return result;
+		}
+	}
 //
 //	public int insert(Member_DTO dto) throws SQLException, Exception {
 //		String sql = "insert into members values(?,?,?,?,?,?,?,?)";
@@ -60,17 +85,7 @@ public class Member_DAO {
 //
 //	}
 //
-//	public boolean idCheck(String id) throws SQLException, Exception {
-//		String sql = "select * from members where id = ?";
-//		try (
-//			Connection conn = getConnection(); 
-//			PreparedStatement pstat = conn.prepareStatement(sql);) {
-//			pstat.setString(1, id);
-//			try (ResultSet rs = pstat.executeQuery();) {
-//				return rs.next();
-//			}
-//		}
-//	}
+
 //
 //	public int remove(String id) throws SQLException, Exception {
 //		String sql = "delete from members where id=?";
@@ -104,23 +119,6 @@ public class Member_DAO {
 //		}
 //	}
 //
-//	public int modify(Member_DTO dto) throws SQLException, Exception {
-//		String sql = "update members set pw=?, name=?, email=?, phone=?, zipcode=?, address1=?, address2=? where id=?";
-//		try (Connection con = getConnection();
-//			PreparedStatement pstat = con.prepareStatement(sql);) {
-//			pstat.setString(1, Encrpytion.encrpyt(dto.getPw()));
-//			pstat.setString(2, dto.getName());
-//			pstat.setString(3, dto.getEmail());
-//			pstat.setString(4, dto.getPhone());
-//			pstat.setString(5, dto.getZipcode());
-//			pstat.setString(6, dto.getAddress1());
-//			pstat.setString(7, dto.getAddress2());
-//			pstat.setString(8, dto.getId());
-//			int result = pstat.executeUpdate();
-//			con.commit();
-//			return result;
-//
-//		}
-//	}
+
 
 }

@@ -19,7 +19,6 @@
   <!-- Custom fonts for this template-->
   <link href="resources/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
- 
   <!-- Custom styles for this template-->
   <link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
 </head>
@@ -54,11 +53,9 @@
                     <button class="btn btn-primary btn-user btn-block">로그인</button>
                      
                     <hr>
-                    <a href="index.html" class="btn btn-google btn-user btn-block">
-                	<i class="fab fa-google fa-fw"></i>
-                	
-                	<img src="resources/img/naver_icon.PNG" style="width:25px;height:25px">  네이버 로그인
-                	
+                    <a href="naver.login" class="btn btn-google btn-user btn-block">
+                	<img src="resources/img/naver_icon.PNG" style="width:25px;height:25px">
+                	  네이버 로그인
                     </a>
               <!--  <a href="index.html" class="btn btn-facebook btn-user btn-block">
                       <i class="fab fa-facebook-f fa-fw"></i> íì´ì¤ë¶ ë¡ê·¸ì¸
@@ -66,32 +63,48 @@
                   </form>
                   <hr>
                   <div class="text-center">
-                    <a class="middle" href="forgot-password.html">암호를 잊으셨나요?</a>
+                    <a class="middle" href="forgot-password.jsp">암호를 잊으셨나요?</a>
                   </div>
                   <div class="text-center">
-                    <a class="middle" href="register.html">계정 생성하기</a>
+                    <a class="middle" href="register.jsp">계정 생성하기</a>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-
       </div>
-
     </div>
-
   </div>
+  <!-- Bootstrap core JavaScript   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
+  <!-- Core plugin JavaScript  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>  -->
+  <!-- Custom scripts for all pages  <script src="js/sb-admin-2.min.js"></script>-->
 
-  <!-- Bootstrap core JavaScript-->
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-  <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin-2.min.js"></script>
-
+  <script>
+  $("#btn_forgetEmailSend").on("click",function(){
+		var email = $("#exampleInputEmail").val();
+		if(email != ""){
+			$.ajax({ 
+				url: "emailCheck.login", 
+				data: { email: email }, 
+				method: "post", 
+				dataType: "json" 
+			}).done(function(data){ 
+				console.log(data);
+				if(data){
+					alert("성공적으로 이메일을 전송하였습니다 이메일을 확인해주세요.");
+					$(location).attr("href", "/Project/login.jsp");
+				}else{
+					alert("이메일을 전송하지 못했습니다. 작성하신 이메일을 확인해주세요.");
+				}
+			}).fail(function(){ 
+				alert("서버오류!!");
+				$(location).attr("href", "/login.jsp");
+			});
+		}else{
+			alert("이메일을 입력해주세요.");
+		}
+  })
+  </script>
 </body>
-
 </html>
