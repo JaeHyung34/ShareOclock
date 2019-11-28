@@ -1,16 +1,18 @@
 package shareOclock.member;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader ;
 import java.math.BigInteger;
+import java.net.HttpURLConnection;
+import java.net.PasswordAuthentication;
+import java.net.URL;
 import java.net.URLEncoder;
 import java.security.SecureRandom;
 import java.util.Properties;
 import java.util.Random;
 
-import javax.mail.Message;
-import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
-import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletException;
@@ -23,11 +25,8 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 
-import java.net.URLEncoder;
-import java.net.URL;
-import java.net.HttpURLConnection;
-import java.io.BufferedReader;
-import java.io.InputStreamReader ;
+import oracle.jdbc.driver.Message;
+import sun.rmi.transport.Transport;
 
 @WebServlet("*.login")
 public class LoginController extends HttpServlet {

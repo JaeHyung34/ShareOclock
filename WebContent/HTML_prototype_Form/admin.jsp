@@ -1,9 +1,11 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
-  <meta charset="utf-8">
+<meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
@@ -40,7 +42,7 @@
         <div class="sidebar-brand-icon">
           <i class="fas fa-radiation"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">신선놀음 <sup>1.5</sup></div>
+        <div class="sidebar-brand-text mx-3">ì ì ëì <sup>1.5</sup></div>
       </a>
 
       <!-- Divider -->
@@ -50,7 +52,7 @@
       <li class="nav-item active">
         <a class="nav-link" href="#">
           <i class="fas fa-project-diagram"></i>
-          <span>새 프로젝트
+          <span>ì íë¡ì í¸
             <span class="badge badge-danger badge-pill">new</span>
           </span></a>
       </li>
@@ -62,7 +64,7 @@
       <li class="nav-item active">
         <a class="nav-link" href="#">
           <i class="fas fa-project-diagram"></i>
-          <span>쪽지함</span>
+          <span>ìª½ì§í¨</span>
             <span class="badge badge-danger badge-pill">new</span>
         </a>
       </li>
@@ -71,49 +73,49 @@
       <hr class="sidebar-divider">
 
       <!-- Heading -->
-      <div class="sidebar-heading">재형</div>
+      <div class="sidebar-heading">ì¬í</div>
 
-      <!-- Nav Item - 로그인 -->
+      <!-- Nav Item - ë¡ê·¸ì¸ -->
       <li class="nav-item">
         <a class="nav-link" href="#">
           <i class="fas fa-fw fa-chart-area"></i>
-          <span>정재형</span></a>
+          <span>ì ì¬í</span></a>
       </li>
 
       <!-- Divider -->
       <hr class="sidebar-divider">
 
-      <!-- Heading - 달력 -->
-      <div class="sidebar-heading">은비</div>
+      <!-- Heading - ë¬ë ¥ -->
+      <div class="sidebar-heading">ìë¹</div>
 
       <!-- Nav Item -->
       <li class="nav-item">
         <a class="nav-link" href="#">
           <i class="fas fa-fw fa-chart-area"></i>
-          <span>조은비</span></a>
+          <span>ì¡°ìë¹</span></a>
       </li>
 
-      <!-- Heading - 게시판 -->
-      <div class="sidebar-heading">유진</div>
+      <!-- Heading - ê²ìí -->
+      <div class="sidebar-heading">ì ì§</div>
 
       <!-- Nav Item -->
       <li class="nav-item">
         <a class="nav-link" href="#">
           <i class="fas fa-fw fa-chart-area"></i>
-          <span>전유진</span></a>
+          <span>ì ì ì§</span></a>
       </li>
 
       <!-- Divider -->
       <hr class="sidebar-divider">
 
       <!-- Heading -->
-      <div class="sidebar-heading">익호</div>
+      <div class="sidebar-heading">ìµí¸</div>
 
-      <!-- Nav Item - 관리자 페이지 -->
+      <!-- Nav Item - ê´ë¦¬ì íì´ì§ -->
       <li class="nav-item">
         <a class="nav-link" href="admin.html">
           <i class="fas fa-fw fa-chart-area"></i>
-          <span>신익호</span></a>
+          <span>ì ìµí¸</span></a>
       </li>
 
 
@@ -122,19 +124,19 @@
       <hr class="sidebar-divider">
 
       <!-- Heading -->
-      <div class="sidebar-heading">내 정보</div>
+      <div class="sidebar-heading">ë´ ì ë³´</div>
 
       <!-- Nav Item - Pages Collapse Menu --> 
        <li class="nav-item"> 
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMyInfo">
           <i class="fas fa-fw fa-folder"></i>
-          <span>내 정보 보기 </span>
+          <span>ë´ ì ë³´ ë³´ê¸° </span>
         </a>
         <div id="collapseMyInfo" class="collapse"  data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">정보 :</h6>
-            <a class="collapse-item mb-" href="#">내 정보 수정</a>
-            <a class="collapse-item bg-info" href="#">로그아웃</a>
+            <h6 class="collapse-header">ì ë³´ :</h6>
+            <a class="collapse-item mb-" href="#">ë´ ì ë³´ ìì </a>
+            <a class="collapse-item bg-info" href="#">ë¡ê·¸ìì</a>
           </a>
         </div>
       </li>
@@ -142,7 +144,7 @@
       <hr class="sidebar-divider">
 
       <!-- Heading -->
-      <div class="sidebar-heading">임시</div>
+      <div class="sidebar-heading">ìì</div>
 
       <!-- Nav Item - Pages Collapse Menu --> 
        <li class="nav-item"> 
@@ -179,7 +181,7 @@
       <div id="content">
 
 
-    <!-- Topbar // 모바일환경일 때에만 노출되는 상위네비바 -->
+    <!-- Topbar // ëª¨ë°ì¼íê²½ì¼ ëìë§ ë¸ì¶ëë ììë¤ë¹ë° -->
         <nav class="navbar navbar-expand navbar-light bg-gray-800 topbar mb-4 static-top shadow w-100 d-xs-block d-md-none">
 
           <!-- Sidebar Toggle (Topbar) -->
@@ -194,18 +196,18 @@
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in">
                 <a class="dropdown-item" href="#">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                 회원관리
+                 íìê´ë¦¬
                 
                 </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                  프로젝트 관리 
+                  íë¡ì í¸ ê´ë¦¬ 
                 </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                  게시물 관리 
+                  ê²ìë¬¼ ê´ë¦¬ 
                   <span id="alert" class="badge badge-danger badge-counter">N</span>
                 </a>
               </div>
@@ -235,12 +237,12 @@
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in">
                 <a class="dropdown-item" href="#">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                  내 정보 보기 
+                  ë´ ì ë³´ ë³´ê¸° 
                 </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item bg-info" href="#" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                  로그아웃 
+                  ë¡ê·¸ìì 
                 </a>
               </div>
             </li>
@@ -250,7 +252,7 @@
         </nav>
         <!-- End of Topbar -->
 
-    <!-- 메인 콘텐츠 시작 부분 -->
+    <!-- ë©ì¸ ì½íì¸  ìì ë¶ë¶ -->
 
      <div class="container">
   <h2>Striped Rows</h2>
@@ -259,10 +261,10 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>이름</th>
-        <th>사유</th>
-        <th>아이디</th>
-        <th>선택</th>
+        <th>ì´ë¦</th>
+        <th>ì¬ì </th>
+        <th>ìì´ë</th>
+        <th>ì í</th>
       </tr>
     </thead>
     <tbody>
@@ -277,8 +279,8 @@
     </tbody>
   </table>
   </form>
-	<button type="button" id="btn">수정</button>
-	<button type="submit" id="deleteBtn">삭제</button>
+	<button type="button" id="btn">ìì </button>
+	<button type="submit" id="deleteBtn">ì­ì </button>
 </div>	
 	<script>
 		$("#btn").on("click",function(){
@@ -293,7 +295,7 @@
 		});
 	</script>
         
-    <!-- 메인 콘텐츠 끝 -->
+    <!-- ë©ì¸ ì½íì¸  ë -->
 
     </div>
 </div>
