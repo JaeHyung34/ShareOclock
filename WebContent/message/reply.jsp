@@ -13,8 +13,17 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>제목을 입력하세요</title>
+<title>메세지 보내기</title>
 <jsp:include page="/cdn/cdn.jsp" flush="false" />
+<style>
+#receiver {
+	width: 100%;
+}
+
+#msgBox {
+	height: 50vh;
+}
+</style>
 </head>
 
 <body id="page-top">
@@ -228,43 +237,57 @@
 			<!-- End of Topbar -->
 
 			<!-- 메인 콘텐츠 시작 부분 -->
-        <div class="container mt-5 border">
-          <div class="row mt-4 ml-2 d-none d-md-block">
-            <h3>쪽지 보기</h3>
-          </div>
-          <div class="row mt-3">
-            <div class="col-3 col-md-1 border-right">보낸이 : </div>
-            <div class="col">${dto.message_sender}</div>
-          </div>
-          <div class="row mt-1">
-            <div class="col-3 col-md-1 border-right">날짜 : </div>
-            <div class="col">${dto.message_time}</div>
-          </div>
-          <div class="row mt-4">
-            <div class="d-none d-md-block col-md-1 border-right border-bottom">내용 : </div>
-            <div class="col border-bottom">${dto.message_contents}</div>
-          </div>
-          <div class="row my-5 w-100 d-flex justify-content-center">
-            <button id="reply" type="button" class="button mx-3">답장</button>
-            <button id="delete" type="button" class="button mx-3">삭제</button>
-            <button id="back" type="button" class="button mx-3">뒤로가기</button>
-          </div>
-        </div>
-        </form>
+
+			<form id="frm" action="${pageContext.request.contextPath}/send.msg"
+				method="post">
+				<div class="container mt-5 rounded">
+					<h3>답장하기</h3>
+					<div class="row mt-2 border mx-3 mx-md-0">
+						<div class="d-none d-md-block col-md-2 text-right">받으시는 분 :</div>
+						<div class="col-10 border col-sm-10 col-md-6 px-0">
+							<input id="receiver" name="receiver" type="text"
+								value="${dto.message_sender}" disabled>
+						</div>
+						<div class="col-2 border col-sm-2 col-md-1">
+							<input type="button" value="찾기" disabled>
+						</div>
+					</div>
+					<div class="row mt-4 mx-3 mx-md-0">
+						<div id="msgBox" class="col px-0">
+							<div id="inputMsg" name="content" class="border px-0 h-100"
+								contenteditable="true"></div>
+							<textarea class="d-none" id="tArea" name="tArea"></textarea>
+						</div>
+						<div class="w-100"></div>
+						<div class="row w-100 mt-4">
+							<div class="col-12 text-center">
+								<button id="send">전송</button>
+								<button id="cancel" class="ml-5" type="button">취소</button>
+							</div>
+						</div>
+					</div>
+			</form>
+
 			<!-- 메인 콘텐츠 끝 -->
 
 		</div>
 	</div>
 	<script>
-	$("#reply").on("click", function() {
-		location.href="${pageContext.request.contextPath}/reply.msg?seq=${dto.message_seq}";
-	})
-	$("#delete").on("click", function() {
-		location.href="${pageContext.request.contextPath}/delete.msg?seq=${dto.message_seq}";
-	})
-	$("#back").on("click", function() {
-		location.href="${pageContext.request.contextPath}/view.msg";
-	})
+    $("#send").on("click", function() {
+      $("#tArea").val($("#inputMsg").html());
+      if ($("#receiver").val() == "") {
+    	  alert("받으실 분을 입력하세요");
+    	  return false;
+	  }
+      if ($("#tArea").val() == "") {
+    	  alert("내용을 입력하세요");
+    	  return false;
+      }
+      $("#frm").submit();  
+    }) 
+    $("#cancel").on("click", function() {
+    	history.back();
+    })
   </script>
 </body>
 </html>

@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import configuration.Encrpytion;
+import configuration.Encryption;
 
 @WebServlet("*.member")
 public class MemberController extends HttpServlet {
@@ -28,7 +28,7 @@ public class MemberController extends HttpServlet {
 			String pw = request.getParameter("pw");
 			Member_DTO result = null;
 			try {
-				result = Member_DAO.getInstance().getLogin(email, Encrpytion.encrpyt(pw));
+				result = Member_DAO.getInstance().getLogin(email, Encryption.encrpyt(pw));
 				System.out.println(result);
 				if(result != null) {
 					request.getSession().setAttribute("logininfo", email);

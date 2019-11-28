@@ -1,105 +1,30 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>file List</title>
-<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css">
-<script
-	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/js/bootstrap.min.js"></script>
-<style>
-#uploadDiv {
-	text-align: right;
-}
-
-a {
-	text-decoration: none;
-	color: black;
-}
-
-a:hover {
-	color: gray;
-}
-</style>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<title>Document</title>
 </head>
 <body>
-	<div id="uploadDiv">
-		<button id="uploadBtn">Upload</button>
-	</div>
-	<table class="table">
-		<thead>
-			<tr>
-				<th scope="col">#</th>
-				<th scope="col">FileName</th>
-				<th scope="col">Write_Date</th>
-				<th scope="col">Writer</th>
-				<th scope="col">Download Count</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:choose>
-				<c:when test="${list.size() == 0}">
-				<tr><td colspan=5 style="text-align:center">업로드된 파일이 없습니다.</td></tr>
-				</c:when>
-				<c:otherwise>
-					<c:forEach items="${list}" var="file">
-						<tr>
-							<th scope="row" name="f_seq">${file.f_seq}</th>
-							<!-- <td><a id='${file.f_seq}' href="${pageContext.request.contextPath}/download.file?fileName=${file.file_name}&oriName=${file.original_file_name}&f_seq=${file.f_seq}" onclick="downloadCnt()">
-							${file.original_file_name}<br></a></td>  -->
-							<td id="12"><a id='1' name="2" href="#"> ${file.original_file_name}</a></td>
-							<td>${file.formedDate}</td>
-							<td>${file.f_writer}</td>
-							<td id="f_downloadCnt">${file.f_downloadCnt}</td>
-						</tr>
-					</c:forEach>
-				</c:otherwise>
-			</c:choose>
-		</tbody>
-	</table>
-
-    <input id="hello" type="button" value="h">
+	<input id="i1" class="ck" type="checkbox">	
+	<input id="i2" class="ck" type="checkbox">	
+	<input id="i3" class="ck" type="checkbox">	
+	<input id="btn" type="button" value="check">	
+	<div class="result">hello</div>
+	<script>
+		var i = 0;
+		$("#btn").on("click", function() {
+			$(".ck").each(function() {
+				console.log(this);
+				if (this.checked) {
+					i += 1;
+				}
+			})
+				console.log(i);
+		})
+	</script>
 </body>
-<script>
-	$("#uploadBtn").on("click",function(){
-		$(location).attr("href","${pageContext.request.contextPath}/file/fileForm_5.jsp");
-		//location.href="${pageContext.request.contextPath}/file/fileFrom_5.jsp";
-            })
-        $("a").on("click", function() {
-            var id = $(this).attr("id");
-            console.log(id);
-        })
-		// function downloadCnt(){
-        //     var i = $("#1").attr("id");
-        //     console.log(i);
-        //     var id = $(this).attr("id");
-        //     console.log(id);
-		// $.ajax({
-		// 	url : "/downloadCount.file",
-		// 				//enctype : "multipart/form-data",
-		// 				type : "post",
-		// 				data : {
-		// 					f_seq: id
-		// 					}, 
-		// 				dataType : "text"
-		// 			}).done(function(resp){
-		// 				var downCnt = resp; //val txet innrhtml
-		// 				$("#f_downloadCnt").text(resp+1);
-        //            console.log(resp);
-        //               	$("#f_downloadCnt").html(resp+1);
-                       
-        //             }).fail(function(a,b,c){
-        //             	alert("다운실패")
-		// 				console.log(a);
-		// 				console.log(b);
-		// 				console.log(c);
-		// 			});
-		// }	
-</script>
 </html>
+        

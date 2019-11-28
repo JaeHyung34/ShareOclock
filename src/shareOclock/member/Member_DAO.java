@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 
 import configuration.Configuration;
-import configuration.Encrpytion;
+import configuration.Encryption;
 
 public class Member_DAO {
 	public static Member_DAO instance;
@@ -56,9 +56,9 @@ public class Member_DAO {
 			PreparedStatement pstat = con.prepareStatement(sql);) {
 			System.out.println("디비가 실행" + pw);
 			System.out.println("디비가 실행" + email);
-			pstat.setString(1, Encrpytion.encrpyt(pw));
+			pstat.setString(1, Encryption.encrpyt(pw));
 			pstat.setString(2, email);
-			System.out.println("디비가 실행" + Encrpytion.encrpyt(pw));
+			System.out.println("디비가 실행" + Encryption.encrpyt(pw));
 			int result = pstat.executeUpdate();
 			con.commit();
 			return result;
