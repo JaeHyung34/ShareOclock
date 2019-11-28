@@ -1,6 +1,7 @@
 package shareOclock.message;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 public class MessageDTO {
 	private int message_seq;
@@ -8,7 +9,7 @@ public class MessageDTO {
 	private String message_receiver;
 	private String message_contents;
 	private Timestamp message_time;
-	private char message_read;
+	private String message_read;
 
 	public MessageDTO() {
 		super();
@@ -23,7 +24,7 @@ public class MessageDTO {
 	}
 
 	public MessageDTO(int message_seq, String message_sender, String message_receiver, String message_contents,
-			Timestamp message_time, char message_read) {
+			Timestamp message_time, String message_read) {
 		super();
 		this.message_seq = message_seq;
 		this.message_sender = message_sender;
@@ -68,14 +69,20 @@ public class MessageDTO {
 		return message_contents;
 	}
 
+	public String getMessage_mContents() {
+		if (this.message_contents.length() > 19)
+			return this.message_contents.substring(0, 20) + "...";
+		return this.message_contents;
+	}
 
 	public void setMessage_contents(String message_contents) {
 		this.message_contents = message_contents;
 	}
 
 
-	public Timestamp getMessage_time() {
-		return message_time;
+	public String getMessage_time() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd hh:mm");
+		return sdf.format(this.message_time);
 	}
 
 
@@ -84,12 +91,16 @@ public class MessageDTO {
 	}
 
 
-	public char getMessage_read() {
+	public String getMessage_mTime() {
+		SimpleDateFormat sdf = new SimpleDateFormat("MM.dd hh:mm");
+		return sdf.format(this.message_time);
+	}
+	public String getMessage_read() {
 		return message_read;
 	}
 
 
-	public void setMessage_read(char message_read) {
+	public void setMessage_read(String message_read) {
 		this.message_read = message_read;
 	}
 	 

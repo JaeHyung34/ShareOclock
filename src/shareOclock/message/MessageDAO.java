@@ -9,28 +9,12 @@ import java.util.List;
 
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 
+import configuration.Configuration;
+
 public class MessageDAO {
 
-	private BasicDataSource bds;
-
-	private static MessageDAO instance;
-
-	private MessageDAO() {
-		bds.setDriverClassName("oracle.jdbc.OracleDriver");
-		bds.setUrl("jdbc:oracle:thin:@localhost:1521");
-		bds.setUsername("semi");
-		bds.setPassword("semi");
-		bds.setInitialSize(30);
-	}
-
-	public static MessageDAO getInstance() {
-		if (instance == null)
-			instance = new MessageDAO();
-		return instance;
-	}
-
 	private Connection getConnection() throws Exception {
-		return bds.getConnection();
+		return Configuration.dbs.getConnection();
 	}
 
 	// 메시지 삽입
@@ -49,7 +33,7 @@ public class MessageDAO {
 		}
 	}
 
-	// 메시지 모두 읽기
+	// 메시지 읽기
 	public List<MessageDTO> viewAllMsg() throws Exception {
 		String sql = "select * from tb_message";
 		try (
@@ -57,17 +41,29 @@ public class MessageDAO {
 				PreparedStatement pstat = con.prepareStatement(sql);
 				ResultSet rs = pstat.executeQuery();
 				) {
-			List list = new ArrayList<>();
+			List<MessageDTO> list = new ArrayList<>();
 			while (rs.next()) {
 				int seq = rs.getInt(1);
 				String sender = rs.getString(2);
 				String receiver = rs.getString(3);
 				String content = rs.getString(4);
 				Timestamp time = rs.getTimestamp(5);
-				char read = rs.getString(6).charAt(0);
+				String read = rs.getString(6);
 				list.add(new MessageDTO(seq,sender,receiver,content,time,read));
 			}
 			return list;
+		}
+	}
+	
+	// 메시지 모두 읽음으로 표시
+	public int readAll(String receiver) throws Exception {
+		String sql = "update tb_message set msg_read = 'y' where receiver=?";
+		try (
+				Connection con = getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				) {
+			pstat.setString(1, receiver);
+			return pstat.executeUpdate();
 		}
 	}
 }
