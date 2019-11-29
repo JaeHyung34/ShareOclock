@@ -19,6 +19,9 @@
 	#receiver {
 		width: 100%;
 	}
+	#msgBox {
+		height: 50vh;
+	}
 </style>
 </head>
 
@@ -237,7 +240,7 @@
 			<form id="frm" action="${pageContext.request.contextPath}/send.msg"
 				method="post">
 				<div class="container mt-5 rounded">
-					<div class="row mt-2 border">
+					<div class="row mt-2 border mx-3 mx-md-0">
 						<div class="d-none d-md-block col-md-2 text-right">받으실 분 :</div>
 						<div class="col-10 border col-sm-10 col-md-6 px-0">
 							<input id="receiver" name="receiver" type="text"
@@ -247,9 +250,10 @@
 							<input type="button" value="찾기">
 						</div>
 					</div>
-					<div class="row mt-4">
-						<div class="col px-0">
-							<div id="inputMsg" name="content" class="border px-0"
+					<div class="row mt-4 mx-3 mx-md-0">
+						<div id="msgBox" class="col px-0">
+							<div id="inputMsg" name="content" 
+							class="border px-0 h-100"
 								contenteditable="true">hello</div>
 							<textarea class="d-none" id="tArea" name="tArea"></textarea>
 						</div>
@@ -280,6 +284,9 @@
       }
       $("#frm").submit();  
     }) 
+    $("#cancel").on("click", function() {
+    	history.back();
+    })
   </script>
 </body>
 </html>

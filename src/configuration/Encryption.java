@@ -3,7 +3,7 @@ package configuration;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 
-public class Encrpytion {
+public class Encryption {
 
 	public static String encrpyt(String str) {
 		String sha ="";
@@ -16,5 +16,11 @@ public class Encrpytion {
 			e.printStackTrace();
 		}
 		return sha;
+	}
+	
+	public static String encText(String str) {
+		str = str.replace("<script", "&lt;script");
+		str = str.replace("<div>", "").replace("</div>", "<br>");
+		return str;
 	}
 }

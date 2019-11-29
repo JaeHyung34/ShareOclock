@@ -22,6 +22,13 @@
 		width: 100%;
 		height: 100%;
 	}
+	a:link {
+		text-decoration: none;
+	}
+	a:visited {
+		color: #e67e22;
+		text-decoration: none;
+	}
 </style>
 </head>
 
@@ -274,7 +281,9 @@
           <td><input class="ck" name="ck" value="${i.message_seq}" type="checkbox"></td>
           <td>${i.message_sender}</td>
           <td class="msgContent">
-          ${i.message_contents}
+          <a id="${i.message_seq}" 
+          href="${pageContext.request.contextPath}/detailView.msg?seq=${i.message_seq}">
+          ${i.message_contents}</a>
           <c:if test="${i.message_read == \"n\"}"> 
 		<span class="badge badge-pill">new</span>
 		</c:if>
@@ -305,9 +314,9 @@
 		<span class="badge badge-danger badge-pill">new</span>
 		</c:if>
         </div>
-        <div class="col-3"><small>${i.message_mTime}</small></div>
-        <hr>
-        <div class="col-12 mContent">${i.message_mContents}</div>
+        <div class="col-3 border-t"><small>${i.message_mTime}</small></div>
+        <div class="col-12 mContent">
+        <a href="${pageContext.request.contextPath}/detailView.msg?seq=${i.message_seq}">${i.message_mContents}</a></div>
         <div class="w-100"></div>
       </div>
       </c:forEach>
@@ -336,6 +345,18 @@
 	})	
     // 모두 읽음으로 표시 - 끝
     // 삭제 
+    $("#delete").on("click", function() {
+    	var ckDel = "${pageContext.request.contextPath}/checkedDelete.msg?";
+		if ($(".ck:checked").length === 0) {
+    		alert("삭제할 대상을 선택해 주세요");
+    		return;
+		}
+     	$(".ck:checked").each(function() {
+			ckDel += "seq=" + this.value + '&';
+    	})
+		location.href=ckDel;
+
+    })
     // 삭제 - 끝
     // 운영자에게 신고하기
     // 운영자에게 신고하기 - 끝
