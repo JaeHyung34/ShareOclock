@@ -4,27 +4,23 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 </head>
 <body>
-	<input id="i1" class="ck" type="checkbox">	
-	<input id="i2" class="ck" type="checkbox">	
-	<input id="i3" class="ck" type="checkbox">	
-	<input id="btn" type="button" value="check">	
-	<div class="result">hello</div>
+	<input type="button" value="+" id="plus">	
+	<div id="page">
+
+	</div>
 	<script>
-		var i = 0;
-		$("#btn").on("click", function() {
-			$(".ck").each(function() {
-				console.log(this);
-				if (this.checked) {
-					i += 1;
-				}
-			})
-				console.log(i);
+		$("#plus").on("click", function() {
+			var page = "<div>Hello world<button class='minus' type='button'>-</button></div>";
+			$("#page").append(page);
 		})
+		$("#page").on("click", '.minus', function() {
+			$(this).parent().remove();
+		});
+		
 	</script>
 </body>
 </html>
-        

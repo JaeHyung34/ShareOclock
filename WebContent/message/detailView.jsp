@@ -245,9 +245,9 @@
             <div class="col border-bottom">${dto.message_contents}</div>
           </div>
           <div class="row my-5 w-100 d-flex justify-content-center">
+            <button id="back" type="button" class="button mx-3">뒤로가기</button>
             <button id="reply" type="button" class="button mx-3">답장</button>
             <button id="delete" type="button" class="button mx-3">삭제</button>
-            <button id="back" type="button" class="button mx-3">뒤로가기</button>
           </div>
         </div>
         </form>
@@ -260,7 +260,7 @@
 		location.href="${pageContext.request.contextPath}/reply.msg?seq=${dto.message_seq}";
 	})
 	$("#delete").on("click", function() {
-		location.href="${pageContext.request.contextPath}/delete.msg?seq=${dto.message_seq}";
+		location.href="${pageContext.request.contextPath}/checkedDelete.msg?seq=${dto.message_seq}";
 	})
 	$("#back").on("click", function() {
 		location.href="${pageContext.request.contextPath}/view.msg";
