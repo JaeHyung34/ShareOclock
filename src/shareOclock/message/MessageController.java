@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import configuration.Configuration;
+import configuration.Encryption;
 
 @WebServlet("*.msg")
 public class MessageController extends HttpServlet {
@@ -19,7 +20,6 @@ public class MessageController extends HttpServlet {
 		try {
 			request.setCharacterEncoding("UTF-8");
 			response.setCharacterEncoding("UTF-8");
-			Configuration c = new Configuration();
 			MessageDAO dao = new MessageDAO();
 			String ctxPath = request.getContextPath();
 			String requestURI = request.getRequestURI();
@@ -36,16 +36,17 @@ public class MessageController extends HttpServlet {
 			// 메시지 진입화면 - 끝
 			// 메시지 보내기 
 			if (cmd.contentEquals("/send.msg")) {
+				//String sender = request.getParameter("sender");
 				String sender = "sendus";
 				String receiver = request.getParameter("receiver");
 				String content = request.getParameter("tArea");
+				content = Encryption.encText(content);
 				System.out.println(receiver + "/" + content);
 				MessageDTO dto = new MessageDTO(sender, receiver, content);
-				int result = dao.insertMsg(dto);
-				System.out.println(result);
+				//int result = dao.insertMsg(dto);
+				int result = 1;
 				if (result > 0) {
-					
-					System.out.println("success");
+					response.sendRedirect("view.msg");
 				} else {
 					System.out.println("fail");
 				}
@@ -63,8 +64,44 @@ public class MessageController extends HttpServlet {
 			}
 			// 메시지   모두 읽기로 표시 - 끝
 			// 메시지 자세히 보기 
+			if (cmd.contentEquals("/detailView.msg")) {
+				String seq_ = request.getParameter("seq");
+				if (seq_ != null) {
+					int seq = Integer.parseInt(seq_);
+					int result = dao.read(seq);
+					if (result > 0) {
+						MessageDTO dto = dao.getMsgBySeq(seq);
+						request.setAttribute("dto", dto);
+						request.getRequestDispatcher("message/detailView.jsp").forward(request, response);
+					}
+				} else {
+					// 에러 페이지로 이동
+				}
+			}
 			// 메시지 자세히 보기  - 끝
+			// 답장
+			if (cmd.equals("/reply.msg")) {
+				int seq = Integer.parseInt(request.getParameter("seq"));
+				MessageDTO dto = dao.getMsgBySeq(seq);
+				request.setAttribute("dto", dto);
+				request.getRequestDispatcher("message/reply.jsp").forward(request, response);
+			}
+			// 답장 - 끝
 			// 메시지  삭제 
+			if (cmd.contentEquals("/checkedDelete.msg")) {
+				String[] seqs = request.getParameterValues("seq");
+				int result = 1;
+				for (String seq_ : seqs) {
+					int seq = Integer.parseInt(seq_);
+					System.out.println(seq);
+					//result += dao.deleteMsg(seq);
+				}
+				if (result != 0) {
+					response.sendRedirect("view.msg");
+				} else {
+					// 에러페이지로 이동
+				}
+			}
 			// 메시지  삭제 - 끝
 			// 운영자에게 신고
 			// 운영자에게 신고 - 끝
@@ -77,4 +114,5 @@ public class MessageController extends HttpServlet {
 		doGet(request, response);
 	}
 
+	
 }
