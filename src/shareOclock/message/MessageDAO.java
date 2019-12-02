@@ -97,6 +97,29 @@ public class MessageDAO {
 		}
 	}
 	
+	// 메시지 검색
+	public List<MessageDTO> searchMsg(String option, String searchWord) throws Exception {
+		String sql = "select * from tb_message where msg_sender like '%?%' and msg_contents like '%?%'";
+		try (
+				Connection con = getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				) {
+			pstat.setString(1, option);
+			pstat.setString(1, searchWord);
+			ResultSet rs = pstat.executeQuery();
+			List<MessageDTO> list = new ArrayList<>();
+			while (rs.next()) {
+				int seq = rs.getInt(1);
+				String sender = rs.getString(2);
+				String receiver = rs.getString(3);
+				String contents = rs.getString(4);
+				Timestamp time = rs.getTimestamp(5);
+				String read = rs.getString(6);
+				list.add(new MessageDTO(seq,sender,receiver,contents,time,read));
+			}
+			return list;
+		}
+	}
 	// total Msgs 
 	public int totalMsgs() throws Exception {
 		String sql = "select count(*) from tb_message"; // id값을 추가할 것
@@ -110,10 +133,10 @@ public class MessageDAO {
 		}
 	}
 	// Pagination
-	public String pagination(int entryPage) throws Exception {
+	public String pagination(int entryPage, int totalMsgs) throws Exception {
 		int articlesPerPage = Configuration.recordCountPerPage;
 		int naviPerPage = Configuration.naviCountPerPage;
-		int totalArticles = totalMsgs();
+		int totalArticles = totalMsgs;
 
 		int totalPage = totalArticles / articlesPerPage;
 		if (totalArticles % articlesPerPage != 0)

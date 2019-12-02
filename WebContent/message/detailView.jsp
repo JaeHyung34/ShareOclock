@@ -257,13 +257,13 @@
 	</div>
 	<script>
 	$("#reply").on("click", function() {
-		location.href="${pageContext.request.contextPath}/reply.msg?seq=${dto.message_seq}";
+		location.href="${pageContext.request.contextPath}/reply.msg?seq=${dto.message_seq}&entry=${entry}";
 	})
 	$("#delete").on("click", function() {
-		location.href="${pageContext.request.contextPath}/checkedDelete.msg?seq=${dto.message_seq}";
+		location.href="${pageContext.request.contextPath}/checkedDelete.msg?seq=${dto.message_seq}&entry=${entry}";
 	})
 	$("#back").on("click", function() {
-		location.href="${pageContext.request.contextPath}/view.msg";
+		location.href="${pageContext.request.contextPath}/view.msg?entry=${entry}";
 	})
   </script>
 </body>

@@ -42,6 +42,9 @@ a:visited {
 .msgContent {
 	padding-right: 0px;
 }
+body {
+	overflow: auto;
+}
 </style>
 </head>
 
@@ -261,9 +264,10 @@ a:visited {
 			<div id="content" class="container-fluid mx-xs-0 my-5 mx-md-5">
 
 				<!-- md 이상일 때의 쪽지함 -->
-				<div class="d-none d-md-block">
+				<div class="d-none d-md-block row">
 					<h2>쪽지함</h2>
 					<p>ID의 쪽지함입니다. 읽지 않은 쪽지는 현재 0개 입니다</p>
+					<div class="col-11">
 					<table class="table table-hover ">
 						<thead>
 							<tr>
@@ -279,7 +283,7 @@ a:visited {
 										type="checkbox"></td>
 									<td>${i.message_sender}</td>
 									<td class="msgContent"><a id="${i.message_seq}"
-										href="${pageContext.request.contextPath}/detailView.msg?seq=${i.message_seq}">
+										href="${pageContext.request.contextPath}/detailView.msg?seq=${i.message_seq}&entry=${entry}">
 											${i.message_contents}</a> <c:if test="${i.message_read == \"n\"}">
 											<span class="badge badge-pill">new</span>
 										</c:if></td>
@@ -293,20 +297,31 @@ a:visited {
 							${pagination}
 						</ul>
 					</nav>
+					</div>
+					<!--  검색기능 -->
+					<form action="${pageContext.request.contextPath}/search.msg" method="post">
+					<div class="row w-100 text-center">
+						<div class="col-8">
+							<select name="options">
+								<option>작성자</option>
+								<option>내용</option>
+							</select>	
+							<input type="text" name="search">
+							<input id="doSearch" type="submit" value="검색">
+						</div>
+					</div>	
+					</form>
 					<div id="btns" class="row">
-						<div class="col-md-2">
+						<div class="col-md-3">
 							<input id="writeMsg" type="button" value="쪽지 쓰기">
 						</div>
-						<div class="col-md-2">
+						<div class="col-md-3">
 							<input id="readAll" type="button" value="모두 읽음으로 표시">
 						</div>
-						<div class="col-md-2">
+						<div class="col-md-3">
 							<input id="delete" type="button" value="삭제">
 						</div>
-						<div class="d-md-block col-md-2"></div>
-						<div class="col-md-2">
-							<input id="callAdmin" type="button" value="운영자에게 신고하기">
-						</div>
+						<div class="d-md-block col-md-3"></div>
 					</div>
 				</div>
 				<!-- md이상일 때에 보이는 부분 끝 -->
@@ -327,7 +342,7 @@ a:visited {
 							</div>
 							<div class="col-12 mContent">
 								<a
-									href="${pageContext.request.contextPath}/detailView.msg?seq=${i.message_seq}">${i.message_mContents}</a>
+									href="${pageContext.request.contextPath}/detailView.msg?seq=${i.message_seq}&entry=${entry}"><c:out value="${i.message_mContents}"></c:out></a>
 							</div>
 							<div class="w-100"></div>
 						</div>
@@ -337,14 +352,11 @@ a:visited {
 					</nav>
 					<div class="row mb-4">
 						<div class="col-6">
-							<a href="${pageContext.request.contextPath}/message/sendMsg.jsp">쪽지
+							<a href="${pageContext.request.contextPath}/message/sendMsg.jsp?entry=${entry}">쪽지
 								쓰기</a>
 						</div>
 						<div class="col-6">
 							<small>모두 읽음으로 표시</small>
-						</div>
-						<div class="col-12 mb-3">
-							<small>운영자에게 신고하기</small>
 						</div>
 					</div>
 				</div>
@@ -358,7 +370,7 @@ a:visited {
 	<script>
     // 쪽지 쓰기
     $("#writeMsg").on("click", function() {
-    	location.href="${pageContext.request.contextPath}/message/sendMsg.jsp";
+    	location.href="${pageContext.request.contextPath}/message/sendMsg.jsp?entry=${entry}";
     })
     // 쪽지 쓰기 - 끝
     // 모두 읽음으로 표시
@@ -376,7 +388,7 @@ a:visited {
      	$(".ck:checked").each(function() {
 			ckDel += "seq=" + this.value + '&';
     	})
-		location.href=ckDel;
+		location.href=ckDel + "entry=${entry}";
 
     })
     // 삭제 - 끝

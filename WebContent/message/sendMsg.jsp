@@ -242,18 +242,20 @@
 				<div class="container mt-5 rounded">
 					<div class="row mt-2 border mx-3 mx-md-0">
 						<div class="d-none d-md-block col-md-2 text-right">받으실 분 :</div>
-						<div class="col-8 border col-sm-10 col-md-6 px-0">
+						<div class="col-8 col-sm-10 col-md-6 px-0">
 							<input id="receiver" type="text"
 								placeholder="받으실 분을 입력하세요"> 
 						</div>
-						<div class="col-4 border col-sm-2 col-md-1">
-						<button type="button" id="add">등록</button>
-						<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#find">그룹 찾기</button>
+						<div class="col-4 col-sm-2 col-md-1">
+							<button class="btn btn-secondary" type="button" id="add">등록</button>
+						</div>
+						<div>
+							<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#find">그룹 찾기</button>
 						</div>
 					</div>
 					<div class="row">
 					<!-- 메시지 보낼 대상자 리스트 -->
-						<p>메시지를 보낼 대상</p><br>
+						<p>메시지를 보낼 대상 : </p><br>
 						<div id="sendList" class="ml-5"></div>
 					</div>
 					<!-- 메시지 보낼 대상자 리스트 끝 -->
@@ -354,7 +356,7 @@
 			if (add) {
 				var input = '<div class="row">';
 				var input1 = '<i class="fas fa-minus mr-2 mt-1"></i><span class="sendList">' + resp + '</span></div>';
-				var input2 = "<input type='text' name='sendList' class='d-none' value=" + resp +">";
+				var input2 = "<input type='hidden' name='sendList' class='d-none' value=" + resp +">";
 				$("#sendList").append(input + input1 + input2);
 				$("#receiver").val('');
 			} 
