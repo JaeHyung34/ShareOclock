@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 
 import configuration.Configuration;
-import configuration.Encryption;
+import configuration.Utils;
 
 public class Member_DAO {
 	public static Member_DAO instance;
@@ -24,8 +24,6 @@ public class Member_DAO {
 	}
 	public Member_DTO getLogin(String email, String pw) throws Exception {
 		String sql = "select * from tb_member where mb_email=? and mb_pw=?";
-		System.out.println("id"+email);
-		System.out.println("pw"+pw);
 		Member_DTO dto = null;
 		try (Connection conn = getConnection();
 			PreparedStatement pstat = conn.prepareStatement(sql);) {
@@ -39,7 +37,18 @@ public class Member_DAO {
 			}
 		}
 	}
-	public boolean emailCheck(String email) throws SQLException, Exception {
+	public boolean nickNameCheck(String nickName) throws Exception {
+		String sql = "select * from tb_member where mb_nickname = ?";
+		try (
+			Connection conn = getConnection(); 
+			PreparedStatement pstat = conn.prepareStatement(sql);) {
+			pstat.setString(1, nickName);
+			try (ResultSet rs = pstat.executeQuery();) {
+				return rs.next();
+			}
+		}
+	}
+	public boolean emailCheck(String email) throws Exception {
 		String sql = "select * from tb_member where mb_email = ?";
 		try (
 			Connection conn = getConnection(); 
@@ -50,75 +59,105 @@ public class Member_DAO {
 			}
 		}
 	}
-	public int modifyPw(String email, String pw) throws SQLException, Exception {
+	public int modifyPw(String email, String pw) throws Exception {
 		String sql = "update tb_member set mb_pw=? where mb_email=?";
 		try (Connection con = getConnection();
 			PreparedStatement pstat = con.prepareStatement(sql);) {
 			System.out.println("디비가 실행" + pw);
-			System.out.println("디비가 실행" + email);
-			pstat.setString(1, Encryption.encrpyt(pw));
+			pstat.setString(1, Utils.encrpyt(pw));
 			pstat.setString(2, email);
-			System.out.println("디비가 실행" + Encryption.encrpyt(pw));
 			int result = pstat.executeUpdate();
 			con.commit();
 			return result;
 		}
 	}
-//
-//	public int insert(Member_DTO dto) throws SQLException, Exception {
-//		String sql = "insert into members values(?,?,?,?,?,?,?,?)";
-//		try (Connection conn = getConnection(); PreparedStatement pstat = conn.prepareStatement(sql);) {
-//			pstat.setString(1, dto.getId());
-//			pstat.setString(2, Encrpytion.encrpyt(dto.getPw()));
-//			pstat.setString(3, dto.getName());
-//			pstat.setString(4, dto.getPhone());
-//			pstat.setString(5, dto.getEmail());
-//			pstat.setString(6, dto.getZipcode());
-//			pstat.setString(7, dto.getAddress1());
-//			pstat.setString(8, dto.getAddress2());
-//			int result = pstat.executeUpdate();
-//			conn.commit();
-//
-//			return result;
-//
-//		}
-//
-//	}
-//
 
-//
-//	public int remove(String id) throws SQLException, Exception {
-//		String sql = "delete from members where id=?";
-//		try (Connection conn = getConnection(); PreparedStatement pstat = conn.prepareStatement(sql);) {
-//			pstat.setString(1, id);
-//			int result = pstat.executeUpdate();
-//			conn.commit();
-//			return result;
-//
-//		}
-//	}
-//
-//	public Member_DTO selectInfo(String id) throws SQLException, Exception {
-//		String sql = "select * from members where id=?";
-//		try (Connection conn = getConnection(); PreparedStatement pstat = conn.prepareStatement(sql);) {
-//			pstat.setString(1, id);
-//			try (ResultSet rs = pstat.executeQuery();) {
-//				Member_DTO newDto = new Member_DTO();
-//				if (rs.next()) {
-//					newDto.setId(rs.getString("id"));
-//					newDto.setPw(rs.getString("pw"));
-//					newDto.setName(rs.getString("name"));
-//					newDto.setEmail(rs.getString("email"));
-//					newDto.setPhone(rs.getString("phone"));
-//					newDto.setZipcode(rs.getString("zipcode"));
-//					newDto.setAddress1(rs.getString("address1"));
-//					newDto.setAddress2(rs.getString("address2"));
-//				}
-//				return newDto;
-//			}
-//		}
-//	}
-//
+	public int insert(Member_DTO dto)  throws Exception{
+		String sql = "insert into tb_member values(?,?,?,?,?,?,?)";
+		try (Connection conn = getConnection(); 
+			 PreparedStatement pstat = conn.prepareStatement(sql);){
+			System.out.println("naverKakao  : "+dto.getMb_pw());
+			pstat.setString(1, dto.getMb_email());
+			pstat.setString(2, Utils.encrpyt(dto.getMb_pw()));
+			pstat.setString(3, dto.getMb_name());
+			pstat.setString(4, dto.getMb_nickname());
+			String content = dto.getMb_group();
+			if(content != null && !content.equals("")){
+				pstat.setString(5, dto.getMb_group());
+			}
+			else{
+				pstat.setNull(5, java.sql.Types.NULL);
+			}
+			pstat.setString(6, dto.getMb_phone());
+			pstat.setString(7, dto.getMb_check());
+			int result = pstat.executeUpdate();
+			conn.commit();
+			return result;
+		}
+	}
+	
 
+	
+	public Member_DTO selectInfo(String mb_nickName) throws SQLException, Exception {
+		String sql = "select * from tb_member where mb_nickname=?";
+		try (Connection conn = getConnection(); PreparedStatement pstat = conn.prepareStatement(sql);) {
+			pstat.setString(1, mb_nickName);
+			try (ResultSet rs = pstat.executeQuery();) {
+				Member_DTO dto = null;
+				if (rs.next()) {
+					dto = new Member_DTO(rs.getString("mb_email"),rs.getString("mb_pw") , rs.getString("mb_name"), rs.getString("mb_nickname"), rs.getString("mb_group") , rs.getString("mb_phone"), rs.getString("mb_check"));
+				}
+				return dto;
+			}
+		}
+	}
+	
+	public int modifyMember(Member_DTO dto) throws SQLException, Exception {
+		String sql = "update tb_member set mb_pw=?, mb_name=?, mb_nickname=?, mb_group=?, mb_phone=? where mb_email=?";
+		try (Connection con = getConnection();
+			PreparedStatement pstat = con.prepareStatement(sql);) {
+			pstat.setString(1, Utils.encrpyt(dto.getMb_pw()));
+			pstat.setString(2, dto.getMb_name());
+			pstat.setString(3, dto.getMb_nickname());
+			String content = dto.getMb_group();
+			
+			if(content != null && !content.equals("")){
+				pstat.setString(4, dto.getMb_group());
+			}
+			else{
+				pstat.setNull(4, java.sql.Types.NULL);
+			}
+			
+			pstat.setString(5, dto.getMb_phone());
+			pstat.setString(6, dto.getMb_email());
+			int result = pstat.executeUpdate();
+			con.commit();
+			return result;
+		}
+	}
+	
+	public int deleteMember(String mb_nickName) throws SQLException, Exception {
+		String sql = "delete from tb_member where mb_nickName=?";
+		try (Connection conn = getConnection(); PreparedStatement pstat = conn.prepareStatement(sql);) {
+			pstat.setString(1, mb_nickName);
+			int result = pstat.executeUpdate();
+			conn.commit();
+			return result;
 
+		}
+	}
+	public Member_DTO selectEmail(String mb_email) throws SQLException, Exception {
+		String sql = "select * from tb_member where mb_email=?";
+		try (Connection conn = getConnection(); PreparedStatement pstat = conn.prepareStatement(sql);) {
+			pstat.setString(1, mb_email);
+			try (ResultSet rs = pstat.executeQuery();) {
+				Member_DTO dto = null;
+				if (rs.next()) {
+					dto = new Member_DTO(rs.getString("mb_email"),rs.getString("mb_pw") , rs.getString("mb_name"), rs.getString("mb_nickname"), rs.getString("mb_group") , rs.getString("mb_phone"), rs.getString("mb_check"));
+				}
+				return dto;
+			}
+		}
+	}
+	
 }
