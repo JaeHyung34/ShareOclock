@@ -302,11 +302,12 @@ body {
 					<form action="${pageContext.request.contextPath}/search.msg" method="post">
 					<div class="row w-100 text-center">
 						<div class="col-8">
-							<select name="options">
-								<option>작성자</option>
-								<option>내용</option>
+							<select name="option">
+								<option value="sender" <c:if test="${option.equals(\"sender\")}"> selected</c:if>>작성자</option>
+								<option value="content"
+								<c:if test="${option.equals(\"content\")}"> selected</c:if>>내용</option>
 							</select>	
-							<input type="text" name="search">
+							<input type="text" name="search" value="${searchWord}">
 							<input id="doSearch" type="submit" value="검색">
 						</div>
 					</div>	
@@ -342,7 +343,7 @@ body {
 							</div>
 							<div class="col-12 mContent">
 								<a
-									href="${pageContext.request.contextPath}/detailView.msg?seq=${i.message_seq}&entry=${entry}"><c:out value="${i.message_mContents}"></c:out></a>
+									href="${pageContext.request.contextPath}/detailView.msg?seq=${i.message_seq}&entry=${entry}">${i.message_mContents}</a>
 							</div>
 							<div class="w-100"></div>
 						</div>
@@ -392,8 +393,6 @@ body {
 
     })
     // 삭제 - 끝
-    // 운영자에게 신고하기
-    // 운영자에게 신고하기 - 끝
       // 전체 선택
           $("#selectAll").on("click", function() {
 			if (this.checked) {

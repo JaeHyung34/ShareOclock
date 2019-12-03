@@ -242,7 +242,7 @@
           </div>
           <div class="row mt-4">
             <div class="d-none d-md-block col-md-1 border-right border-bottom">내용 : </div>
-            <div class="col border-bottom">${dto.message_contents}</div>
+            <div class="col border-bottom">${dto.realMessage_contents}</div>
           </div>
           <div class="row my-5 w-100 d-flex justify-content-center">
             <button id="back" type="button" class="button mx-3">뒤로가기</button>
@@ -263,7 +263,7 @@
 		location.href="${pageContext.request.contextPath}/checkedDelete.msg?seq=${dto.message_seq}&entry=${entry}";
 	})
 	$("#back").on("click", function() {
-		location.href="${pageContext.request.contextPath}/view.msg?entry=${entry}";
+		history.back();
 	})
   </script>
 </body>

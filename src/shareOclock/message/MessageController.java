@@ -15,7 +15,6 @@ import configuration.Encryption;
 
 @WebServlet("*.msg")
 public class MessageController extends HttpServlet {
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			request.setCharacterEncoding("UTF-8");
@@ -30,11 +29,13 @@ public class MessageController extends HttpServlet {
 			if (cmd.equals("/view.msg")) {
 				String entryPage_ = request.getParameter("entry");
 				int entryPage = 1;
-				if (entryPage_ != null)
-					entryPage = Integer.parseInt(entryPage_);
+				System.out.println(entryPage_);
+				if (entryPage_ != null) entryPage = Integer.parseInt(entryPage_);
 				List<MessageDTO> list = dao.viewAllMsg(entryPage);
 				int totalMsgs = dao.totalMsgs();
-				String pagination = dao.pagination(entryPage, totalMsgs);
+				String pagination = dao.pagination(entryPage, totalMsgs, "view.msg");
+				request.setAttribute("option", null);
+				request.setAttribute("searchWord", null);
 				request.setAttribute("list", list);
 				request.setAttribute("entry", entryPage);
 				request.setAttribute("pagination", pagination);
@@ -42,21 +43,40 @@ public class MessageController extends HttpServlet {
 				rd.forward(request, response);
 			}
 			// 메시지 진입화면 - 끝
+			// 메시지 검색화면 
 			if (cmd.contentEquals("/search.msg")) {
-				String[] options = request.getParameterValues("options");
+				String option = request.getParameter("option");
 				String searchWord = request.getParameter("search");
+				String entry_ = request.getParameter("entry");
+				if (entry_ == null) entry_ = "1";
 				if (searchWord == null) {
 					searchWord = "";
 				}
-				String option = options[0];
-				List<MessageDTO> list = dao.searchMsg(option, searchWord);
+				int entry = Integer.parseInt(entry_);
+				String sender = null;
+				String contents = null;
+				if (option.contentEquals("sender")) {
+					sender = "%" + searchWord + "%";
+					contents = "%%";
+				} else if (option.contentEquals("content")) {
+					contents = "%" + searchWord + "%";
+					sender = "%%";
+				}
+				List<MessageDTO> list = dao.searchResult(entry, sender, contents);
+				String pagination = dao.searchPagination(entry, dao.getTotalSearchedArticles(sender, contents), "search.msg", option, searchWord);
+				request.setAttribute("option", option);
+				request.setAttribute("searchWord", searchWord);
 				request.setAttribute("list", list);
-				
+				request.setAttribute("pagination", pagination);
+				request.setAttribute("entry", entry);
+				RequestDispatcher rd = request.getRequestDispatcher("message/msg_index.jsp");
+				rd.forward(request, response);
 			}
+			// 메시지 검색화면 - 끝
 			// 메시지   모두 읽기로 표시
 			if (cmd.equals("/readAll.msg")) {
-				String receiver = "iko";
-				int result = dao.readAll(receiver);
+				String sender = "iko";
+				int result = dao.readAll(sender);
 				if (result > 0) {
 					response.sendRedirect(request.getContextPath() + "/view.msg");
 				} else {
@@ -89,7 +109,7 @@ public class MessageController extends HttpServlet {
 				int entry = Integer.parseInt(request.getParameter("entry"));
 				MessageDTO dto = dao.getMsgBySeq(seq);
 				request.setAttribute("dto", dto);
-				request.setAttribute("entry", entry);
+				//request.setAttribute("entry", entry);
 				request.getRequestDispatcher("message/reply.jsp").forward(request, response);
 			}
 			// 답장 - 끝
@@ -125,8 +145,7 @@ public class MessageController extends HttpServlet {
 					result += dao.insertMsg(dto);
 				}
 				if (result == sendList.length) {
-					String entry = request.getParameter("entry");
-					request.getRequestDispatcher("view.msg?entry=" + entry).forward(request, response);
+					request.getRequestDispatcher("view.msg?entry=1").forward(request, response);
 				} else {
 					System.out.println("fail");
 				}
@@ -157,5 +176,5 @@ public class MessageController extends HttpServlet {
 		doGet(request, response);
 	}
 
-	
+
 }

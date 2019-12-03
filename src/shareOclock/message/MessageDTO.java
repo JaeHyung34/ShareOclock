@@ -67,9 +67,12 @@ public class MessageDTO {
 	}
 
 
+	public String getRealMessage_contents() {
+		return this.message_contents;
+	}
 	public String getMessage_contents() {
-		if (this.message_contents.length() > 99)
-			return this.message_contents.substring(0, 100) + "...";
+		if (this.message_contents.length() > 50)
+			return this.message_contents.substring(0, 50) + "...";
 		return message_contents;
 	}
 

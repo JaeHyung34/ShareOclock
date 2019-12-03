@@ -19,7 +19,7 @@ public class Encryption {
 	}
 	
 	public static String encText(String str) {
-		str = str.replace("<script", "&lt;script");
+		str = str.replace("<", "&lt;");
 		str = str.replace("<div>", "").replace("</div>", "<br>");
 		return str;
 	}
