@@ -12,6 +12,7 @@ import configuration.Encryption;
 
 public class Member_DAO {
 	public static Member_DAO instance;
+
 	public synchronized static Member_DAO getInstance() {
 		if (instance == null) {
 			System.out.println("디비가 생성되었다.");
@@ -19,41 +20,43 @@ public class Member_DAO {
 		}
 		return instance;
 	}
+
 	Connection getConnection() throws Exception {
 		return Configuration.dbs.getConnection();
 	}
+
 	public Member_DTO getLogin(String email, String pw) throws Exception {
 		String sql = "select * from tb_member where mb_email=? and mb_pw=?";
-		System.out.println("id"+email);
-		System.out.println("pw"+pw);
+		System.out.println("id" + email);
+		System.out.println("pw" + pw);
 		Member_DTO dto = null;
-		try (Connection conn = getConnection();
-			PreparedStatement pstat = conn.prepareStatement(sql);) {
+		try (Connection conn = getConnection(); PreparedStatement pstat = conn.prepareStatement(sql);) {
 			pstat.setString(1, email);
 			pstat.setString(2, pw);
 			try (ResultSet rs = pstat.executeQuery();) {
-				if(rs.next()) {
-					dto = new Member_DTO(rs.getString("mb_email"),rs.getString("mb_pw") , rs.getString("mb_name"), rs.getString("mb_nickname"), rs.getString("mb_group") , rs.getString("mb_phone"), rs.getString("mb_check"));
-				}	
+				if (rs.next()) {
+					dto = new Member_DTO(rs.getString("mb_email"), rs.getString("mb_pw"), rs.getString("mb_name"),
+							rs.getString("mb_nickname"), rs.getString("mb_group"), rs.getString("mb_phone"),
+							rs.getString("mb_check"));
+				}
 				return dto;
 			}
 		}
 	}
+
 	public boolean emailCheck(String email) throws SQLException, Exception {
 		String sql = "select * from tb_member where mb_email = ?";
-		try (
-			Connection conn = getConnection(); 
-			PreparedStatement pstat = conn.prepareStatement(sql);) {
+		try (Connection conn = getConnection(); PreparedStatement pstat = conn.prepareStatement(sql);) {
 			pstat.setString(1, email);
 			try (ResultSet rs = pstat.executeQuery();) {
 				return rs.next();
 			}
 		}
 	}
+
 	public int modifyPw(String email, String pw) throws SQLException, Exception {
 		String sql = "update tb_member set mb_pw=? where mb_email=?";
-		try (Connection con = getConnection();
-			PreparedStatement pstat = con.prepareStatement(sql);) {
+		try (Connection con = getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
 			System.out.println("디비가 실행" + pw);
 			System.out.println("디비가 실행" + email);
 			pstat.setString(1, Encryption.encrpyt(pw));
@@ -119,6 +122,18 @@ public class Member_DAO {
 //		}
 //	}
 //
-
+	public int deleteById(String email) throws Exception {
+		String sql = "delete from tb_member where mb_email=?";
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				){
+			pstmt.setString(1, email);
+			int result = pstmt.executeUpdate();
+			con.commit();			
+			return result;
+		}
+	}
+	
 
 }
