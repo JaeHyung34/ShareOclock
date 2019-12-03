@@ -165,7 +165,6 @@
 	        </div>
 	      </div>
 	      <!-- join modal footer -->
-	      <div class="modal-footer">
 	        <button class="btn btn-primary" id=btn_signInfoSend>제출</button>
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
 	      </div>
