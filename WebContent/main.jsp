@@ -78,7 +78,7 @@
 			<div class="sidebar-heading">은비</div>
 
 			<!-- Nav Item -->
-			<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/view.pro"> <i
+			<li class="nav-item"><a class="nav-link" href="#" onclick="viewProjectMove()"> <i
 					class="fas fa-fw fa-chart-area"></i> <span>조은비</span></a></li>
 
 			<!-- Heading - 게시판 -->
@@ -236,6 +236,9 @@
 		if (result) {
 			$(location).attr('href', "${pageContext.request.contextPath}/withdrawal.member");
 		}
+	}
+	function viewProjectMove(){
+		$("#iframe").attr("src","${pageContext.request.contextPath}/view.pro");
 	}
 	</script>
 </body>

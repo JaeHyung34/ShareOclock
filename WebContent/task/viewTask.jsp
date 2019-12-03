@@ -5,49 +5,44 @@
 <html lang="en">
 
 <head>
+
 <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
 
 <title>일정 게시판</title>
-
+<jsp:include page="/cdn/cdn.jsp" flush="false" />
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" type="text/css"/>
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/js/dataTables.semanticui.min.js" type="text/css"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js" type="text/css"/>
 <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js" type="text/css"/>
-
-
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css">
 <link rel="stylesheet"
 	href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
-
-
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.css">
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/themes/material_green.css">
 <link
 	href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css"
 	rel="stylesheet">
 
-<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" type="text/javascript" ></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" type="text/javascript" ></script>
-	
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" type="text/javascript" ></script>
 <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" type="text/javascript" ></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.js"></script>
 <script
 	src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
+
 <style type="text/css">
+	body{
+		height: 100%;
+		overflow: hidden;
+	}
 	.container{
 		margin-top: 30px;
 	}
@@ -77,9 +72,11 @@
     .filterPad{
 		padding-top:15px;
 	}
-</style>
+</style>	
 </head>
-<body>
+
+<body id="page-top">
+		<!-- 메인 콘텐츠 시작 부분 -->
 <!-- 게시판 네비 시작 -->
 <ul class="nav nav-tabs" id="navBar">
 	<li class="nav-item dropdown">
@@ -97,8 +94,6 @@
 	</li>
 </ul>
 <!-- 게시판 네비 끝 -->
-<!-- title="Popover title" -->
-<!-- 				data-toggle="modal" data-target="#addModal" -->
 <!-- 일정 게시판 화면 시작-->
 	<div class="container">
 		<h2>일정 게시판</h2>
@@ -264,7 +259,6 @@
 					</form>
 				</div>
 				<div class="modal-footer">
-					
 					<c:if test="${user == dtoView.pt_writer}">
 						<button type="button" id="deleteView" class="btn btn-danger" hidden>삭제</button>
 						<button type="button" id="modifyView" class="btn btn-primary" hidden>수정</button> 
@@ -276,16 +270,19 @@
 			</div>
 		</div>
 	</div>
-
 	<!-- 일정 수정 modal 끝 -->
+	<!-- 메인 콘텐츠 끝 -->
 
+		</div>
+	</div>
+	
 	<script>
 	
 	jQuery(function($){
 		var t = $("#tableTask").DataTable({
-			"responsive": {
-		        details: false
-		    },
+// 			"responsive": {
+// 		        details: false
+// 		    },
 		    "info" : false,
 			"paging" : true, // 페이징 
 			"filter" : true, // 검색 기능 부여
@@ -385,8 +382,6 @@
 				$("#titleView").attr("readonly", false);
 				$("#startDateView").attr("readonly",false);
 				$("#endDateView").attr("readonly",false);
-// 				$("#startDateView").val(data.dtoView.pt_startDate);
-// 				$("#endDateView").val(data.dtoView.pt_endDate);
 				$('#summernoteView').summernote('enable');
 				$("#highView").attr("disabled",false);
 				$("#midView").attr("disabled",false);
@@ -445,19 +440,15 @@
 						contents = $("#contentsInputView").html(0);
 						alert("일정내용을 입력해 주세요.");
 						return;
-					}					
-// 					var htmlContent = $('#summernoteView').summernote('code');
-// 					var plainText = $(htmlContent).text();
+					}
 					
 					var resultView = (titleView*startDateView*endDateView*priorityView*contentsView);
 					if(resultView != 0){
 		 				$("#summernoteView").val($(".note-editable").html());
 						$("#frmModify").submit();
 					}return;	
-				});
-				//저장 클릭 시 정규식 검사 끝
-			});
-			//수정 클릭 시 이벤트 끝
+				});//저장 클릭 시 정규식 검사 끝
+			});//수정 클릭 시 이벤트 끝
 				
 			//삭제 클릭 시 이벤트
 			$("#deleteView").on("click", function(){
@@ -484,17 +475,13 @@
 						console.log(c);
 					});
 				}return;				
-			});
-			//삭제 클릭 시 이벤트 끝 
-			
+			});	//삭제 클릭 시 이벤트 끝 
 		}).fail(function(a, b, c){
 			console.log(a);
 			console.log(b);
 			console.log(c);
 		});
-
-	});
-	
+	});	
 	$("#viewModal").ready(function() {						
 		$('#summernoteView').summernote({
 			disableDragAndDrop : true,
@@ -514,11 +501,7 @@
 					 },
 			disableResizeEditor: true
 		});
-	});
-	
-// 일정 보기 modal 관련 script 끝
-
-	
+	});// 일정 보기 modal 관련 script 끝
 // 	일정 추가 modal 관련 script
 		var title = 1;
 		var startDate = 1;
@@ -535,7 +518,6 @@
 			$("#mid").attr('class', 'btn btn-secondary btn-sm');
 			$("#low").attr('class', 'btn btn-secondary btn-sm');
 			$('#summernote').summernote('code', ''); // 모든 인풋 지워주기
-// 			$("#addModal > .note-editable").val("<p></p>");
 		});
 		
 		$("#create").on("click", function() {
@@ -618,9 +600,7 @@
 			$("#high").attr('class', 'btn btn-secondary btn-sm');
 			$("#mid").attr('class', 'btn btn-secondary btn-sm');
 			$("#priority").val("L");
-		});
-//	일정 추가 modal 관련 script 끝
-		
+		}); //일정 추가 modal 관련 script 끝
 	</script>
 </body>
 </html>

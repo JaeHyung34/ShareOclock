@@ -99,7 +99,7 @@ public class ProjectController extends HttpServlet {
 				if(Pro_memberDAO.getInstance().isValidMember(seq, user)) { // 프로젝트 seq와 접속자 매칭 검사
 					request.getSession().setAttribute("projectInfo", seq); // 프로젝트 시 클릭 시 해당 프로젝트  seq 세션에 담기 
 					System.out.println(cmd);
-					response.sendRedirect("/Project/viewTask.pt"); // 해당 프로젝트 일정 페이지로 넘어가기
+					response.sendRedirect("/SemiProject/viewTask.pt"); // 해당 프로젝트 일정 페이지로 넘어가기
 				}else {
 					response.sendRedirect("view.pro");
 				}
