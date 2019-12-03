@@ -36,7 +36,7 @@ public class MemberController extends HttpServlet {
 			System.out.println(email);
 			boolean result = false;
 			try {
-				result = Member_DAO.getInstance().emailCheck(email);
+				result = MemberDAO.getInstance().emailCheck(email);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -77,7 +77,7 @@ public class MemberController extends HttpServlet {
 				String AuthenticationKey = temp.toString();
 
 				try {
-					int modify = Member_DAO.getInstance().modifyPw(email, AuthenticationKey);
+					int modify = MemberDAO.getInstance().modifyPw(email, AuthenticationKey);
 					if(modify > 0) {
 						Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
 							protected PasswordAuthentication getPasswordAuthentication() {
@@ -195,10 +195,10 @@ public class MemberController extends HttpServlet {
 				mb_pw = "naverKakao";
 			}
 			System.out.println("naverKakao"+mb_pw);
-			Member_DTO dto = new Member_DTO(mb_email, mb_pw, mb_name, mb_nickname, mb_group, mb_phone, "A");
+			MemberDTO dto = new MemberDTO(mb_email, mb_pw, mb_name, mb_nickname, mb_group, mb_phone, "A");
 			int result = 0;
 			try {
-				result = Member_DAO.getInstance().insert(dto);
+				result = MemberDAO.getInstance().insert(dto);
 				if(result > 0) {
 //					Gson gson = new Gson();
 //					String resultJSON = gson.toJson(1result);
@@ -214,7 +214,7 @@ public class MemberController extends HttpServlet {
 			System.out.println(mb_email+" : ");
 			boolean result = false;
 			try {
-				result = Member_DAO.getInstance().emailCheck(mb_email);
+				result = MemberDAO.getInstance().emailCheck(mb_email);
 				Gson gson = new Gson();
 				String resultJSON = "";
 				System.out.println("현재 이메일 체크  "+result);
@@ -229,7 +229,7 @@ public class MemberController extends HttpServlet {
 			System.out.println(" : " + mb_nickname);
 			boolean result = false;
 			try {
-				result = Member_DAO.getInstance().nickNameCheck(mb_nickname);
+				result = MemberDAO.getInstance().nickNameCheck(mb_nickname);
 				Gson gson = new Gson();
 				String resultJSON = "";
 				resultJSON = gson.toJson(result);
@@ -245,10 +245,10 @@ public class MemberController extends HttpServlet {
 			String mb_nickName = request.getParameter("mb_nickName");
 			String mb_group = request.getParameter("mb_group");
 			String mb_phone = request.getParameter("mb_phone");
-			Member_DTO dto = new Member_DTO(mb_email, mb_pw, mb_name, mb_nickName, mb_group, mb_phone, "A");
+			MemberDTO dto = new MemberDTO(mb_email, mb_pw, mb_name, mb_nickName, mb_group, mb_phone, "A");
 			int result = 0;
 			try {
-				result = Member_DAO.getInstance().modifyMember(dto);
+				result = MemberDAO.getInstance().modifyMember(dto);
 				if(result > 0) {
 //					Gson gson = new Gson();
 //					String resultJSON = gson.toJson(result);
@@ -261,10 +261,10 @@ public class MemberController extends HttpServlet {
 			}
 		}else if(realpath.contentEquals("/member/myInfo.member")) {	
 		    String mb_nickName = (String) request.getSession().getAttribute("loginInfo");
-			Member_DTO dto = null;
+			MemberDTO dto = null;
 			System.out.println("mb_nickName"+mb_nickName);
 			try {
-				dto = Member_DAO.getInstance().selectInfo(mb_nickName);		
+				dto = MemberDAO.getInstance().selectInfo(mb_nickName);		
 				request.setAttribute("dto", dto);
 				System.out.println("mb_nickName"+dto.getMb_email());
 
@@ -279,7 +279,7 @@ public class MemberController extends HttpServlet {
 			int result = 0;
 			System.out.println("mb_nickName" + mb_nickName);
 			try {
-				result = Member_DAO.getInstance().deleteMember(mb_nickName);
+				result = MemberDAO.getInstance().deleteMember(mb_nickName);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

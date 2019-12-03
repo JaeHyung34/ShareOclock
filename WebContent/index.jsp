@@ -103,7 +103,7 @@
 	            <div class="form-row">
 				  <div class="col-9 mt-2" id=signDivEmail>
 	                <label for="signInputEmail">이메일</label>
-	          		<input type="text" id="signInputEmail" name=mb_email  class="form-control is-valid" placeholder="이메일형식을 입력하세요" oninput = emailOverlapCheck()>
+	          		<input type="text" id="signInputEmail" name=mb_email  class="form-control" placeholder="이메일형식을 입력하세요" oninput = emailOverlapCheck()>
 	          		<div class="valid-feedback ml-3">OK</div>
 	          		<div class="invalid-feedback ml-3">Not Ok</div>
 	              </div>
@@ -122,13 +122,13 @@
 		         	<div class="form-row col-12 mb-0" id=signDivPassword>
 		              <div class="col-6 mb-4 mt-2">
 		                <label for="">비밀번호</label>
-		         		<input type="password"  autocomplete="off"  name=mb_pw id="signInputPassword" class="form-control is-valid" placeholder="비밀번호를 입력하세요">
+		         		<input type="password"  autocomplete="off"  name=mb_pw id="signInputPassword" class="form-control" placeholder="비밀번호를 입력하세요">
 		          	    <div class="ml-3 valid-feedback">Yes</div>
 		                <div class="invalid-feedback ml-3">Not Ok</div>
 		              </div>
 		            <div class="col-6 mb-4 mt-2">
 		              <label for="signRepeatPassword">비밀번호 확인</label>
-		              <input type="password" id="signRepeatPassword"  autocomplete="off"  class="form-control is-invalid" placeholder="비밀번호 확인">
+		              <input type="password" id="signRepeatPassword"  autocomplete="off"  class="form-control" placeholder="비밀번호 확인">
 		              <div class="valid-feedback ml-3">Ok</div>
 		              <div class="invalid-feedback ml-3">Not Ok</div>
 		            </div>
@@ -140,26 +140,26 @@
 	        <div class="form-row col-12">
 	          <div class="col-6">
 	            <label for="">아이디</label>
-	            <input type="text" id=signInputID name ="mb_nickname" class="form-control form-control-user is-invalid" placeholder="고유한 아이디를 입력하세요" oninput = nickNameOverlapCheck()>
+	            <input type="text" id=signInputID name ="mb_nickname" class="form-control" placeholder="고유한 아이디를 입력하세요" oninput = nickNameOverlapCheck()>
 	            <div class="valid-feedback ml-3">Ok</div>
 	            <div class="invalid-feedback ml-3">Not Ok</div>
 	          </div>
 	          <div class="col-6">
 	            <label for="">이름</label>
-	            <input type="text" id="signInputName" name="mb_name" class="form-control form-control-user is-valid" placeholder="이름을 입력하세요">
+	            <input type="text" id="signInputName" name="mb_name" class="form-control" placeholder="이름을 입력하세요">
 	            <div class="valid-feedback ml-3">Ok</div>
 	            <div class="invalid-feedback ml-3">Not Ok</div>
 	          </div>
 	        </div>
 	        <div class="form-row col-12 mt-2">
 	          <label for="">전화번호</label>
-	          <input type="text" id="signInputPhone" name = mb_phone class="form-control form-control-user is-valid" placeholder="이름을 입력하세요">
+	          <input type="text" id="signInputPhone" name = mb_phone class="form-control" placeholder="이름을 입력하세요">
 	          <div class="valid-feedback ml-3">Ok</div>
 	          <div class="invalid-feedback ml-3">Not Ok</div>
 	        </div>
 	        <div class="form-row col-12 mt-2">
 	          <label for="">그룹</label>
-	          <input type="text" id="signInputGroup" name = mb_group class="form-control form-control-user is-valid" placeholder="이름을 입력하세요">
+	          <input type="text" id="signInputGroup" name = mb_group class="form-control" placeholder="이름을 입력하세요">
 	          <div class="valid-feedback ml-3">Ok</div>
 	          <div class="invalid-feedback ml-3">Not Ok</div>
 	        </div>
@@ -262,6 +262,7 @@
     var idCheck = true;
     //	회원가입시 정규식 체크부분
 
+    $
 	  function validate() {
 	    	console.log("emailCheck : "+ emailCheck);
 	    	console.log("idCheck : "+ idCheck);
@@ -381,8 +382,9 @@
 		        async:false
 			}).done(function(data){ 
 				console.log("emailOverlapCheck  :  " + data);
-				if(data != false){
+				if(data){
 					emailCheck = false;
+					$(".notice").attr('class','notice ab');
 				}else{
 					emailCheck = true;
 
@@ -400,9 +402,10 @@
 		        async:false
 			}).done(function(data){ 
 				console.log(data);
-				if(data != false){
+				if(data){
 					idCheck = false;
-					$(".notice").attr('class','notice ab');
+					
+					$("#signInputID").attr('class','notice ab');
 				}else{
 					idCheck = true;
 					$(".notice").attr('class','notice ab');

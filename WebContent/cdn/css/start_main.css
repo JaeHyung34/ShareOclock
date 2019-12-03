@@ -18,13 +18,25 @@
     height:50vh;
     background-color: blueviolet;
 }
-#loginBtn {
-    background-color: #0fbcf9;
+#loginModalBtn {
+    color: #fff;
+    background-color: #4e73df;
+    border-color: #4e73df;
 }
-#joinBtn {
+#joinModalBtn {
+    background-color: rgb(38, 222, 129);
+}
+
+#forgetPwModalBtn {
     background-color: rgb(38, 222, 129);
 }
 #joinMenu {
+    /* background: url("../img/joinBackground.jpg");
+    background-position: center;
+    background-repeat: no-repeat; */
+    background-color: rgb(5, 196, 107,0.4);
+}
+#forgetPwMenu {
     /* background: url("../img/joinBackground.jpg");
     background-position: center;
     background-repeat: no-repeat; */

@@ -1,5 +1,5 @@
 package shareOclock.member;
-public class Member_DTO {
+public class MemberDTO {
 	private String mb_email;
 	private String mb_pw;
 	private String mb_name;
@@ -10,7 +10,7 @@ public class Member_DTO {
 	
 	
 	
-	public Member_DTO(String mb_email, String mb_pw, String mb_name, String mb_nickname, String mb_group,
+	public MemberDTO(String mb_email, String mb_pw, String mb_name, String mb_nickname, String mb_group,
 			String mb_phone, String mb_check) {
 		super();
 		this.mb_email = mb_email;
@@ -22,11 +22,11 @@ public class Member_DTO {
 		this.mb_check = mb_check;
 	}
 	
-	public Member_DTO() {
+	public MemberDTO() {
 		super();
 	}
 
-	public Member_DTO(String mb_email, String mb_name, String mb_nickname) {
+	public MemberDTO(String mb_email, String mb_name, String mb_nickname) {
 		super();
 		this.mb_email = mb_email;
 		this.mb_name = mb_name;

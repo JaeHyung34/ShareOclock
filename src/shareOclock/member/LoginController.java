@@ -44,15 +44,14 @@ public class LoginController extends HttpServlet {
 		    apiURL += "&state=" + state;
 			request.getSession().setAttribute("state", state);
 			response.sendRedirect(apiURL);
-			System.out.println(apiURL);
 		}else if(realpath.contentEquals("/kakao.login")) {
 			String email = request.getParameter("mb_email");
 			String pw = "naverKakao";
 			System.out.println(email +" :  kakao" );
-			Member_DTO result = null;
+			MemberDTO result = null;
 			if(email != null) {
 				try {
-					result = Member_DAO.getInstance().getLogin(email, Utils.encrpyt(pw));
+					result = MemberDAO.getInstance().getLogin(email, Utils.encrpyt(pw));
 					System.out.println(result +" kakako");
 					if(result != null) {
 						request.getSession().setAttribute("loginInfo", result.getMb_nickname()); 
@@ -72,10 +71,10 @@ public class LoginController extends HttpServlet {
 			String email = request.getParameter("mb_email");
 			String pw = request.getParameter("mb_pw");
 			System.out.println(email +" :  " + pw);
-			Member_DTO result = null;
+			MemberDTO result = null;
 			if(email != null && pw != null) {
 				try {
-					result = Member_DAO.getInstance().getLogin(email, Utils.encrpyt(pw));
+					result = MemberDAO.getInstance().getLogin(email, Utils.encrpyt(pw));
 					if(result != null) {
 						System.out.println("로그인성공??");
 						request.getSession().setAttribute("loginInfo", result.getMb_nickname()); 
@@ -162,8 +161,8 @@ public class LoginController extends HttpServlet {
 						System.out.println(mb_email);
 						System.out.println(mb_name);
 						System.out.println(responseBuffer.toString());
-						Member_DTO dto = new Member_DTO(mb_email, mb_name, mb_nickname);
-						Member_DTO result = Member_DAO.getInstance().selectEmail(mb_email);
+						MemberDTO dto = new MemberDTO(mb_email, mb_name, mb_nickname);
+						MemberDTO result = MemberDAO.getInstance().selectEmail(mb_email);
 						
 						request.getSession().invalidate();
 						System.out.println("result"+result);

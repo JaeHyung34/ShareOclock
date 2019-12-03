@@ -10,28 +10,28 @@ import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 import configuration.Configuration;
 import configuration.Utils;
 
-public class Member_DAO {
-	public static Member_DAO instance;
-	public synchronized static Member_DAO getInstance() {
+public class MemberDAO {
+	public static MemberDAO instance;
+	public synchronized static MemberDAO getInstance() {
 		if (instance == null) {
 			System.out.println("디비가 생성되었다.");
-			instance = new Member_DAO();
+			instance = new MemberDAO();
 		}
 		return instance;
 	}
 	Connection getConnection() throws Exception {
 		return Configuration.dbs.getConnection();
 	}
-	public Member_DTO getLogin(String email, String pw) throws Exception {
+	public MemberDTO getLogin(String email, String pw) throws Exception {
 		String sql = "select * from tb_member where mb_email=? and mb_pw=?";
-		Member_DTO dto = null;
+		MemberDTO dto = null;
 		try (Connection conn = getConnection();
 			PreparedStatement pstat = conn.prepareStatement(sql);) {
 			pstat.setString(1, email);
 			pstat.setString(2, pw);
 			try (ResultSet rs = pstat.executeQuery();) {
 				if(rs.next()) {
-					dto = new Member_DTO(rs.getString("mb_email"),rs.getString("mb_pw") , rs.getString("mb_name"), rs.getString("mb_nickname"), rs.getString("mb_group") , rs.getString("mb_phone"), rs.getString("mb_check"));
+					dto = new MemberDTO(rs.getString("mb_email"),rs.getString("mb_pw") , rs.getString("mb_name"), rs.getString("mb_nickname"), rs.getString("mb_group") , rs.getString("mb_phone"), rs.getString("mb_check"));
 				}	
 				return dto;
 			}
@@ -72,7 +72,7 @@ public class Member_DAO {
 		}
 	}
 
-	public int insert(Member_DTO dto)  throws Exception{
+	public int insert(MemberDTO dto)  throws Exception{
 		String sql = "insert into tb_member values(?,?,?,?,?,?,?)";
 		try (Connection conn = getConnection(); 
 			 PreparedStatement pstat = conn.prepareStatement(sql);){
@@ -98,21 +98,21 @@ public class Member_DAO {
 	
 
 	
-	public Member_DTO selectInfo(String mb_nickName) throws SQLException, Exception {
+	public MemberDTO selectInfo(String mb_nickName) throws SQLException, Exception {
 		String sql = "select * from tb_member where mb_nickname=?";
 		try (Connection conn = getConnection(); PreparedStatement pstat = conn.prepareStatement(sql);) {
 			pstat.setString(1, mb_nickName);
 			try (ResultSet rs = pstat.executeQuery();) {
-				Member_DTO dto = null;
+				MemberDTO dto = null;
 				if (rs.next()) {
-					dto = new Member_DTO(rs.getString("mb_email"),rs.getString("mb_pw") , rs.getString("mb_name"), rs.getString("mb_nickname"), rs.getString("mb_group") , rs.getString("mb_phone"), rs.getString("mb_check"));
+					dto = new MemberDTO(rs.getString("mb_email"),rs.getString("mb_pw") , rs.getString("mb_name"), rs.getString("mb_nickname"), rs.getString("mb_group") , rs.getString("mb_phone"), rs.getString("mb_check"));
 				}
 				return dto;
 			}
 		}
 	}
 	
-	public int modifyMember(Member_DTO dto) throws SQLException, Exception {
+	public int modifyMember(MemberDTO dto) throws SQLException, Exception {
 		String sql = "update tb_member set mb_pw=?, mb_name=?, mb_nickname=?, mb_group=?, mb_phone=? where mb_email=?";
 		try (Connection con = getConnection();
 			PreparedStatement pstat = con.prepareStatement(sql);) {
@@ -146,14 +146,14 @@ public class Member_DAO {
 
 		}
 	}
-	public Member_DTO selectEmail(String mb_email) throws SQLException, Exception {
+	public MemberDTO selectEmail(String mb_email) throws SQLException, Exception {
 		String sql = "select * from tb_member where mb_email=?";
 		try (Connection conn = getConnection(); PreparedStatement pstat = conn.prepareStatement(sql);) {
 			pstat.setString(1, mb_email);
 			try (ResultSet rs = pstat.executeQuery();) {
-				Member_DTO dto = null;
+				MemberDTO dto = null;
 				if (rs.next()) {
-					dto = new Member_DTO(rs.getString("mb_email"),rs.getString("mb_pw") , rs.getString("mb_name"), rs.getString("mb_nickname"), rs.getString("mb_group") , rs.getString("mb_phone"), rs.getString("mb_check"));
+					dto = new MemberDTO(rs.getString("mb_email"),rs.getString("mb_pw") , rs.getString("mb_name"), rs.getString("mb_nickname"), rs.getString("mb_group") , rs.getString("mb_phone"), rs.getString("mb_check"));
 				}
 				return dto;
 			}

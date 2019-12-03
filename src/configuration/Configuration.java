@@ -10,8 +10,8 @@ public class Configuration {
 	static {
 		dbs.setDriverClassName("oracle.jdbc.driver.OracleDriver");
 		dbs.setUrl("jdbc:oracle:thin:@localhost:1521:xe");
-		dbs.setUsername("adminProject");
-		dbs.setPassword("admin");
+		dbs.setUsername("manager");
+		dbs.setPassword("manager");
 		dbs.setInitialSize(30);
 	}
 
