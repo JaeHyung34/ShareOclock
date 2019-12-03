@@ -78,7 +78,7 @@
 			<div class="sidebar-heading">은비</div>
 
 			<!-- Nav Item -->
-			<li class="nav-item"><a class="nav-link" href="#"> <i
+			<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/view.pro"> <i
 					class="fas fa-fw fa-chart-area"></i> <span>조은비</span></a></li>
 
 			<!-- Heading - 게시판 -->
