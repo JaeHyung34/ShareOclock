@@ -1,0 +1,99 @@
+
+.btn-kakao {
+  color: #fff;
+  background-color: #FFE400;
+  border-color: #fff;
+}
+
+.btn-kakao:hover {
+  color: #fff;
+  background-color: #ffff00;
+  border-color: #e6e6e6;
+}
+
+.btn-kakao:focus, .btn-kakao.focus {
+  box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.5);
+}
+
+.btn-kakao.disabled, .btn-kakao:disabled {
+  color: #fff;
+  background-color: #f2f200;
+  border-color: #fff;
+}
+
+.btn-kakao:not(:disabled):not(.disabled):active, .btn-kakao:not(:disabled):not(.disabled).active,
+.show > .btn-kakao.dropdown-toggle {
+  color: #fff;
+  background-color: #f2f200;
+  border-color: #dfdfdf;
+}
+
+.btn-kakao:not(:disabled):not(.disabled):active:focus, .btn-kakao:not(:disabled):not(.disabled).active:focus,
+.show > .btn-kakao.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.5);
+}
+
+.btn-naver {
+  color: #fff;
+  background-color: #0BC904;
+  border-color: #fff;
+}
+
+.btn-naver:hover {
+  color: #fff;
+  background-color: #20ed00;
+  border-color: #e6e6e6;
+}
+
+.btn-naver:focus, .btn-naver.focus {
+  box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.5);
+}
+
+.btn-naver.disabled, .btn-naver:disabled {
+  color: #fff;
+  background-color: #0BC904;
+  border-color: #fff;
+}
+
+.btn-naver:not(:disabled):not(.disabled):active, .btn-naver:not(:disabled):not(.disabled).active,
+.show > .btn-naver.dropdown-toggle {
+  color: #fff;
+  background-color: #0BC904;
+  border-color: #dfdfdf;
+}
+
+.btn-naver:not(:disabled):not(.disabled):active:focus, .btn-naver:not(:disabled):not(.disabled).active:focus,
+.show > .btn-naver.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.5);
+}
+
+form.user .btn-user {
+    font-size: .8rem;
+    border-radius: 10rem;
+    padding: .75rem 1rem;
+}
+#content{
+	margin: center;
+	text-align: center;
+}
+
+body {font-size: 20px;}
+#loginForm {
+    position: relative;
+    top: -1000px;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0,0,0,0.5);
+    /* animation-name: down;
+    animation-duration: 1.5s; */
+    z-index: 999;
+}
+
+@keyframes down {
+    from {top: -1000; opacity: 0}
+    to {top: 0; opacity: 1}
+}
+
+.card-body, .card-footer {
+    cursor: pointer;
+}

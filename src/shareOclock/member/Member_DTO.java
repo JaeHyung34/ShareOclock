@@ -21,6 +21,18 @@ public class Member_DTO {
 		this.mb_phone = mb_phone;
 		this.mb_check = mb_check;
 	}
+	
+	public Member_DTO() {
+		super();
+	}
+
+	public Member_DTO(String mb_email, String mb_name, String mb_nickname) {
+		super();
+		this.mb_email = mb_email;
+		this.mb_name = mb_name;
+		this.mb_nickname = mb_nickname;
+	}
+
 	public String getMb_email() {
 		return mb_email;
 	}

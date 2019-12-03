@@ -8,20 +8,19 @@
 <meta charset="UTF-8">
 <title>Document</title>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-
 </head>
 <body>
 	<c:choose>
-		<c:when test="${signupCheck != null}">
+		<c:when test="${modifyCheck != null}">
 			<script>
-				alert( "${signupCheck}" + " 님 가입해주셔서 감사합니다. 환영합니다."); 
-				location.href="../index.jsp";
+				alert( "회원정보가 수정되었습니다."); 
+				window.parent.location.href="../index.jsp";
 			</script>
 		</c:when>
 		<c:otherwise>
 			<script>
-				alert( "가입에 실패하셨습니다."); 
-				location.href="../index.jsp";
+				alert( "수정에 실패하셨습니다."); 
+				window.parent.location.href="../index.jsp";
 			</script>
 		
 		</c:otherwise>

@@ -2,8 +2,10 @@ package configuration;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
-public class Encryption {
+public class Utils {
 
 	public static String encrpyt(String str) {
 		String sha ="";
@@ -23,4 +25,8 @@ public class Encryption {
 		str = str.replace("<div>", "").replace("</div>", "<br>");
 		return str;
 	}
+	public static String formedDate(Timestamp date) {
+	      SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	      return sdf.format(date);
+	   }
 }

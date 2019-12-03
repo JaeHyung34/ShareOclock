@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import configuration.Encryption;
+import configuration.Utils;
 
 @WebServlet("*.msg")
 public class MessageController extends HttpServlet {
@@ -136,7 +136,7 @@ public class MessageController extends HttpServlet {
 				sender = "iko";
 				String[] sendList = request.getParameterValues("sendList");
 				String content = request.getParameter("tArea");
-				content = Encryption.encText(content);
+				content = Utils.encText(content);
 				MessageDTO dto;
 				int result = 0;
 				for (String receiver : sendList) {

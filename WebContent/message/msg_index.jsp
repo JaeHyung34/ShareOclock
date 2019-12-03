@@ -300,8 +300,8 @@ body {
 					</div>
 					<!--  검색기능 -->
 					<form action="${pageContext.request.contextPath}/search.msg" method="post">
-					<div class="row w-100 text-center">
-						<div class="col-8">
+					<div class="row">
+						<div class="col-12 d-flex justify-content-center">
 							<select name="option">
 								<option value="sender" <c:if test="${option.equals(\"sender\")}"> selected</c:if>>작성자</option>
 								<option value="content"
@@ -312,7 +312,7 @@ body {
 						</div>
 					</div>	
 					</form>
-					<div id="btns" class="row">
+					<div id="btns" class="row mt-2">
 						<div class="col-md-3">
 							<input id="writeMsg" type="button" value="쪽지 쓰기">
 						</div>
@@ -331,14 +331,14 @@ body {
 				<div class="d-md-none">
 					<h3>쪽지함</h3>
 					<c:forEach items="${list}" var="i" varStatus="idx">
-						<div id="b" class="row mb-2 border-t border-b">
+						<div id="b" class="row mb-2">
 							<div class="col-1">${idx.index}</div>
-							<div class="col-7">${i.message_sender}
+							<div class="col-7">💬${i.message_sender}
 								<c:if test="${i.message_read == \"n\"}">
 									<span class="badge badge-danger badge-pill">new</span>
 								</c:if>
 							</div>
-							<div class="col-4 border-t">
+							<div class="col-4">
 								<small>${i.message_mTime}</small>
 							</div>
 							<div class="col-12 mContent">
@@ -348,7 +348,7 @@ body {
 							<div class="w-100"></div>
 						</div>
 					</c:forEach>
-					<nav class="w-100 border">
+					<nav class="w-100">
 						<ul class="pagination d-flex justify-content-center">${pagination}</ul>
 					</nav>
 					<div class="row mb-4">
