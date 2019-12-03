@@ -2,13 +2,19 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>일정 달력</title>
+<html lang="en">
 
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>일정 캘린더</title>
+<jsp:include page="/cdn/cdn.jsp" flush="false" />
 <link href="https://unpkg.com/@fullcalendar/core@4.3.1/main.min.css"
 	rel="stylesheet">
 <link href="https://unpkg.com/@fullcalendar/daygrid@4.3.0/main.min.css"
@@ -20,11 +26,6 @@
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css"
 	rel="stylesheet">
 	
-<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script src="https://unpkg.com/@fullcalendar/core@4.3.1/main.min.js"></script>
 <script src="https://unpkg.com/@fullcalendar/daygrid@4.3.0/main.min.js"></script>
 <script
@@ -40,6 +41,8 @@ html, body {
 	padding: 0;
 	font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
 	font-size: 14px;
+	height: 100%;
+	overflow: hidden;
 }
 
 #calendar {
@@ -59,8 +62,8 @@ html, body {
 	white-space: nowrap;
 }
 </style>
-<body>
-
+<body id="page-top">
+			<!-- 메인 콘텐츠 시작 부분 -->
 <!-- 게시판 네비 시작 -->
 <ul class="nav nav-tabs" id="navBar">
 	<li class="nav-item dropdown">
@@ -78,9 +81,9 @@ html, body {
 	</li>
 </ul>
 <!-- 게시판 네비 끝 -->
-
+<!-- 캘린더 div -->
 	<div id='calendar'></div>
-
+<!-- 캘린더 div 끝-->
 <!-- 일정 조회, 수정 modal -->
 	<div class="modal fade" id="viewModal" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -138,7 +141,6 @@ html, body {
 					</form>
 				</div>
 				<div class="modal-footer">
-					
 					<c:if test="${user == dtoView.pt_writer}">
 						<button type="button" id="deleteView" class="btn btn-danger" hidden>삭제</button>
 						<button type="button" id="modifyView" class="btn btn-primary" hidden>수정</button> 
@@ -151,8 +153,11 @@ html, body {
 		</div>
 	</div>
 	<!-- 일정 수정 modal 끝 -->
+			<!-- 메인 콘텐츠 끝 -->
 
-	<script>
+		</div>
+	</div>
+<script>
 		document.addEventListener('DOMContentLoaded', function() {
 			var calendarEl = document.getElementById('calendar');
 			var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -305,21 +310,16 @@ html, body {
 										contents = $("#contentsInputView").html(0);
 										alert("일정내용을 입력해 주세요.");
 										return;
-									}
-									
-									
+									}									
 									var resultView = (titleView*startDateView*endDateView*priorityView*contentsView);
 									if(resultView != 0){
 										$("#summernoteView").val($(".note-editable").html());
 										$("#frmModify").submit();
 									}return;	
-								});
-								//저장 클릭 시 정규식 검사 끝
-							});
-							//수정 클릭 시 이벤트 끝
+								});//저장 클릭 시 정규식 검사 끝
+							});//수정 클릭 시 이벤트 끝
 								
-							//삭제 클릭 시 이벤트
-							$("#deleteView").on("click", function(){
+							$("#deleteView").on("click", function(){//삭제 클릭 시 이벤트
 								var pt_seq = $("#hiddenSeq").val();
 								if(confirm("일정을 삭제하시겠습니까?")){
 									$.ajax({
@@ -343,8 +343,7 @@ html, body {
 										console.log(c);
 									});
 								}return;				
-							});
-							//삭제 클릭 시 이벤트 끝 
+							}); //삭제 클릭 시 이벤트 끝 
 						}).fail(function(a, b, c){
 							console.log(a);
 							console.log(b);
@@ -360,7 +359,6 @@ html, body {
 			}).done(function(data) {
 				console.log(data);
 				
-// 				$('#viewModal').hide();
 				for (var i = 0; i < data.length; i++) {
 					calendar.addEvent({
 						title : data[i].pt_title,
@@ -411,3 +409,4 @@ html, body {
 	</script>
 </body>
 </html>
+

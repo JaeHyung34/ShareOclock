@@ -2,25 +2,30 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<title>All Projects</title>
-<link
-	href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Public+Sans&display=swap" rel="stylesheet">
-</head>
-<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>내 프로젝트</title>
+
+<jsp:include page="/cdn/cdn.jsp" flush="false" />
 <link
 	href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Public+Sans&display=swap"
 	rel="stylesheet">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/themes/material_orange.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.js"></script>
+
+</head>
 <style>
     *{
         font-family: 'Nanum Gothic', sans-serif;
@@ -37,8 +42,78 @@ textarea{
 	resize: none;
 }
 </style>
-<body>
-    <div class="container">
+<body id="page-top">
+
+		<!-- Main Content -->
+		<div id="content">
+
+
+			<!-- Topbar // 모바일환경일 때에만 노출되는 상위네비바 -->
+			<nav
+				class="navbar navbar-expand navbar-light bg-primary topbar mb-4 static-top shadow w-100 d-xs-block d-md-none">
+
+				<!-- Sidebar Toggle (Topbar) -->
+				<ul class="navbar-nav">
+					<!-- Nav Item - User Information -->
+					<li class="nav-item dropdown no-arrow"><a
+						class="nav-link dropdown-toggle" href="#" id="userDropdown"
+						role="button" data-toggle="dropdown"> <i class="fa fa-bars"></i>
+							<span id="msgAlert" class="badge badge-danger badge-counter">N</span>
+					</a> <!-- Dropdown - User Information -->
+						<div
+							class="dropdown-menu dropdown-menu-right shadow animated--grow-in">
+							<a class="dropdown-item" href="#"> <i
+								class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> 내 프로젝트 <span
+								id="alert" class="badge badge-danger badge-counter">N</span>
+							</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="#"> <i
+								class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> 조은비
+							</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="#"> <i
+								class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> 전유진
+							</a>
+						</div></li>
+				</ul>
+
+				<!-- Topbar Navbar -->
+				<ul class="navbar-nav ml-auto">
+
+					<!-- Nav Item - Alerts -->
+					<li class="nav-item dropdown no-arrow mx-1"><a
+						class="nav-link" href="${pageContext.request.contextPath}/message/msg_index.jsp"> <i
+							class="fas fa-bell fa-fw"></i> <!-- Counter - Alerts --> <span
+							id="msgAlert" class="badge badge-danger badge-counter">N</span>
+					</a></li>
+
+					<div class="topbar-divider d-none d-sm-block"></div>
+
+					<!-- Nav Item - User Information -->
+					<li class="nav-item dropdown no-arrow"><a
+						class="nav-link dropdown-toggle" href="#" id="userDropdown"
+						role="button" data-toggle="dropdown"> <img
+							class="img-profile rounded-circle" src="img/default_profile.png">
+					</a> <!-- Dropdown - User Information -->
+						<div
+							class="dropdown-menu dropdown-menu-right shadow animated--grow-in">
+							<a class="dropdown-item" href="#"> <i
+								class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> 내 정보 보기
+							</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item bg-info" href="#" data-toggle="modal"
+								data-target="#logoutModal"> <i
+								class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+								로그아웃
+							</a>
+						</div></li>
+				</ul>
+			</nav>
+			<!-- End of Topbar -->
+
+			<!-- 메인 콘텐츠 시작 부분 -->
+<!-- 프로젝트 박스 시작 -->
+			<div class="container">
   <h2>내 프로젝트</h2>
   <div class="btns" id="btns">
   	<button type="button" class="btn btn-primary" id="modify" role="button" class="btn btn-secondary popover-test" title="Popover title" data-toggle="modal" data-target="#modifyModal" hidden>수정</button>
@@ -78,8 +153,10 @@ textarea{
   </div>
 </div>  
  <div id="pro_seqAll" hidden>${pro_seqAll}</div>
+ <!-- 프로젝트 박스 끝 -->
+ 
 <!-- 프로젝트 생성 Modal 시작 -->
-	<div class="modal fade" id="addModal" tabindex="-1" role="dialog"
+	<div class="modal fade" id="addModal" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -127,8 +204,8 @@ textarea{
 		</div>
 	</div>
 <!-- 프로젝트 생성 Modal 끝--> 
-<!-- 프로젝트 수정 Modal  -->
-<div class="modal fade" id="modifyModal" tabindex="-1" role="dialog"
+<!-- 프로젝트 수정 Modal 시작 -->
+<div class="modal fade" id="modifyModal" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -140,8 +217,6 @@ textarea{
 					</button>
 				</div>
 				<div class="modal-body">
-<%-- 					<form action="${pageContext.request.contextPath}/modify.pro" --%>
-<!-- 						method="post" id="frmModify"> -->
 						<div class="form-group">
 							<label for="titleMod" id="titleLbl" class="col-form-label">프로젝트명:</label>
 							<input type="text" class="form-control" id="titleMod" name="titleMod">
@@ -165,7 +240,6 @@ textarea{
 								name="endDateMod" placeholder="마감일자" data-input>
 								<p id="endDateInputMod" hidden></p>
 						</div>
-<!-- 					</form> -->
 				</div>
 				<div class="modal-footer">
 					<button type="button" id="cancel" class="btn btn-secondary"
@@ -177,9 +251,12 @@ textarea{
 	</div>
 
 <!-- 프로젝트 수정 Modal 끝 -->
+<!-- 메인 콘텐츠 끝 -->
 
-
-     <script>     
+		</div>
+	</div>
+<!-- 스크립트 코드 시작-->
+<script>     
      	//프로젝트 생성 모달 띄우기
      	$("#addModal").on("click", function(){
      		$("#title").val("");
@@ -197,8 +274,7 @@ textarea{
             dateFormat: "Y-m-d"
         });//datapicker 인스턴스 생성
         
-      //생성완료 버튼 클릭 시 이벤트 시작
-        $("#create").on("click", function(){
+        $("#create").on("click", function(){//생성완료 버튼 클릭 시 이벤트 시작
         	if($("#title").val() == ""){
 				title = $("#titleInput").html(0);
 				alert("프로젝트명을 입력해 주세요.");
@@ -227,8 +303,7 @@ textarea{
 			}return;
         });//프로젝트 생성 submit
         
-        // 편집 클릭 시 편집모드 활성화 
-        $("#edit").on("click", function(){
+        $("#edit").on("click", function(){// 편집 클릭 시 편집모드 활성화 
         	$("#delete").attr("hidden", false);
         	$("#modify").attr("hidden", false);
 			$(".checkboxDiv").attr("hidden", false);
@@ -237,8 +312,7 @@ textarea{
         		location.href = "${pageContext.request.contextPath}/view.pro";
         	});
         	
-        	// 삭제 클릭 시 이벤트 
-        	$("#delete").on("click", function(){
+        	$("#delete").on("click", function(){ // 삭제 클릭 시 이벤트 
     			var lists = [];
     			  $("input[name='pro_seq']:checked").each(function(i){
     			   lists.push($(this).val());
@@ -249,8 +323,7 @@ textarea{
     	        		data: {pro_seq : JSON.stringify(lists)},
     	        		type : "post", 
     	        		dataType: "json",
-    	        	}).done(function(resp){
-    	        		// 프로젝트 삭제 권한에 따른 결과값
+    	        	}).done(function(resp){ // 프로젝트 삭제 권한에 따른 결과값
     	        		if(resp.result == 'completed'){
     	        			alert("프로젝트 삭제가 완료되었습니다.");
     	        			location.href = "${pageContext.request.contextPath}/view.pro";
@@ -269,10 +342,8 @@ textarea{
     				}
     		});// 삭제 클릭 시 이벤트 끝
         	
-        	 // 프로젝트 수정 클릭 시 이벤트
-            $("#modify").on("click", function(){
+            $("#modify").on("click", function(){ // 프로젝트 수정 클릭 시 이벤트
             	$("#modify").attr('data-target', "#modifyModal");
-            	
             	var pro_seq = $("input[name='pro_seq']:checked").val();
             	
             	var checkCount = $("input[name='pro_seq']:checked").length;
@@ -280,8 +351,8 @@ textarea{
             		alert("수정은 한 번에 한 개의 프로젝트만 가능합니다.");
             		$("#modify").attr('data-target', "");
             	}            	
-            	// 체크한 프로젝트 내용 받아오기 
-            	$.ajax({
+            	
+            	$.ajax({ // 체크한 프로젝트 내용 받아오기 
             		url: "${pageContext.request.contextPath}/detailProject.pro",
             		data: {pro_seq : pro_seq},
             		type : "post", 
@@ -309,8 +380,7 @@ textarea{
                     });//datapicker 인스턴스 생성
                  // 체크한 프로젝트 내용 받아오기 끝
                     
-                    //프로젝트 수정 완료 클릭 시 이벤트 
-                    $("#modifyMod").on("click", function(){
+                    $("#modifyMod").on("click", function(){ //프로젝트 수정 완료 클릭 시 이벤트 
                     	if($("#titleMod").val() == ""){
             				titleMod = $("#titleInputMod").html(0);
             				alert("프로젝트명을 입력해 주세요.");
@@ -353,8 +423,7 @@ textarea{
             					dataType: "json",
             					type : "post", 
             					
-            				}).done(function(resp){
-            					// 프로젝트 수정 권한에 따른 결과값
+            				}).done(function(resp){ // 프로젝트 수정 권한에 따른 결과값
             					if(resp.result == 'completed'){
             	        			alert("프로젝트 수정이 완료되었습니다.");
             	        			location.href = "${pageContext.request.contextPath}/view.pro";
@@ -369,8 +438,7 @@ textarea{
             					console.log(c);
             				});
             			}return;
-                    });
-                    // 프로젝트 수정 완료 클릭 시 이벤트 끝
+                    }); // 프로젝트 수정 완료 클릭 시 이벤트 끝
             	}).fail(function(a, b, c){
             		console.log(a);
             		console.log(b);
@@ -379,5 +447,7 @@ textarea{
             });// 프로젝트 수정 클릭 시 이벤트 끝
         }); // 편집 클릭 시 편집모드 활성화 끝  
      </script>
+<!-- 스크립트 코드 끝 -->
 </body>
 </html>
+
