@@ -17,27 +17,6 @@ public class MessageDAO {
 		return Configuration.dbs.getConnection();
 	}
 
-	// 메시지 초기화면 진입 
-	public List<MessageDTO> viewAllMsg() throws Exception {
-		String sql = "select * from tb_message order by msg_seq desc";
-		try (
-				Connection con = getConnection();
-				PreparedStatement pstat = con.prepareStatement(sql);
-				ResultSet rs = pstat.executeQuery();
-				) {
-			List<MessageDTO> list = new ArrayList<>();
-			while (rs.next()) {
-				int seq = rs.getInt(1);
-				String sender = rs.getString(2);
-				String receiver = rs.getString(3);
-				String content = rs.getString(4);
-				Timestamp time = rs.getTimestamp(5);
-				String read = rs.getString(6);
-				list.add(new MessageDTO(seq,sender,receiver,content,time,read));
-			}
-			return list;
-		}
-	}
 	// 메시지 삽입
 	public int insertMsg(MessageDTO dto ) throws Exception {
 		String sql = "insert into tb_message values(msg_seq.nextval, ?, ?, ?, sysdate,'n')";
@@ -54,7 +33,7 @@ public class MessageDAO {
 		}
 	}
 
-	
+
 	// 메시지 모두 읽음으로 표시
 	public int readAll(String receiver) throws Exception {
 		String sql = "update tb_message set msg_read = 'y' where msg_receiver=?";
@@ -66,7 +45,7 @@ public class MessageDAO {
 			return pstat.executeUpdate();
 		}
 	}
-	
+
 	// 메시지 읽음으로 표시
 	public int read(int seq) throws Exception {
 		String sql = "update tb_message set msg_read='y' where msg_seq=?";
@@ -89,7 +68,7 @@ public class MessageDAO {
 				) {
 			pstat.setInt(1, seq);
 			try (
-				ResultSet rs = pstat.executeQuery();
+					ResultSet rs = pstat.executeQuery();
 					) {
 				MessageDTO dto = null;
 				if (rs.next()) {
@@ -117,5 +96,115 @@ public class MessageDAO {
 			return result;
 		}
 	}
-	//
+	
+	// 메시지 검색
+	public List<MessageDTO> searchMsg(String option, String searchWord) throws Exception {
+		String sql = "select * from tb_message where msg_sender like '%?%' and msg_contents like '%?%'";
+		try (
+				Connection con = getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				) {
+			pstat.setString(1, option);
+			pstat.setString(1, searchWord);
+			ResultSet rs = pstat.executeQuery();
+			List<MessageDTO> list = new ArrayList<>();
+			while (rs.next()) {
+				int seq = rs.getInt(1);
+				String sender = rs.getString(2);
+				String receiver = rs.getString(3);
+				String contents = rs.getString(4);
+				Timestamp time = rs.getTimestamp(5);
+				String read = rs.getString(6);
+				list.add(new MessageDTO(seq,sender,receiver,contents,time,read));
+			}
+			return list;
+		}
+	}
+	// total Msgs 
+	public int totalMsgs() throws Exception {
+		String sql = "select count(*) from tb_message"; // id값을 추가할 것
+		try (
+				Connection con = getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				ResultSet rs = pstat.executeQuery();
+				) {
+			rs.next();
+			return rs.getInt(1);
+		}
+	}
+	// Pagination
+	public String pagination(int entryPage, int totalMsgs) throws Exception {
+		int articlesPerPage = Configuration.recordCountPerPage;
+		int naviPerPage = Configuration.naviCountPerPage;
+		int totalArticles = totalMsgs;
+
+		int totalPage = totalArticles / articlesPerPage;
+		if (totalArticles % articlesPerPage != 0)
+			totalPage += 1;
+
+		if (entryPage > totalPage)
+			entryPage = totalPage;
+		if (entryPage < 1) 
+			entryPage = 1;
+
+		int startNavi = (entryPage - 1) / 10 * naviPerPage + 1;
+		int lastNavi = startNavi + naviPerPage - 1;
+		if (lastNavi > totalPage)
+			lastNavi = totalPage;
+
+		StringBuilder sb = new StringBuilder();
+		sb.append("<li class='page-item ");
+		if (startNavi == 1) sb.append("disabled");
+		sb.append("'>");
+		sb.append("<a class='page-link' "
+				+ "href='view.msg?entry=" + startNavi 
+				+ "' tabindex='-1'>&lt;</a></li>");
+		for (int i = startNavi; i <= lastNavi; i++) {
+			sb.append("<li class='page-item ");
+			if (i == entryPage) sb.append("active");
+			sb.append("'><a class='page-link' href='view.msg?entry=");
+			sb.append(i + "'>" + i);
+			sb.append("</a></li>");
+		}
+		sb.append("<li class='page-item ");
+		if (lastNavi == totalPage) sb.append("disabled");
+		sb.append("'>");
+		sb.append("<a class='page-link' "
+				+ "href='view.msg?entry=" + lastNavi 
+				+ "' tabindex='-1'>&gt;</a></li>");
+
+		return sb.toString();
+	}	
+
+	// 메시지 초기화면 진입 
+	public List<MessageDTO> viewAllMsg(int entryPage) throws Exception {
+		String sql = "select * from (select tb_message.*, "
+				+ "row_number() over(order by msg_seq desc) as c from tb_message) "
+				+ "where c between ? and ?";
+		try (
+				Connection con = getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				) {
+			int msgsPerPage = Configuration.recordCountPerPage;
+			int startMsgSeq = (entryPage - 1) * msgsPerPage + 1;
+			int lastMsgSeq = startMsgSeq + msgsPerPage - 1;
+			pstat.setInt(1, startMsgSeq);
+			pstat.setInt(2, lastMsgSeq);
+			try (
+				ResultSet rs = pstat.executeQuery();
+					) {
+				List<MessageDTO> list = new ArrayList<>();
+				while (rs.next()) {
+					int seq = rs.getInt(1);
+					String sender = rs.getString(2);
+					String receiver = rs.getString(3);
+					String content = rs.getString(4);
+					Timestamp time = rs.getTimestamp(5);
+					String read = rs.getString(6);
+					list.add(new MessageDTO(seq,sender,receiver,content,time,read));
+				} return list;
+			}
+		}
+	}
+
 }

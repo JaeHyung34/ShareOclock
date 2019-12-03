@@ -14,8 +14,9 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import shareOclock.blackList.BlackList_DAO;
-import shareOclock.member.Member_DAO;
-import shareOclock.member.Member_DTO;
+import shareOclock.member.MemberDAO;
+import shareOclock.member.MemberDTO;
+
 
 @WebServlet("*.admin")
 public class AdminController extends HttpServlet {
@@ -36,9 +37,9 @@ public class AdminController extends HttpServlet {
 				
 			// member 리스트 조회
 			}else if(cmd.contentEquals("/memberList.admin")) {
-				BlackList_DAO dao = BlackList_DAO.getInstance();
+				MemberDAO dao = MemberDAO.getInstance();
 				
-				List<Member_DTO> list = dao.searchAllMemberView();
+				List<MemberDTO> list = dao.searchAllMemberView();
 				request.setAttribute("list", list);
 				
 				request.getRequestDispatcher("generalmember/memberList.jsp").forward(request, response);
@@ -46,10 +47,10 @@ public class AdminController extends HttpServlet {
 				// member 회원 상세 정보
 			} else if (cmd.contentEquals("/detailmember.admin")) {
 				System.out.println("email");
-				BlackList_DAO dao = BlackList_DAO.getInstance();
+				MemberDAO dao = MemberDAO.getInstance();
 				String email = request.getParameter("mb_email");
 				System.out.println(email);
-				Member_DTO dto = dao.searchByEmailMemberView(email);
+				MemberDTO dto = dao.searchByEmailMemberView(email);
 				System.out.println(dto.getMb_email());
 				String mb_email = dto.getMb_email();
 				String mb_name = dto.getMb_name();
@@ -70,7 +71,7 @@ public class AdminController extends HttpServlet {
 			}else if(cmd.contentEquals("/addBlackmember.admin")) {
 				String email = request.getParameter("mb_email");
 				System.out.println(email);
-				BlackList_DAO dao = BlackList_DAO.getInstance();
+				MemberDAO dao = MemberDAO.getInstance();
 				String name = dao.addBlckmemberFromGeneralmember(email);
 				System.out.println(name);
 				JsonObject obj = new JsonObject();
@@ -86,8 +87,8 @@ public class AdminController extends HttpServlet {
 			}else if (cmd.contentEquals("/delete.admin")) {
 				String email = request.getParameter("email");
 				System.out.println("선택한 아이디 "+ email);
-				Member_DAO dao = Member_DAO.getInstance();
-				int result = dao.deleteById(email);
+				MemberDAO dao = MemberDAO.getInstance();
+				int result = dao.deleteGeneralMember(email);
 
 				//				String[] list = request.getParameterValues("generalCheck");
 				//				BlackList_DAO dao = BlackList_DAO.getInstance();

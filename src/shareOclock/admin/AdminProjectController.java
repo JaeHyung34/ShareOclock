@@ -15,6 +15,7 @@ import com.google.gson.JsonObject;
 
 import shareOclock.blackList.BlackList_DAO;
 import shareOclock.blackList.BlackList_DTO;
+import shareOclock.project.ProjectDAO;
 import shareOclock.project.ProjectDTO;
 
 @WebServlet("*.adProject")
@@ -32,14 +33,14 @@ public class AdminProjectController extends HttpServlet {
 		
 		try {
 			if(cmd.contentEquals("/adminProject.adProject")) {
-				BlackList_DAO dao = BlackList_DAO.getInstance();				
+				ProjectDAO dao = ProjectDAO.getInstance();				
 				List<ProjectDTO>list = dao.searchAllProjectView();
 				request.setAttribute("list", list);
 				request.getRequestDispatcher("adminProject/project.jsp").forward(request, response);
 				
 			}else if(cmd.contentEquals("/detail.adProject")) {
 				int pro_seq = Integer.parseInt(request.getParameter("pro_seq"));
-				BlackList_DAO dao = BlackList_DAO.getInstance();
+				ProjectDAO dao = ProjectDAO.getInstance();
 				ProjectDTO dto = dao.searchByProSeqProjectView(pro_seq);
 				int seq = dto.getPro_seq();
 				String title = dto.getPro_title();
@@ -58,7 +59,7 @@ public class AdminProjectController extends HttpServlet {
 				
 			}else if(cmd.contentEquals("/delete.adProject")) {
 				String[] list = request.getParameterValues("ProjectCheck");
-				BlackList_DAO dao = BlackList_DAO.getInstance();
+				ProjectDAO dao = ProjectDAO.getInstance();
 				int result = 1;
 				for (String pro_seq : list) {
 					System.out.println(pro_seq);

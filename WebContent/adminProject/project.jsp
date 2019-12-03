@@ -249,7 +249,7 @@
 
 			<!-- 메인 콘텐츠 시작 부분 -->
 			<div class="container">
-				<h2 class="pt-100">Project List</h2>
+				<h2>Project List</h2>
 				<p>프로젝트 리스트 정보</p>
 				<form action="${pageContext.request.contextPath}/delete.adProject"
 					method="post" id="frm">

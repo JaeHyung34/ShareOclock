@@ -1,49 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+	
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Document</title>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 </head>
 <body>
-
-	<div id="result">
-
-		<c:choose>
-			<c:when test="${result == 0}">
-			이미 사용중인 아이디 입니다.
-			<button id="close">Close</button>
-				<script>
-					document.getElementById("close").onclick = function() {
-						$(opener.document).find("#idInput").val("");
-						$(opener.document).find("#idCheck").val("");
-						window.close();
-					};
-				</script>
-			</c:when>
-			<c:otherwise>
-			사용 가능한 아이디 입니다.
-			<button id="use">Use</button>
-				<button id="cancel">Cancel</button>
-				<script>
-					document.getElementById("use").onclick = function() {
-						$(opener.document).find("#idCheck").val("true");
-						window.close();
-					};
-					document.getElementById("cancel").onclick = function() {
-						$(opener.document).find("#id").val("");
-						$(opener.document).find("#idCheck").val("");
-						window.close();
-					};
-				</script>
-			</c:otherwise>
-		</c:choose>
-
-	</div>
+	<c:choose>
+		<c:when test="${loginInfo != null}">
+			<script>
+				alert( "${loginInfo}" + " 님  환영합니다"); 
+				location.href="../main.jsp"; // 메인페이지 가즈아아아
+			</script>
+		</c:when>
+		<c:otherwise>
+			<script>
+				alert( "로그인 안되셨는데요 이메일이랑 비밀번호 확인좀해요"); 
+				location.href="../index.jsp";
+			</script>
+		
+		</c:otherwise>
+	</c:choose>
 
 </body>
 </html>

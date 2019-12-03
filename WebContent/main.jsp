@@ -30,13 +30,11 @@
 
 		<!-- Sidebar -->
 		<ul
-			class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion d-none d-md-block"
+			class="navbar-nav bg-gray-800 sidebar sidebar-dark accordion d-none d-md-block"
 			id="accordionSidebar">
 
 			<!-- Sidebar - Brand -->
-			<a
-				class="sidebar-brand d-flex align-items-center justify-content-center"
-				href="#">
+			<a class="sidebar-brand d-flex align-items-center justify-content-center"	href="#">
 				<div class="sidebar-brand-icon">
 					<i class="fas fa-radiation"></i>
 				</div>
@@ -58,9 +56,8 @@
 			<hr class="sidebar-divider my-0">
 
 			<!-- Nav Item - Dashboard -->
-			<li class="nav-item active"><a class="nav-link"
-				href="${pageContext.request.contextPath}/message/msg_index.jsp">
-					<i class="fas fa-project-diagram"></i> <span>쪽지함</span> <span
+			<li class="nav-item active"><a class="nav-link" href="${pageContext.request.contextPath}/message/msg_index.jsp"> <i
+					class="fas fa-project-diagram"></i> <span>쪽지함</span> <span
 					class="badge badge-danger badge-pill">new</span>
 			</a></li>
 
@@ -81,7 +78,7 @@
 			<div class="sidebar-heading">은비</div>
 
 			<!-- Nav Item -->
-			<li class="nav-item"><a class="nav-link" href="#"> <i
+			<li class="nav-item"><a class="nav-link" href="#" onclick="viewProjectMove()"> <i
 					class="fas fa-fw fa-chart-area"></i> <span>조은비</span></a></li>
 
 			<!-- Heading - 게시판 -->
@@ -98,7 +95,7 @@
 			<div class="sidebar-heading">익호</div>
 
 			<!-- Nav Item - 관리자 페이지 -->
-			<li class="nav-item"><a class="nav-link" href="admin.html">
+			<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/memberList.admin">
 					<i class="fas fa-fw fa-chart-area"></i> <span>신익호</span>
 			</a></li>
 
@@ -111,16 +108,16 @@
 			<div class="sidebar-heading">내 정보</div>
 
 			<!-- Nav Item - Pages Collapse Menu -->
-			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-toggle="collapse" data-target="#collapseMyInfo"> <i
-					class="fas fa-fw fa-folder"></i> <span>내 정보 보기 </span>
+			<li class="nav-item">
+			<a class="nav-link collapsed" href="#"	data-toggle="collapse" data-target="#collapseMyInfo"> 
+				<i class="fas fa-fw fa-folder"></i> <span>내 정보 보기 </span>
 			</a>
-				<div id="collapseMyInfo" class="collapse"
-					data-parent="#accordionSidebar">
+				<div id="collapseMyInfo" class="collapse" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">정보 :</h6>
-						<a class="collapse-item mb-" href="#">내 정보 수정</a> <a
-							class="collapse-item bg-info" href="#">로그아웃</a> </a>
+						<a class="collapse-item mb-" href="#" onclick="modifySiteMove()">내 정보 수정</a> 
+						<a class="collapse-item bg-info" href="#"  onclick="logOutSiteMove()">로그아웃</a> 
+						<a class="collapse-item " href="#"  onclick="withdrawalSiteMove()">회원탈퇴</a> 
 					</div></li>
 			<!-- Divider -->
 			<hr class="sidebar-divider">
@@ -149,7 +146,7 @@
 				</div></li>
 
 			<!-- Divider -->
-			<hr class="sidebar-divider d-none d-md-block">
+			<hr class="sidebar-divider d-none d-md-block" />
 
 			<!-- Sidebar Toggler (Sidebar) -->
 			<div class="text-center d-none d-md-inline">
@@ -161,8 +158,6 @@
 
 		<!-- Main Content -->
 		<div id="content">
-
-
 			<!-- Topbar // 모바일환경일 때에만 노출되는 상위네비바 -->
 			<nav
 				class="navbar navbar-expand navbar-light bg-primary topbar mb-4 static-top shadow w-100 d-xs-block d-md-none">
@@ -191,81 +186,61 @@
 							</a>
 						</div></li>
 				</ul>
-
 				<!-- Topbar Navbar -->
 				<ul class="navbar-nav ml-auto">
-
 					<!-- Nav Item - Alerts -->
 					<li class="nav-item dropdown no-arrow mx-1"><a
-						class="nav-link"
-						href="${pageContext.request.contextPath}/message/msg_index.jsp">
-							<i class="fas fa-bell fa-fw"></i> <!-- Counter - Alerts --> <span
+						class="nav-link" href="${pageContext.request.contextPath}/message/msg_index.jsp"> <i
+							class="fas fa-bell fa-fw"></i> <!-- Counter - Alerts --> <span
 							id="msgAlert" class="badge badge-danger badge-counter">N</span>
 					</a></li>
-
 					<div class="topbar-divider d-none d-sm-block"></div>
 
 					<!-- Nav Item - User Information -->
 					<li class="nav-item dropdown no-arrow"><a
 						class="nav-link dropdown-toggle" href="#" id="userDropdown"
 						role="button" data-toggle="dropdown"> <img
-							class="img-profile rounded-circle" src="img/default_profile.png">
+							class="img-profile rounded-circle" src="cdn/img/default_profile.png">
 					</a> <!-- Dropdown - User Information -->
-						<div
-							class="dropdown-menu dropdown-menu-right shadow animated--grow-in">
-							<a class="dropdown-item" href="#"> <i
-								class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> 내 정보 보기
+						<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in">
+							<a class="dropdown-item" href="#"> 
+								<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> 내 정보 보기
 							</a>
 							<div class="dropdown-divider"></div>
-							<a class="dropdown-item bg-info" href="#" data-toggle="modal"
-								data-target="#logoutModal"> <i
-								class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+							<a class="dropdown-item bg-info" href="#" data-toggle="modal" data-target="#logoutModal"> 
+								<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
 								로그아웃
 							</a>
 						</div></li>
 				</ul>
 			</nav>
+			
 			<!-- End of Topbar -->
-
 			<!-- 메인 콘텐츠 시작 부분 -->
-        <div class="container mt-5 border">
-          <div class="row mt-4 ml-2 d-none d-md-block">
-            <h3>쪽지 보기</h3>
-          </div>
-          <div class="row mt-3">
-            <div class="col-3 col-md-1 border-right">보낸이 : </div>
-            <div class="col">${dto.message_sender}</div>
-          </div>
-          <div class="row mt-1">
-            <div class="col-3 col-md-1 border-right">날짜 : </div>
-            <div class="col">${dto.message_time}</div>
-          </div>
-          <div class="row mt-4">
-            <div class="d-none d-md-block col-md-1 border-right border-bottom">내용 : </div>
-            <div class="col border-bottom">${dto.message_contents}</div>
-          </div>
-          <div class="row my-5 w-100 d-flex justify-content-center">
-            <button id="back" type="button" class="button mx-3">뒤로가기</button>
-            <button id="reply" type="button" class="button mx-3">답장</button>
-            <button id="delete" type="button" class="button mx-3">삭제</button>
-          </div>
-        </div>
-        </form>
+			  	<iframe id="iframe" width="100%"  class = bg-gradient-primary height="100%" style="border:none;border-left:1px" src="${pageContext.request.contextPath}/member/modifyInfo.jsp">
+				</iframe>			
 			<!-- 메인 콘텐츠 끝 -->
-
 		</div>
 	</div>
+
+
 	<script>
-	$("#reply").on("click", function() {
-		location.href="${pageContext.request.contextPath}/reply.msg?seq=${dto.message_seq}&entry=${entry}";
-	})
-	$("#delete").on("click", function() {
-		location.href="${pageContext.request.contextPath}/checkedDelete.msg?seq=${dto.message_seq}&entry=${entry}";
-	})
-	$("#back").on("click", function() {
-		location.href="${pageContext.request.contextPath}/view.msg?entry=${entry}";
-	})
-  </script>
+	function modifySiteMove(){
+		$("#iframe").attr("src","${pageContext.request.contextPath}/member/modifyInfo.jsp");
+	}	
+	function logOutSiteMove(){
+		$(location).attr('href', "${pageContext.request.contextPath}/logout.login");
+	}
+	function withdrawalSiteMove(){
+		var result = confirm("정말  탈퇴 하시겠습니까?");
+		if (result) {
+			$(location).attr('href', "${pageContext.request.contextPath}/withdrawal.member");
+		}
+	}
+	function viewProjectMove(){
+		$("#iframe").attr("src","${pageContext.request.contextPath}/view.pro");
+	}
+	</script>
 </body>
 </html>
 

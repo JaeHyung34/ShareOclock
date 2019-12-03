@@ -1,5 +1,9 @@
 package shareOclock.project;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+
+
 public class ProjectDTO {
 	private int pro_seq;
 	private String pro_title;
@@ -14,7 +18,9 @@ public class ProjectDTO {
 		this.pro_contents = pro_contents;
 		this.pro_startDate = pro_startDate;
 		this.pro_endDate = pro_endDate;
+
 	}   
+
 	public int getPro_seq() {
 		return pro_seq;
 	}
@@ -46,4 +52,7 @@ public class ProjectDTO {
 		this.pro_endDate = pro_endDate;
 	}
 
+
+
 }
+

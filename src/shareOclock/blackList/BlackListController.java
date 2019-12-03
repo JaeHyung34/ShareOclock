@@ -13,8 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
-import shareOclock.member.Member_DTO;
-
 @WebServlet("*.black")
 public class BlackListController extends HttpServlet {
 
