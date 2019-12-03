@@ -1,9 +1,10 @@
 package shareOclock.member;
 public class MemberDTO {
-	private String mb_email;
+	private String mb_img;
+	private String mb_nickname;
 	private String mb_pw;
 	private String mb_name;
-	private String mb_nickname;
+	private String mb_email;
 	private String mb_group;
 	private String mb_phone;
 	private String mb_check;
@@ -31,6 +32,19 @@ public class MemberDTO {
 		this.mb_email = mb_email;
 		this.mb_name = mb_name;
 		this.mb_nickname = mb_nickname;
+	}
+
+	public MemberDTO(String mb_img, String mb_nickname, String mb_pw, String mb_name, String mb_email, String mb_group,
+			String mb_phone, String mb_check) {
+		super();
+		this.mb_img = mb_img;
+		this.mb_nickname = mb_nickname;
+		this.mb_pw = mb_pw;
+		this.mb_name = mb_name;
+		this.mb_email = mb_email;
+		this.mb_group = mb_group;
+		this.mb_phone = mb_phone;
+		this.mb_check = mb_check;
 	}
 
 	public String getMb_email() {
@@ -74,6 +88,14 @@ public class MemberDTO {
 	}
 	public void setMb_check(String mb_check) {
 		this.mb_check = mb_check;
+	}
+
+	public String getMb_img() {
+		return mb_img;
+	}
+
+	public void setMb_img(String mb_img) {
+		this.mb_img = mb_img;
 	}
 	
 	
