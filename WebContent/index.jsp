@@ -98,7 +98,7 @@
         	</button>
       	  </div>
       <!-- join modal body -->
-           <form class="user" onsubmit="return validate()" action="signMember.member" method="post">
+			<form class="user" onsubmit="return validate()" action="signMember.member" method="post">
 	          <div class="modal-body py-0">
 	            <div class="form-row">
 				  <div class="col-9 mt-2" id=signDivEmail>
@@ -110,14 +110,14 @@
 	              <div class="col-3 mt-2" id=signDivCertifiedSend>
 	            	<label for="btn_emailCertifiedSend">메일전송</label>
 					<input type=button  class="btn btn-primary" id=btn_emailCertifiedSend value=전송>
-	               </div>
-					<div class="form-row col-12 mb-0" id=signDivCertified>
-		              	<div class="col-6 mb-4 mt-2">
-		         			<input type="text" id="certifiedNumber" class="form-control" placeholder="인증번호를 입력하세요">
-		            	</div>
-		            	<div class="col-6 mb-4 mt-2">
-							<input type=button class="btn btn-primary" id=btn_certifiedCheckSend value=인증>
-		        	    </div>
+	              </div>
+				    <div class="form-row col-12 mb-0" id=signDivCertified>
+		              <div class="col-6 mb-4 mt-2">
+		         	    <input type="text" id="certifiedNumber" class="form-control" placeholder="인증번호를 입력하세요">
+		              </div>
+		              <div class="col-6 mb-4 mt-2">
+						<input type=button class="btn btn-primary" id=btn_certifiedCheckSend value=인증>
+		        	  </div>
 		         	</div>
 		         	<div class="form-row col-12 mb-0" id=signDivPassword>
 		              <div class="col-6 mb-4 mt-2">
@@ -133,45 +133,45 @@
 		              <div class="invalid-feedback ml-3">Not Ok</div>
 		            </div>
 		          </div>
-	        </div>
-	      </div>
-	      <hr>
-	      <div class="form-group">
-	        <div class="form-row col-12">
-	          <div class="col-6">
-	            <label for="">아이디</label>
-	            <input type="text" id=signInputID name ="mb_nickname" class="form-control" placeholder="고유한 아이디를 입력하세요" oninput = nickNameOverlapCheck()>
-	            <div class="valid-feedback ml-3">Ok</div>
-	            <div class="invalid-feedback ml-3">Not Ok</div>
+	            </div>
 	          </div>
-	          <div class="col-6">
-	            <label for="">이름</label>
-	            <input type="text" id="signInputName" name="mb_name" class="form-control" placeholder="이름을 입력하세요">
-	            <div class="valid-feedback ml-3">Ok</div>
-	            <div class="invalid-feedback ml-3">Not Ok</div>
-	          </div>
-	        </div>
-	        <div class="form-row col-12 mt-2">
-	          <label for="">전화번호</label>
-	          <input type="text" id="signInputPhone" name = mb_phone class="form-control" placeholder="이름을 입력하세요">
-	          <div class="valid-feedback ml-3">Ok</div>
-	          <div class="invalid-feedback ml-3">Not Ok</div>
-	        </div>
-	        <div class="form-row col-12 mt-2">
-	          <label for="">그룹</label>
-	          <input type="text" id="signInputGroup" name = mb_group class="form-control" placeholder="이름을 입력하세요">
-	          <div class="valid-feedback ml-3">Ok</div>
-	          <div class="invalid-feedback ml-3">Not Ok</div>
-	        </div>
-	      </div>
-	      <!-- join modal footer -->
-	        <button class="btn btn-primary" id=btn_signInfoSend>제출</button>
-	        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-	      </div>
-      </form>
+		      <hr>
+		      <div class="form-group">
+		        <div class="form-row col-12">
+		          <div class="col-6">
+		            <label for="">아이디</label>
+		            <input type="text" id=signInputID name ="mb_nickname" class="form-control" placeholder="고유한 아이디를 입력하세요" oninput = nickNameOverlapCheck()>
+		            <div class="valid-feedback ml-3">Ok</div>
+		            <div class="invalid-feedback ml-3">Not Ok</div>
+		          </div>
+		          <div class="col-6">
+		            <label for="">이름</label>
+		            <input type="text" id="signInputName" name="mb_name" class="form-control" placeholder="이름을 입력하세요">
+		            <div class="valid-feedback ml-3">Ok</div>
+		            <div class="invalid-feedback ml-3">Not Ok</div>
+		          </div>
+		        </div>
+		        <div class="form-row col-12 mt-2">
+		          <label for="">전화번호</label>
+		          <input type="text" id="signInputPhone" name = mb_phone class="form-control" placeholder="이름을 입력하세요">
+		          <div class="valid-feedback ml-3">Ok</div>
+		          <div class="invalid-feedback ml-3">Not Ok</div>
+		        </div>
+		        <div class="form-row col-12 mt-2">
+		          <label for="">그룹</label>
+		          <input type="text" id="signInputGroup" name = mb_group class="form-control" placeholder="이름을 입력하세요">
+		          <div class="valid-feedback ml-3">Ok</div>
+		          <div class="invalid-feedback ml-3">Not Ok</div>
+		        </div>
+		      </div>
+		      <!-- join modal footer -->
+		        <button class="btn btn-primary" id=btn_signInfoSend>제출</button>
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+		    
+      		</form>
+    	</div>
     </div>
   </div>
-</div>
 
 	<!-- 비밀번호 값 이메일로 전달-->
 

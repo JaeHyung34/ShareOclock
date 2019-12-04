@@ -184,7 +184,9 @@
 						<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown">
 							<i class="fa fa-bars"></i>
 							<span id="msgAlert" class="badge badge-danger badge-counter">N</span>
-						</a> <!-- Dropdown - User Information -->
+						</a>
+						
+						 <!-- Dropdown - User Information -->
 						<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in">
 							<a class="dropdown-item" href="#">
 								<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> 내 프로젝트 <span id="alert" class="badge badge-danger badge-counter">N</span>
@@ -198,6 +200,7 @@
 						</div>
 					</li>
 				</ul>
+				
 				<!-- Topbar Navbar -->
 				<ul class="navbar-nav ml-auto">
 					<!-- Nav Item - Alerts -->
