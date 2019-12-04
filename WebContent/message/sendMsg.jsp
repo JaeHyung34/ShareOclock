@@ -270,7 +270,7 @@
 							<textarea class="d-none" id="tArea" name="tArea"></textarea>
 						</div>
 						<div class="w-100"></div>
-						<p>✔내용은 300자를 넘을 수 없습니다</p>
+						<p id="alert">✔내용은 300자를 넘을 수 없습니다</p>
 						<div class="row w-100 mt-4">
 							<div class="col-12 text-center">
 								<button id="send">전송</button>

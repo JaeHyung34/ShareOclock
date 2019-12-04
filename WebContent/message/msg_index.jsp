@@ -260,13 +260,15 @@ body {
 			</nav>
 			<!-- End of Topbar -->
 
+<iframe>
 			<!-- 메인 콘텐츠 시작 부분 -->
 			<div id="content" class="container-fluid mx-xs-0 my-5 mx-md-5">
 
 				<!-- md 이상일 때의 쪽지함 -->
 				<div class="d-none d-md-block row">
 					<h2>쪽지함</h2>
-					<p>ID의 쪽지함입니다. 읽지 않은 쪽지는 현재 0개 입니다</p>
+					<!--  <p>${sessionScope.loginInfo}의 쪽지함입니다. 읽지 않은 쪽지는 현재 0개 입니다</p> -->
+					<p>의 쪽지함입니다. 읽지 않은 쪽지는 현재 0개 입니다</p>
 					<div class="col-11">
 					<table class="table table-hover ">
 						<thead>
@@ -364,7 +366,7 @@ body {
 				<!-- 모바일 화면 끝 -->
 			</div>
 			<!-- 메인 콘텐츠 끝 -->
-
+</iframe>
 		</div>
 	</div>
 

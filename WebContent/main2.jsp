@@ -217,8 +217,8 @@
 			
 			<!-- End of Topbar -->
 			<!-- 메인 콘텐츠 시작 부분 -->
-			  	<iframe id="iframe" width="100%"  class = bg-gradient-primary height="100%" style="border:none;border-left:1px" src="${pageContext.request.contextPath}/member/modifyInfo.jsp">
-				</iframe>			
+			  	<iframe id="iframe" class="d-none d-md-block" width="100%"  height="100%" style="border:'none';border-left:1px" src="${pageContext.request.contextPath}/message/msg_index2.jsp"> </iframe>			
+			  	<iframe id="iframe" class="d-md-none" width="100%"  height="200%" style="border:'none';border-left:1px" src="${pageContext.request.contextPath}/message/msg_index2.jsp"> </iframe>			
 			<!-- 메인 콘텐츠 끝 -->
 		</div>
 	</div>
