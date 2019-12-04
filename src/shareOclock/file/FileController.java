@@ -75,10 +75,8 @@ public class FileController extends HttpServlet {
 							String value = item.getString("utf-8"); 
 							System.out.println("일반 폼 필드 :" + name+ "-" + value);
 						}else{
-							//if(item.getSize()>0){}
 							String fieldName = item.getFieldName();
 							String fileName = item.getName(); //파일이름
-							//String without = fileName.substring(fileName.lastIndexOf(""+1));
 							boolean isInMemory = item.isInMemory();
 							long sizeInBytes = item.getSize(); //파일 사이즈
 							System.out.println("파일 이름 :" + fileName);
@@ -94,9 +92,7 @@ public class FileController extends HttpServlet {
 							item.write(uploadedFile);
 							System.out.println("uploadedFile:"+uploadedFile);
 							System.out.println("uploadedFile.getPath():"+uploadedFile.getPath()); //db에저장된 경로?
-
 							item.delete();
-
 							String f_writer = "jin";
 							FilesDTO dto = new FilesDTO(0,uploadedFileName,fileName,null,f_writer,0,1);
 							int result = FilesDAO.getInstance().insert(dto);
@@ -112,7 +108,6 @@ public class FileController extends HttpServlet {
 				List<FilesDTO> list = FilesDAO.getInstance().getAllFiles();
 				request.setAttribute("list", list);
 				request.getRequestDispatcher("file/list.jsp").forward(request, response);
-				//response.sendRedirect("file/list.jsp");
 				System.out.println("도착완료");
 			}else if(cmd.contentEquals("/download.file")) {
 				System.out.println("/download.file에 들어왔나요?");
