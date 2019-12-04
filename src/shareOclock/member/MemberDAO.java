@@ -73,7 +73,7 @@ public class MemberDAO {
 	}
 
 	public int insert(MemberDTO dto)  throws Exception{
-		String sql = "insert into tb_member values(?,?,?,?,?,?,?)";
+		String sql = "insert into tb_member (mb_email,mb_pw, mb_name,mb_nickname,  mb_group, mb_phone, mb_check ) values(?,?,?,?,?,?,?)";
 		try (Connection conn = getConnection(); 
 			 PreparedStatement pstat = conn.prepareStatement(sql);){
 			System.out.println("naverKakao  : "+dto.getMb_pw());
