@@ -7,20 +7,20 @@ public class FilesDTO {
 	private int f_seq;
 	private String file_name;
 	private String original_file_name;
-	private Timestamp f_write_date;
+	private Timestamp f_writeDate;
 	private String f_writer;
 	private int f_downloadCnt;
 	private int pro_seq;
 	public FilesDTO() {
 		super();
 	}
-	public FilesDTO(int f_seq, String file_name, String original_file_name, Timestamp f_write_date, String f_writer,
+	public FilesDTO(int f_seq, String file_name, String original_file_name, Timestamp f_writeDate, String f_writer,
 			int f_downloadCnt, int pro_seq) {
 		super();
 		this.f_seq = f_seq;
 		this.file_name = file_name;
 		this.original_file_name = original_file_name;
-		this.f_write_date = f_write_date;
+		this.f_writeDate = f_writeDate;
 		this.f_writer = f_writer;
 		this.f_downloadCnt = f_downloadCnt;
 		this.pro_seq = pro_seq;
@@ -43,11 +43,11 @@ public class FilesDTO {
 	public void setOriginal_file_name(String original_file_name) {
 		this.original_file_name = original_file_name;
 	}
-	public Timestamp getF_write_date() {
-		return f_write_date;
+	public Timestamp getF_writeDate() {
+		return f_writeDate;
 	}
-	public void setF_write_date(Timestamp f_write_date) {
-		this.f_write_date = f_write_date;
+	public void setF_writeDate(Timestamp f_writeDate) {
+		this.f_writeDate = f_writeDate;
 	}
 	public String getF_writer() {
 		return f_writer;
@@ -69,15 +69,15 @@ public class FilesDTO {
 	}
 	public String getFormedDate() {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-		long write_date = this.f_write_date.getTime(); // 작성된 시간
+		long writeDate = this.f_writeDate.getTime(); // 작성된 시간
 		long current_date = System.currentTimeMillis(); // 현재 시간
-		long gapTime = (current_date - write_date)/1000;
+		long gapTime = (current_date - writeDate)/1000;
 		if(gapTime < 300) {
 			return "5분이내";
 		}else if(300 <= gapTime && gapTime <= 3600) {
 			return "1시간 이내";
 		}else {
-			return sdf.format(this.f_write_date);
+			return sdf.format(this.f_writeDate);
 		}
 	}
 
