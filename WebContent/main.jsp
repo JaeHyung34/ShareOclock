@@ -26,10 +26,12 @@
 		</a>
 		
 		<!-- Sidebar -->
+
 		<ul class="navbar-nav bg-gradient-secondary sidebar sidebar-dark accordion d-none d-md-block" id="accordionSidebar">
 		
 		<!-- Sidebar - Brand -->
 			<a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+
 				<div class="sidebar-brand-icon">
 					<i class="fas fa-radiation"></i>
 				</div>
@@ -107,13 +109,11 @@
 			<div class="sidebar-heading">익호</div>
 
 			<!-- Nav Item - 관리자 페이지 -->
-			<li class="nav-item">
-				<a class="nav-link" href="admin.html">
-					<i class="fas fa-fw fa-chart-area"></i> 
-					<span>신익호</span>
-				</a>
-			</li>
 
+			<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/memberList.admin">
+					<i class="fas fa-fw fa-chart-area"></i> <span>신익호</span>
+			</a></li>
+			
 			<!-- Divider -->
 			<hr class="sidebar-divider">
 

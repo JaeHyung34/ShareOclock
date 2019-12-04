@@ -3,13 +3,14 @@ package shareOclock.project;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
+
 public class ProjectDTO {
 	private int pro_seq;
 	private String pro_title;
 	private String pro_contents;
 	private String pro_startDate;
 	private String pro_endDate;
-		
+
 	public ProjectDTO(int pro_seq, String pro_title, String pro_contents, String pro_startDate, String pro_endDate) {
 		super();
 		this.pro_seq = pro_seq;
@@ -17,7 +18,9 @@ public class ProjectDTO {
 		this.pro_contents = pro_contents;
 		this.pro_startDate = pro_startDate;
 		this.pro_endDate = pro_endDate;
-	}	
+
+	}   
+
 	public int getPro_seq() {
 		return pro_seq;
 	}
@@ -48,4 +51,8 @@ public class ProjectDTO {
 	public void setPro_endDate(String pro_endDate) {
 		this.pro_endDate = pro_endDate;
 	}
+
+
+
 }
+
