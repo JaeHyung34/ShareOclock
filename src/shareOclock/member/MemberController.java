@@ -217,7 +217,7 @@ public class MemberController extends HttpServlet {
 				result = MemberDAO.getInstance().emailCheck(mb_email);
 				Gson gson = new Gson();
 				String resultJSON = "";
-				System.out.println("현재 이메일 체크  "+result);
+				System.out.println("현재 이메일 체크  " + result);
 				resultJSON = gson.toJson(result);
 				response.getWriter().append(resultJSON);
 			} catch (Exception e) {	

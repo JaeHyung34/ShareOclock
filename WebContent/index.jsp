@@ -98,80 +98,81 @@
         	</button>
       	  </div>
       <!-- join modal body -->
-			<form class="user" onsubmit="return validate()" action="signMember.member" method="post">
-	          <div class="modal-body py-0">
-	            <div class="form-row">
-				  <div class="col-9 mt-2" id=signDivEmail>
-	                <label for="signInputEmail">이메일</label>
-	          		<input type="text" id="signInputEmail" name=mb_email  class="form-control" placeholder="이메일형식을 입력하세요" oninput = emailOverlapCheck()>
-	          		<div class="valid-feedback ml-3">OK</div>
-	          		<div class="invalid-feedback ml-3">Not Ok</div>
-	              </div>
-	              <div class="col-3 mt-2" id=signDivCertifiedSend>
-	            	<label for="btn_emailCertifiedSend">메일전송</label>
-					<input type=button  class="btn btn-primary" id=btn_emailCertifiedSend value=전송>
-	              </div>
-				    <div class="form-row col-12 mb-0" id=signDivCertified>
-		              <div class="col-6 mb-4 mt-2">
-		         	    <input type="text" id="certifiedNumber" class="form-control" placeholder="인증번호를 입력하세요">
-		              </div>
-		              <div class="col-6 mb-4 mt-2">
-						<input type=button class="btn btn-primary" id=btn_certifiedCheckSend value=인증>
-		        	  </div>
-		         	</div>
-		         	<div class="form-row col-12 mb-0" id=signDivPassword>
-		              <div class="col-6 mb-4 mt-2">
-		                <label for="">비밀번호</label>
-		         		<input type="password"  autocomplete="off"  name=mb_pw id="signInputPassword" class="form-control" placeholder="비밀번호를 입력하세요">
-		          	    <div class="ml-3 valid-feedback">Yes</div>
-		                <div class="invalid-feedback ml-3">Not Ok</div>
-		              </div>
-		            <div class="col-6 mb-4 mt-2">
-		              <label for="signRepeatPassword">비밀번호 확인</label>
-		              <input type="password" id="signRepeatPassword"  autocomplete="off"  class="form-control" placeholder="비밀번호 확인">
-		              <div class="valid-feedback ml-3">Ok</div>
-		              <div class="invalid-feedback ml-3">Not Ok</div>
-		            </div>
-		          </div>
+	      <form class="user" onsubmit="return validate()" action="signMember.member" method="post">
+	        <div class="modal-body py-0">
+	          <div class="form-row">
+				<div class="col-9 mt-2" id=signDivEmail>
+	              <label for="signInputEmail">이메일</label>
+	              <input type="text" id="signInputEmail" name=mb_email  class="form-control" placeholder="이메일형식을 입력하세요" oninput = signEmailCheck()>
+	          	  <div class="valid-feedback ml-3">OK</div>
+	          	  <div class="invalid-feedback ml-3">Not Ok</div>
 	            </div>
-	          </div>
-		      <hr>
-		      <div class="form-group">
-		        <div class="form-row col-12">
-		          <div class="col-6">
-		            <label for="">아이디</label>
-		            <input type="text" id=signInputID name ="mb_nickname" class="form-control" placeholder="고유한 아이디를 입력하세요" oninput = nickNameOverlapCheck()>
-		            <div class="valid-feedback ml-3">Ok</div>
+	            <div class="col-3 mt-2" id=signDivCertifiedSend>
+	              <label for="btn_emailCertifiedSend">메일전송</label>
+				  <input type=button  class="btn btn-primary" id=btn_emailCertifiedSend value=전송>
+	            </div>
+				<div class="form-row col-12 mb-0" id=signDivCertified>
+		          <div class="col-6 mb-4 mt-2">
+		            <input type="text" id="certifiedNumber" class="form-control" placeholder="인증번호를 입력하세요">
+		          </div>
+		          <div class="col-6 mb-4 mt-2">
+				    <input type=button class="btn btn-primary" id=btn_certifiedCheckSend value=인증>
+		          </div>
+		        </div>
+		        <div class="form-row col-12 mb-0" id=signDivPassword>
+		          <div class="col-6 mb-4 mt-2">
+		            <label for="">비밀번호</label>
+		         	<input type="password"  autocomplete="off"  name=mb_pw id="signInputPassword" class="form-control" placeholder="비밀번호를 입력하세요" oninput = signPasswordCheck()>
+		            <div class="ml-3 valid-feedback">Yes</div>
 		            <div class="invalid-feedback ml-3">Not Ok</div>
 		          </div>
-		          <div class="col-6">
-		            <label for="">이름</label>
-		            <input type="text" id="signInputName" name="mb_name" class="form-control" placeholder="이름을 입력하세요">
+		          <div class="col-6 mb-4 mt-2">
+		            <label for="signRepeatPassword">비밀번호 확인</label>
+		            <input type="password" id="signRepeatPassword"  autocomplete="off"  class="form-control" placeholder="비밀번호 확인" oninput = signRepeatPasswordCheck()>
 		            <div class="valid-feedback ml-3">Ok</div>
 		            <div class="invalid-feedback ml-3">Not Ok</div>
 		          </div>
 		        </div>
-		        <div class="form-row col-12 mt-2">
-		          <label for="">전화번호</label>
-		          <input type="text" id="signInputPhone" name = mb_phone class="form-control" placeholder="이름을 입력하세요">
+	          </div>
+	        </div>
+		    <hr>
+		    <div class="form-group">
+		      <div class="form-row col-12">
+		        <div class="col-6">
+		          <label for="">아이디</label>
+		          <input type="text" id=signInputID name ="mb_nickname" class="form-control" placeholder="고유한 아이디를 입력하세요" oninput = signNickNameCheck()>
 		          <div class="valid-feedback ml-3">Ok</div>
 		          <div class="invalid-feedback ml-3">Not Ok</div>
 		        </div>
-		        <div class="form-row col-12 mt-2">
-		          <label for="">그룹</label>
-		          <input type="text" id="signInputGroup" name = mb_group class="form-control" placeholder="이름을 입력하세요">
+		        <div class="col-6">
+		          <label for="">이름</label>
+		          <input type="text" id="signInputName" name="mb_name" class="form-control" placeholder="이름을 입력하세요" oninput = signNameCheck()>
 		          <div class="valid-feedback ml-3">Ok</div>
 		          <div class="invalid-feedback ml-3">Not Ok</div>
 		        </div>
 		      </div>
-		      <!-- join modal footer -->
-		        <button class="btn btn-primary" id=btn_signInfoSend>제출</button>
-		        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-		    
-      		</form>
-    	</div>
-    </div>
-  </div>
+		      <div class="form-row col-12 mt-2">
+		        <label for="">전화번호</label>
+		        <input type="text" id="signInputPhone" name = mb_phone class="form-control" placeholder="전화번호를 입력하세요" oninput = signPhoneCheck()>
+		        <div class="valid-feedback ml-3">Ok</div>
+		        <div class="invalid-feedback ml-3">Not Ok</div>
+		      </div>
+		      <div class="form-row col-12 mt-2">
+		        <label for="">그룹</label>
+		        <input type="text" id="signInputGroup" name = mb_group class="form-control" placeholder="소속을 입력해주세요(없으면 비워주세요)"  oninput = signGroupCheck()>
+		        <div class="valid-feedback ml-3">Ok</div>
+		        <div class="invalid-feedback ml-3">Not Ok</div>
+		      </div>
+		    </div>
+		    <div class="modal-footer">
+		        <!-- join modal footer -->
+		      <button class="btn btn-primary" id=btn_signInfoSend>제출</button>
+		      <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+	        </div>
+		  </form>
+	    </div>
+	  </div>
+	</div>
 
 	<!-- 비밀번호 값 이메일로 전달-->
 
@@ -224,7 +225,8 @@
 	</div>
 	
     <script>
-    
+    var emailCheck = true;
+    var idCheck = true;
     $(document).ready(function(){
     	var naverInfo = '${naverInfo}';
     	console.log('${naverInfo}');
@@ -241,6 +243,8 @@
 			$("#signInputEmail").val('${naverInfo.mb_email}');
 			$("#signInputID").val('${naverInfo.mb_nickname}');
 			$("#signInputName").val('${naverInfo.mb_name}');
+			signNickNameCheck();
+			signNameCheck();
             $("#signInputPassword").attr('disabled',true);
             naverKakao = true;
             checkCertified = true;
@@ -257,8 +261,6 @@
 
     	}
     }) 
-    var emailCheck = true;
-    var idCheck = true;
     //	회원가입시 정규식 체크부분
 
     $
@@ -372,27 +374,42 @@
 			return true;
 		  }
  		// 모달 이동 제어부분
-		function emailOverlapCheck() {
-		    $.ajax({ 
-				url: "emailOverlapCheck.member", 
-				data: { mb_email: $("#signInputEmail").val()}, 
-				method: "post", 
-				dataType: "json",
-		        async:false
-			}).done(function(data){ 
-				console.log("emailOverlapCheck  :  " + data);
-				if(data){
-					emailCheck = false;
-					$(".notice").attr('class','notice ab');
-				}else{
-					emailCheck = true;
+		function signEmailCheck() {
+		    var getMail =  RegExp(/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i);
 
-				}
-			}).fail(function(){ 
-				alert("서버오류!!");
-			});
+ 			if(!getMail.test($("#signInputEmail").val()) && !naverKakao){
+
+				$("#signInputEmail").next().next().text("이메일 형식에 맞게 입력해주세요.");
+				$("#signInputEmail").removeClass("is-valid");
+				$("#signInputEmail").addClass("is-invalid");
+			}else{
+				$("#signInputEmail").removeClass("is-invalid");
+				$("#signInputEmail").addClass("is-valid");
+				$.ajax({ 
+					url: "emailOverlapCheck.member", 
+					data: { mb_email: $("#signInputEmail").val()}, 
+					method: "post", 
+					dataType: "json",
+			        async:false
+				}).done(function(data){ 
+					console.log("emailOverlapCheck  :  " + data);
+					if(data){
+						emailCheck = false;					
+						$("#signInputEmail").removeClass("is-valid");
+						$("#signInputEmail").addClass("is-invalid");
+						$("#signInputEmail").next().next().text("이메일이 중복되었습니다.");
+
+					}else{
+						emailCheck = true;
+						
+					}
+				}).fail(function(){ 
+					alert("서버오류!!");
+				});
+			}
+		    
 		};	
-		function nickNameOverlapCheck() {
+		function signNickNameCheck() {
 		    $.ajax({ 
 				url: "nickNameOverlapCheck.member", 
 				data: {	mb_nickname: $("#signInputID").val()}, 
@@ -401,18 +418,87 @@
 		        async:false
 			}).done(function(data){ 
 				console.log(data);
+				var getId = RegExp(/^[A-Za-z0-9]{5,12}$/);
+
 				if(data){
-					idCheck = false;
-					
-					$("#signInputID").attr('class','notice ab');
+
+					idCheck = false;					
+					$("#signInputID").removeClass("is-valid");
+					$("#signInputID").addClass("is-invalid");
+					$("#signInputID").next().next().text("아이디가 중복되었습니다.");
+
 				}else{
+					
+					console.log("여기실행인데   "+getId.test($("#signInputID").val()));
+
 					idCheck = true;
-					$(".notice").attr('class','notice ab');
+					if(getId.test($("#signInputID").val())){
+						$("#signInputID").removeClass("is-invalid");
+						$("#signInputID").addClass("is-valid");
+					}else{
+						$("#signInputID").next().next().text("영어 숫자 5~12만 가능합니다");
+						$("#signInputID").removeClass("is-valid");
+						$("#signInputID").addClass("is-invalid");
+					}
 				}
 				return true;
 			}).fail(function(){ 
 				alert("서버오류!!");
 			});
+		};
+
+		function signRepeatPasswordCheck() {
+			var getPw= RegExp(/^[A-Za-z0-9]{6,15}$/);
+			if(getPw.test($("#signRepeatPassword").val())){
+				$("#signRepeatPassword").removeClass("is-invalid");
+				$("#signRepeatPassword").addClass("is-valid");
+			}else{
+				$("#signRepeatPassword").removeClass("is-valid");
+				$("#signRepeatPassword").addClass("is-invalid");
+				$("#signRepeatPassword").next().next().text("영어 또는 숫자로 6~15");
+			}
+		}
+
+		function signNameCheck() {
+			 var getName = RegExp(/^[가-힣A-Za-z]+$/);
+			if(getName.test($("#signInputName").val())){
+				$("#signInputName").removeClass("is-invalid");
+				$("#signInputName").addClass("is-valid");
+			}else{
+				$("#signInputName").removeClass("is-valid");
+				$("#signInputName").addClass("is-invalid");
+				$("#signInputName").next().next().text("한글 영어 숫자로 5~12");
+			}
+		}
+
+		function signGroupCheck() {
+			$("#signInputGroup").removeClass("is-invalid");
+			$("#signInputGroup").addClass("is-valid");
+		}
+
+		function signPhoneCheck() {
+		    var getPhone = RegExp(/^\d{2,3}\d{3,4}\d{4}$/); //형식 설정
+			if(getPhone.test($("#signInputPhone").val())){
+				$("#signInputPhone").removeClass("is-invalid");
+				$("#signInputPhone").addClass("is-valid");
+			}else{
+				$("#signInputPhone").removeClass("is-valid");
+				$("#signInputPhone").addClass("is-invalid");
+				$("#signInputPhone").next().next().text("전화번호를 입력해주세요");
+			}
+		}
+		
+		function signPasswordCheck() {
+			var getPw= RegExp(/^[A-Za-z0-9]{6,15}$/);
+			console.log("여기가실행5   " + getPw.test($("#signInputPassword").val()));
+			if(getPw.test($("#signInputPassword").val())){
+				$("#signInputPassword").removeClass("is-invalid");
+				$("#signInputPassword").addClass("is-valid");
+			}else{
+				$("#signInputPassword").removeClass("is-valid");
+				$("#signInputPassword").addClass("is-invalid");
+				$("#signInputPassword").next().next().text("영어 또는 숫자로 6~15");
+			}
 		};
 		function forgetMove() {
 			$('#loginMenu').modal('hide');
@@ -510,7 +596,8 @@
 		  
 		 $("#btn_emailCertifiedSend").on("click",function(){
 				var email = $("#signInputEmail").val();
-				if(email != ""){
+				console.log("이메일전송중~3    :   " + emailCheck);
+				if(email != "" && emailCheck!=true){
 					$.ajax({ 
 						url: "emailCertifiedSend.member", 
 						data: { email: email }, 
@@ -525,7 +612,7 @@
 						alert("서버오류!!");
 					});
 				}else{
-					alert("이메일을 입력해주세요.");
+					alert("이메일을 입력 또는 형식에 맞게 입력해주세요.");
 				}
 		  })
 		    
@@ -576,6 +663,9 @@
 			        	console.log(res);
 			        	console.log("수정2");
 			            alert(JSON.stringify(res));
+
+			            naverKakao = true;
+			            checkCertified = true;
 			            $("#signInputEmail").attr('readonly',true);
 			            $("#signDivEmail").attr('class','col-12 mt-2')
 			            $("#signDivCertifiedSend").hide();
@@ -583,12 +673,10 @@
 						$("#signInputEmail").val(res.id);
 						$("#signInputName").val(res.properties.nickname);
 
-			            emailOverlapCheck();
+						signEmailCheck();
 			            console.log("kakaoemailCheck  :  " + emailCheck);
 			            $("#signDivPassword").attr('disabled',true);
 			            $("#signDivPassword").hide();
-			            naverKakao = true;
-			            checkCertified = true;
 
 			            //  res.id
 					    if(!emailCheck){
