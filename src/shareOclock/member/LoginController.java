@@ -5,21 +5,11 @@ import java.io.IOException;
 import java.io.InputStreamReader ;
 import java.math.BigInteger;
 import java.net.HttpURLConnection;
-<<<<<<< HEAD
-import java.net.PasswordAuthentication;
-=======
->>>>>>> 11f01e4adb0e85f860d8f5683805be117c134886
 import java.net.URL;
 import java.net.URLEncoder;
 import java.security.SecureRandom;
 
-<<<<<<< HEAD
-import javax.mail.Session;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-=======
 import javax.servlet.RequestDispatcher;
->>>>>>> 11f01e4adb0e85f860d8f5683805be117c134886
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,12 +20,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 
-<<<<<<< HEAD
-import oracle.jdbc.driver.Message;
-import sun.rmi.transport.Transport;
-=======
 import configuration.Utils;
->>>>>>> 11f01e4adb0e85f860d8f5683805be117c134886
 
 @WebServlet("*.login")
 public class LoginController extends HttpServlet {
