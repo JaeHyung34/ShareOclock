@@ -22,6 +22,9 @@
 	#msgBox {
 		height: 50vh;
 	}
+	#inputMsg {
+		overflow: auto;
+	}
 </style>
 </head>
 
@@ -237,7 +240,7 @@
 
 			<!-- 메인 콘텐츠 시작 부분 -->
 
-			<form id="frm" action="${pageContext.request.contextPath}/send.msg"
+			<form id="frm" action="${pageContext.request.contextPath}/send.msg?entry=1"
 				method="post">
 				<div class="container mt-5 rounded">
 					<div class="row mt-2 border mx-3 mx-md-0">
@@ -250,7 +253,7 @@
 							<button class="btn btn-secondary" type="button" id="add">등록</button>
 						</div>
 						<div>
-							<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#find">그룹 찾기</button>
+							<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#find" disabled>그룹 찾기</button>
 						</div>
 					</div>
 					<div class="row">
@@ -267,6 +270,7 @@
 							<textarea class="d-none" id="tArea" name="tArea"></textarea>
 						</div>
 						<div class="w-100"></div>
+						<p id="alert">✔내용은 300자를 넘을 수 없습니다</p>
 						<div class="row w-100 mt-4">
 							<div class="col-12 text-center">
 								<button id="send">전송</button>
@@ -320,6 +324,9 @@
       if ($("#tArea").val() == "") {
     	  alert("내용을 입력하세요");
     	  return false;
+      } else if ($("#tArea").val().length > 295) {
+    	  alert("내용의 길이가 300자를 넘을 수 없습니다");
+    	  return false;
       }
       $("#frm").submit();  
     }) 
@@ -339,6 +346,7 @@
 				id: $("#receiver").val()		
 			}	
 		}).done(function(resp) {
+			console.log(resp);
 			let add = true;
 			if (resp == 'null') {
 				alert("찾는 대상이 존재하지 않습니다");

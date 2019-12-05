@@ -260,13 +260,15 @@ body {
 			</nav>
 			<!-- End of Topbar -->
 
+<iframe>
 			<!-- 메인 콘텐츠 시작 부분 -->
 			<div id="content" class="container-fluid mx-xs-0 my-5 mx-md-5">
 
 				<!-- md 이상일 때의 쪽지함 -->
 				<div class="d-none d-md-block row">
 					<h2>쪽지함</h2>
-					<p>ID의 쪽지함입니다. 읽지 않은 쪽지는 현재 0개 입니다</p>
+					<!--  <p>${sessionScope.loginInfo}의 쪽지함입니다. 읽지 않은 쪽지는 현재 0개 입니다</p> -->
+					<p>의 쪽지함입니다. 읽지 않은 쪽지는 현재 0개 입니다</p>
 					<div class="col-11">
 					<table class="table table-hover ">
 						<thead>
@@ -300,18 +302,19 @@ body {
 					</div>
 					<!--  검색기능 -->
 					<form action="${pageContext.request.contextPath}/search.msg" method="post">
-					<div class="row w-100 text-center">
-						<div class="col-8">
-							<select name="options">
-								<option>작성자</option>
-								<option>내용</option>
+					<div class="row">
+						<div class="col-12 d-flex justify-content-center">
+							<select name="option">
+								<option value="sender" <c:if test="${option.equals(\"sender\")}"> selected</c:if>>작성자</option>
+								<option value="content"
+								<c:if test="${option.equals(\"content\")}"> selected</c:if>>내용</option>
 							</select>	
-							<input type="text" name="search">
+							<input type="text" name="search" value="${searchWord}">
 							<input id="doSearch" type="submit" value="검색">
 						</div>
 					</div>	
 					</form>
-					<div id="btns" class="row">
+					<div id="btns" class="row mt-2">
 						<div class="col-md-3">
 							<input id="writeMsg" type="button" value="쪽지 쓰기">
 						</div>
@@ -330,24 +333,24 @@ body {
 				<div class="d-md-none">
 					<h3>쪽지함</h3>
 					<c:forEach items="${list}" var="i" varStatus="idx">
-						<div id="b" class="row mb-2 border-t border-b">
+						<div id="b" class="row mb-2">
 							<div class="col-1">${idx.index}</div>
-							<div class="col-7">${i.message_sender}
+							<div class="col-7">💬${i.message_sender}
 								<c:if test="${i.message_read == \"n\"}">
 									<span class="badge badge-danger badge-pill">new</span>
 								</c:if>
 							</div>
-							<div class="col-4 border-t">
+							<div class="col-4">
 								<small>${i.message_mTime}</small>
 							</div>
 							<div class="col-12 mContent">
 								<a
-									href="${pageContext.request.contextPath}/detailView.msg?seq=${i.message_seq}&entry=${entry}"><c:out value="${i.message_mContents}"></c:out></a>
+									href="${pageContext.request.contextPath}/detailView.msg?seq=${i.message_seq}&entry=${entry}">${i.message_mContents}</a>
 							</div>
 							<div class="w-100"></div>
 						</div>
 					</c:forEach>
-					<nav class="w-100 border">
+					<nav class="w-100">
 						<ul class="pagination d-flex justify-content-center">${pagination}</ul>
 					</nav>
 					<div class="row mb-4">
@@ -363,7 +366,7 @@ body {
 				<!-- 모바일 화면 끝 -->
 			</div>
 			<!-- 메인 콘텐츠 끝 -->
-
+</iframe>
 		</div>
 	</div>
 
@@ -392,8 +395,6 @@ body {
 
     })
     // 삭제 - 끝
-    // 운영자에게 신고하기
-    // 운영자에게 신고하기 - 끝
       // 전체 선택
           $("#selectAll").on("click", function() {
 			if (this.checked) {

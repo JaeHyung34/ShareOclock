@@ -19,6 +19,12 @@ public class Utils {
 		}
 		return sha;
 	}
+	
+	public static String encText(String str) {
+		str = str.replace("<", "&lt;");
+		str = str.replace("<div>", "").replace("</div>", "<br>");
+		return str;
+	}
 	public static String formedDate(Timestamp date) {
 	      SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	      return sdf.format(date);

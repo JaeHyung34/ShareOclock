@@ -23,6 +23,9 @@
 #msgBox {
 	height: 50vh;
 }
+#inputMsg {
+	overflow: auto;
+}
 </style>
 </head>
 
@@ -264,6 +267,7 @@
 							<textarea class="d-none" id="tArea" name="tArea"></textarea>
 						</div>
 						<div class="w-100"></div>
+						<p>✔내용은 300자를 넘을 수 없습니다</p>
 						<div class="row w-100 mt-4">
 							<div class="col-12 text-center">
 								<button id="send">전송</button>
@@ -315,6 +319,9 @@
       $("#tArea").val($("#inputMsg").html());
       if ($("#tArea").val() == "") {
     	  alert("내용을 입력하세요");
+    	  return false;
+      } else if ($("#tArea").val().length > 295) {
+    	  alert("내용의 길이가 300자를 넘을 수 없습니다");
     	  return false;
       }
       $("#frm").submit();  
