@@ -31,6 +31,10 @@
 #navBar{
    margin-top: 20px;
 }
+body{
+		height: 100%;
+		overflow: hidden;
+	}
 </style>
 
 </head>

@@ -6,19 +6,15 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
-
 import configuration.Configuration;
-import shareOclock.file.FilesDAO;
 import shareOclock.member.MemberDTO;
 
-
-
 public class ProMemberDAO {
-	private static ProMemberDAO instance;
+	public static ProMemberDAO instance;
+
 	public synchronized static ProMemberDAO getInstance() {
 		if (instance == null) {
-			System.out.println("디비가 생성되었다.");
+			System.out.println("디비 생성");
 			instance = new ProMemberDAO();
 		}
 		return instance;
@@ -26,7 +22,21 @@ public class ProMemberDAO {
 	Connection getConnection() throws Exception {
 		return Configuration.dbs.getConnection();
 	}
-	public int insert(ProMemberDTO dto) throws Exception{
+	//은비 유진 공용 
+	public int deleteProjectMember(int pro_seq) throws Exception{ // 프로젝트 멤버 삭제
+		String sql = "delete from tb_project_member where pro_seq=?";
+		try(Connection con = Configuration.dbs.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setInt(1, pro_seq);
+			int result = pstat.executeUpdate();
+			con.commit();
+			return result;
+		}
+	}
+	//은비 유진 공용 	끝
+
+	// 유진 전용	
+	public int insert(ProMemberDTO dto) throws Exception{ // 프로젝트 멤버 추가
 		String sql = "insert into tb_project_member values(pm_seq.nextval,'M',?,?,?,?,?)";
 		try(
 				Connection con = this.getConnection();
@@ -42,41 +52,43 @@ public class ProMemberDAO {
 			return result;
 		}
 	}
-	public ArrayList<String> getThree(String mb_nickname) throws Exception{
-		String sql = "select mb_img, mb_nickname, mb_name from tb_member where mb_nickname = ?";
-		try(
-				Connection con = this.getConnection();
-				PreparedStatement pstat = con.prepareStatement(sql);
-				){
-			pstat.setString(1, mb_nickname);
-			ArrayList<String> al = new ArrayList<>();
-			try(ResultSet rs = pstat.executeQuery();){
-				if(rs.next()) {
-					String mb_img = rs.getString("mb_img");
-					String mb_nickname1 = rs.getString("mb_nickname");
-					String mb_name = rs.getString("mb_name");
-					System.out.println(mb_img + mb_nickname1 + mb_name);
-					al.add(mb_img);
-					al.add(mb_nickname1);
-					al.add(mb_name);
-				}
-			}
-			return al;
 
-		}
-	}
 	public int delete(String pm_nickname) throws Exception{
 		String sql = "delete from tb_project_member where pm_nickname = ?";
 		try(
 				Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);
 				){
-			pstat.setString(1, pm_nickname);		
+			pstat.setString(1, pm_nickname);      
 			int result = pstat.executeUpdate();
 			con.commit();
 			return result;
 		}
 	}
+
+	public ArrayList<String> getProfile(String mb_nickname) throws Exception{
+		String sql = "select mb_img, mb_nickname, mb_name from tb_member where mb_nickname = ?";
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setString(1, mb_nickname);
+			ArrayList<String> arr = new ArrayList<>();
+			try(ResultSet rs = pstat.executeQuery();){
+				if(rs.next()) {
+					String mb_img = rs.getString("mb_img");
+					String mb_nickname1 = rs.getString("mb_nickname");
+					String mb_name = rs.getString("mb_name");
+					System.out.println(mb_img + mb_nickname1 + mb_name);
+					arr.add(mb_img);
+					arr.add(mb_nickname1);
+					arr.add(mb_name);
+				}
+			}
+			return arr;
+		}
+	}
+
 	public int update(ProMemberDTO dto) throws Exception{
 		String sql = "insert into tb_project_member values(pm_seq.nextval,'M',?,?,?,?,?)";
 		try(
@@ -93,6 +105,7 @@ public class ProMemberDAO {
 			return result;
 		}
 	}
+
 	public List<ProMemberDTO> selectPM() throws Exception{
 		String sql = "select * from tb_project_member order by pm_seq, pm_name";
 		try(
@@ -188,22 +201,106 @@ public class ProMemberDAO {
 			return list;
 		}
 	}
-	public List<String> searchNickname(String mb_nickname) throws Exception{
-		String sql = "select mb_nickname from tb_member where mb_nickname like ? ";
-		try(
-				Connection con = this.getConnection();
-				PreparedStatement pstat = con.prepareStatement(sql);
-				){
-			pstat.setString(1, mb_nickname);
+
+	// 유진 전용 끝
+
+	// 은비 전용
+	public int insertProjectMember(String pm_check, String pm_img, String pm_nickname, String pm_name, String pm_email, int pro_seq) throws Exception{ //프로젝트 헤더 추가
+		String sql = "insert into tb_project_member values(pm_seq.nextval,?,?,?,?,?,?)";
+		try(Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setString(1, pm_check);
+			pstat.setString(2, pm_img);
+			pstat.setString(3, pm_nickname);
+			pstat.setString(4, pm_name);
+			pstat.setString(5, pm_email);
+			pstat.setInt(6, pro_seq);
+			
+			int result = pstat.executeUpdate();
+			con.commit();
+			return result;			
+		}
+	}
+
+	public List<Integer> getSeqByNickname(String nickname) throws Exception{ // 닉네임으로 자기가 속한 프로젝트 seq 얻기
+		String sql = "select pro_seq from tb_project_member where pm_nickname=?";
+		try(Connection con = Configuration.dbs.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setString(1, nickname);
 			try(ResultSet rs = pstat.executeQuery();){
-				List<String> list = new ArrayList<>();
+				List<Integer> list = new ArrayList<>();
 				while(rs.next()) {
-					String mb_nickname1 = rs.getString("mb_nickname");					
-					list.add(mb_nickname1);
-				}
-				return list;
+					int seq = rs.getInt("pro_seq");
+					list.add(seq);
+				}return list;
 			}
 		}
 	}
 
+	public int getCountBySeq(int seq) throws Exception{ // 한 프로젝트에 속한 멤버 수 얻기 
+		String sql = "select count(*) from tb_project_member where pro_seq=?";
+		try(Connection con = Configuration.dbs.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setInt(1, seq);
+			try(ResultSet rs = pstat.executeQuery();){
+				if(rs.next()) {
+					int count = rs.getInt(1);
+					return count;
+				}return -1;			
+			}	
+		}
+	}	
+
+	public boolean isValidMember(int pro_seq, String nickname) throws Exception{ // 해당 프로젝트의 멤버인지 확인
+		String sql = "select *  from tb_project_member where pro_seq=? and pm_nickname=?";
+		try(Connection con = Configuration.dbs.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setInt(1, pro_seq);
+			pstat.setString(2, nickname);
+			try(ResultSet rs = pstat.executeQuery();){
+				if(rs.next()) {
+					return true;
+				}return false;
+			}
+		}
+	}
+
+
+	public boolean isProjectHeader(int pro_seq, String nickname) throws Exception{ // 해당 프로젝트의 헤더인지 확인
+		String sql = "select pm_check from tb_project_member where pro_seq=? and pm_nickname=?";
+		try(Connection con = Configuration.dbs.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setInt(1, pro_seq);
+			pstat.setString(2, nickname);
+			try(ResultSet rs = pstat.executeQuery();){
+				if(rs.next()) {
+					String pm_check = rs.getString(1);
+					if(pm_check.contentEquals("H")) {
+						return true;
+					}
+				}return false;
+			}
+		}
+	}
+	
+	public List<String> getDetailedInfo(String nickname) throws Exception{
+		String sql = "select mb_img, mb_name, mb_email where mb_nickname=?";
+		try(Connection con = Configuration.dbs.getConnection();
+			PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setString(1, nickname);
+			try(ResultSet rs = pstat.executeQuery();){
+				List<String> list = new ArrayList<>();
+				if(rs.next()) {
+					String mb_img = rs.getString("mb_img");
+					String mb_name = rs.getString("mb_name");
+					String mb_email = rs.getString("mb_email");
+					list.add(mb_img);
+					list.add(mb_name);
+					list.add(mb_email);
+				}return list;
+			}
+		}
+	}
+	
+	// 은비 전용 끝
 }

@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
-import shareOclock.member.Pro_memberDAO;
+import shareOclock.proMember.ProMemberDAO;
 
 @WebServlet("*.pro")
 public class ProjectController extends HttpServlet {
@@ -42,9 +42,9 @@ public class ProjectController extends HttpServlet {
 		System.out.println(cmd); 
 
 		if(cmd.contentEquals("/view.pro")){ // 내 프로젝트 모두 보기
-			request.getSession().setAttribute("loginInfo", "알파고"); // 테스트용 임의값 셋팅
+			request.getSession().setAttribute("loginInfo", "아빠공룡"); // 테스트용 임의값 셋팅
 			String nickname = (String) request.getSession().getAttribute("loginInfo"); // 접속 사용자 닉네임 추출
-			Pro_memberDAO dao = Pro_memberDAO.getInstance();
+			ProMemberDAO dao = ProMemberDAO.getInstance();
 			try {
 				List<Integer> seqList = dao.getSeqByNickname(nickname);	// 사용자가 속한 프로젝트 번호 추출				
 				List<MyProjectDTO> dto = new ArrayList<>();
@@ -83,7 +83,9 @@ public class ProjectController extends HttpServlet {
 			try {
 				int pro_seq = ProjectDAO.getInstance().getProjectSeq(); // 프로젝트 seq 뽑아내기 
 				ProjectDAO.getInstance().insertProject(new ProjectDTO(pro_seq, title, contents, startDate, endDate)); // 프로젝트 생성
-				Pro_memberDAO.getInstance().insertProjectMember(pro_seq, user, "H"); // 프로젝트 생성 사용자 pro_member 테이블에 Header로 추가
+				
+				List <String> list = ProMemberDAO.getInstance().getDetailedInfo(user);
+				ProMemberDAO.getInstance().insertProjectMember("H", list.get(0),user, list.get(1), list.get(2), pro_seq); // 프로젝트 생성 사용자 pro_member 테이블에 Header로 추가
 				System.out.println("프로젝트 생성 완료");
 				response.sendRedirect("view.pro"); // 내 프로젝트 페이지 넘어가기
 			} catch(Exception e) {
@@ -96,10 +98,10 @@ public class ProjectController extends HttpServlet {
 			System.out.println("seq : " + seq);
 			System.out.println("user : " + user);
 			try {
-				if(Pro_memberDAO.getInstance().isValidMember(seq, user)) { // 프로젝트 seq와 접속자 매칭 검사
+				if(ProMemberDAO.getInstance().isValidMember(seq, user)) { // 프로젝트 seq와 접속자 매칭 검사
 					request.getSession().setAttribute("projectInfo", seq); // 프로젝트 시 클릭 시 해당 프로젝트  seq 세션에 담기 
 					System.out.println(cmd);
-					response.sendRedirect("/SemiProject/viewTask.pt"); // 해당 프로젝트 일정 페이지로 넘어가기
+					response.sendRedirect("/Project/viewTask.pt"); // 해당 프로젝트 일정 페이지로 넘어가기
 				}else {
 					response.sendRedirect("view.pro");
 				}
@@ -113,7 +115,7 @@ public class ProjectController extends HttpServlet {
 			System.out.println("seq : " + pro_seq);
 			System.out.println("user : " + user);
 			try {
-				if(Pro_memberDAO.getInstance().isValidMember(pro_seq, user)) {
+				if(ProMemberDAO.getInstance().isValidMember(pro_seq, user)) {
 					ProjectDTO dto = ProjectDAO.getInstance().getDetailBySeq(pro_seq); // 선택 프로젝트 정보 가져오기
 					Gson g = new Gson();
 					response.getWriter().append(g.toJson(dto)); // 프로젝트 정보 뿌리기
@@ -128,7 +130,7 @@ public class ProjectController extends HttpServlet {
 			System.out.println("seq : " + pro_seq);
 			System.out.println("user : " + user);
 			
-			Pro_memberDAO dao = Pro_memberDAO.getInstance();
+			ProMemberDAO dao = ProMemberDAO.getInstance();
 			JsonObject obj = new JsonObject();
 			
 			try {
@@ -139,7 +141,6 @@ public class ProjectController extends HttpServlet {
 					String endDate = request.getParameter("endDate"); // 프로젝트 마감일자 가져오기
 					ProjectDTO dto = new ProjectDTO(pro_seq, title, contents, startDate, endDate);
 					int result = ProjectDAO.getInstance().modifyProject(dto); // 프로젝트 수정
-										
 					if(result > 0) {
 						obj.addProperty("result", "completed");
 						response.getWriter().append(obj.toString()); // 성공
@@ -167,7 +168,7 @@ public class ProjectController extends HttpServlet {
 			
 			int result1 = 0;
 			int result2 = 0;
-			Pro_memberDAO dao = Pro_memberDAO.getInstance();
+			ProMemberDAO dao = ProMemberDAO.getInstance();
 			JsonObject obj = new JsonObject();
 			
 			for (int i = 0; i < items.length; i++) { // 가져온 seq 수만큼 삭제 for문

@@ -28,7 +28,7 @@ public class FilesDAO {
 	public int insert(FilesDTO dto) throws Exception{
 		String sql = "insert into tb_file values(f_seq.nextval,?,?,sysdate,?,0,?)";
 		try(
-				Connection con = this.getConnection();
+				Connection con = Configuration.dbs.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);
 				){
 			pstat.setString(1, dto.getFile_name());
@@ -43,7 +43,7 @@ public class FilesDAO {
 	public List<FilesDTO> getAllFiles() throws Exception{
 		String sql = "select * from tb_file";
 		try(
-				Connection con = this.getConnection();
+				Connection con = Configuration.dbs.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);
 				ResultSet rs = pstat.executeQuery();
 				){
@@ -66,7 +66,7 @@ public class FilesDAO {
 	public int getFileByfileSeq(int f_seq) throws Exception{
 		String sql = "select f_downloadCnt from tb_file where f_seq = ?";
 		try(
-				Connection con = this.getConnection();
+				Connection con = Configuration.dbs.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);
 				){
 			pstat.setInt(1, f_seq);
@@ -84,7 +84,7 @@ public class FilesDAO {
 	public int downloadCount(int f_seq) throws Exception{
 		String sql = "update tb_file set f_downloadCnt = f_downloadCnt+1 where f_seq =?";
 		try(
-				Connection con = this.getConnection();
+				Connection con = Configuration.dbs.getConnection();
 				PreparedStatement pstat= con.prepareStatement(sql);
 				){
 			pstat.setInt(1, f_seq);
@@ -96,7 +96,7 @@ public class FilesDAO {
 	public int delete(int f_seq) throws Exception{
 		String sql = "delete from tb_file where f_seq = ?";
 		try(
-				Connection con = this.getConnection();
+				Connection con = Configuration.dbs.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);
 				){
 			pstat.setInt(1, f_seq);

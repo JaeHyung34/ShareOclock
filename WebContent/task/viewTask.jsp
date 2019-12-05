@@ -15,14 +15,17 @@
 
 <title>일정 게시판</title>
 <jsp:include page="/cdn/cdn.jsp" flush="false" />
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" type="text/css"/>
+<link rel="stylesheet" href="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.css"/> 
+    <script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" type="text/css"/>
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/js/dataTables.semanticui.min.js" type="text/css"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js" type="text/css"/>
 <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js" type="text/css"/>
+
 <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css">
+   href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css">
 <link rel="stylesheet"
-	href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+   href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.css">
 <link rel="stylesheet"
@@ -31,12 +34,37 @@
 	href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css"
 	rel="stylesheet">
 
+
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" type="text/javascript" ></script>
-<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" type="text/javascript" ></script>
+<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" type="text/javascript" ></script>	
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.js"></script>
 <script
 	src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
+	
+
+<!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" type="text/css"/> -->
+<!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/js/dataTables.semanticui.min.js" type="text/css"/> -->
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js" type="text/css"/> -->
+<!-- <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js" type="text/css"/> -->
+<!-- <link rel="stylesheet" -->
+<!-- 	href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css"> -->
+<!-- <link rel="stylesheet" -->
+<!-- 	href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css"> -->
+<!-- <link rel="stylesheet" -->
+<!-- 	href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.css"> -->
+<!-- <link rel="stylesheet" -->
+<!-- 	href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/themes/material_green.css"> -->
+<!-- <link -->
+<!-- 	href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" -->
+<!-- 	rel="stylesheet"> -->
+
+<!-- <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" type="text/javascript" ></script> -->
+<!-- <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" type="text/javascript" ></script> -->
+<!-- <script -->
+<!-- 	src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.js"></script> -->
+<!-- <script -->
+<!-- 	src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script> -->
 
 <style type="text/css">
 	body{
@@ -54,7 +82,7 @@
 		margin: 10px;
 	}
 	#navBar{
-		margin-top: 20px;
+		margin-top: 93px;
 	}
 	#navBar li a:hover{
 		color: red;
@@ -64,13 +92,17 @@
 		position: absolute;
 		left: 50%;
 		top: 50%;
-		transform: translate(-50%, -50%);
+		transform: translate(-50%, -50%);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
 	}
  	div.container {
         width: 80%;
     }
     .filterPad{
 		padding-top:15px;
+	}
+	#high, #mid, #low, #highView, #midView, #lowView{
+		width: 52px;
+		margin-left : 5px;
 	}
 </style>	
 </head>
@@ -87,10 +119,10 @@
 		</div>
 	</li>
 	<li class="nav-item">
-		<a class="nav-link text-dark" href="#">파일</a>
+		<a class="nav-link text-dark" href="${pageContext.request.contextPath}/list.file">파일</a>
 	</li>
 	<li class="nav-item">
-		<a class="nav-link text-dark" href="#">멤버</a>
+		<a class="nav-link text-dark" href="${pageContext.request.contextPath}/list.pm">멤버</a>
 	</li>
 </ul>
 <!-- 게시판 네비 끝 -->
@@ -290,8 +322,8 @@
 			"scrollX": false, //x축 스크롤 생성 x
 			"scrollCollapse": true,
 			"order": [[ 1, 'asc' ]], // 인덱스 부여
-			"autowidth": true,
-			dom : '<"toolbar"><"filterPad"f>lpit<"floatRight"B><"clear">'
+// 			"autowidth": true,
+// 			dom : '<"toolbar"><"filterPad"f>lpit<"floatRight"B><"clear">'
 		});
 	  	t.on( 'order.dt search.dt', function () { // 일정 인덱스 부여
 	        t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {

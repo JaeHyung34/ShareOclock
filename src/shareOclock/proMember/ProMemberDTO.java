@@ -8,9 +8,11 @@ public class ProMemberDTO {
 	private String pm_name;
 	private String pm_email;
 	private int pro_seq;
+	
 	public ProMemberDTO() {
 		super();
 	}
+	
 	public ProMemberDTO(int pm_seq, String pm_check, String pm_img, String pm_nickname, String pm_name, String pm_email,
 			int pro_seq) {
 		super();
@@ -22,6 +24,7 @@ public class ProMemberDTO {
 		this.pm_email = pm_email;
 		this.pro_seq = pro_seq;
 	}
+	
 	public int getPm_seq() {
 		return pm_seq;
 	}
@@ -64,7 +67,4 @@ public class ProMemberDTO {
 	public void setPro_seq(int pro_seq) {
 		this.pro_seq = pro_seq;
 	}
-	
-	
-	
 }
