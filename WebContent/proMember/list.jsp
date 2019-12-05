@@ -35,7 +35,7 @@
       <a class="nav-link text-dark" href="${pageContext.request.contextPath}/list.file">파일</a>
    </li>
    <li class="nav-item">
-      <a class="nav-link text-dark" href="${pageContext.request.contextPath}/list.pm">멤버</a>
+      <a class="nav-link text-dark" href="#">멤버</a>
    </li>
 </ul>
 <!-- 게시판 네비 끝 -->

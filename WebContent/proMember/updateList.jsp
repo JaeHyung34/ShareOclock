@@ -34,6 +34,12 @@
    }	
 </style>
 </head>
+<style>
+	body{
+		height: 100%;
+		overflow: hidden;
+	}
+</style>
 <body>
 <!-- 게시판 네비 시작 -->
 <ul class="nav nav-tabs" id="navBar">

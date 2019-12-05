@@ -28,10 +28,20 @@
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" type="text/javascript" ></script>
 <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" type="text/javascript" ></script>
 <style>
+<<<<<<< HEAD
 
    #navBar{
       margin-top: 86px;
    }	
+=======
+#navBar{
+   margin-top: 20px;
+}
+body{
+		height: 100%;
+		overflow: hidden;
+	}
+>>>>>>> 41126fc93e71a6c7297384ce025dd4e52498e70c
 </style>
 
 </head>
