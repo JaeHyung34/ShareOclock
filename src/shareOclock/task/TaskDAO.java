@@ -26,16 +26,16 @@ public class TaskDAO {
 	}
 
 	public int insertTask(TaskDTO dto) throws Exception{
-		String sql = "insert into tb_project_task values(pt_seq.nextval,?,?,?,?,?,TO_DATE(?, 'YYYY-MM-DD'),TO_DATE(?, 'YYYY-MM-DD'))";
+		String sql = "insert into tb_project_task values(pt_seq.nextval,?,?,?,?,TO_DATE(?, 'YYYY-MM-DD'),TO_DATE(?, 'YYYY-MM-DD'),?)";
 		try(Connection con = Configuration.dbs.getConnection();
 			PreparedStatement pstat = con.prepareStatement(sql);){
-			pstat.setInt(1, dto.getPro_seq());
-			pstat.setString(2, dto.getPt_writer());
-			pstat.setString(3, dto.getPt_priority());
-			pstat.setString(4, dto.getPt_title());
-			pstat.setString(5, dto.getPt_contents());
-			pstat.setString(6, dto.getPt_startDate());
-			pstat.setString(7, dto.getPt_endDate());
+			pstat.setString(1, dto.getPt_writer());
+			pstat.setString(2, dto.getPt_priority());
+			pstat.setString(3, dto.getPt_title());
+			pstat.setString(4, dto.getPt_contents());
+			pstat.setString(5, dto.getPt_startDate());
+			pstat.setString(6, dto.getPt_endDate());
+			pstat.setInt(7, dto.getPro_seq());
 			int result = pstat.executeUpdate();
 			con.commit();
 			return result;

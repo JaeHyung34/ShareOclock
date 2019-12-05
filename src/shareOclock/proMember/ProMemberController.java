@@ -31,9 +31,9 @@ public class ProMemberController extends HttpServlet {
 		try {
 			if(cmd.contentEquals("/list.pm")) {
 				System.out.println("list안에 들어왔나요?");
-				//int pro_seq = (int)request.getSession().getAttribute("projectInfo");
-				//String pm_nickname = (String)request.getSession().getAttribute("loginInfo");
-				String pm_nickname = "펭펭";
+				int pro_seq = (int)request.getSession().getAttribute("projectInfo");
+				String pm_nickname = (String)request.getSession().getAttribute("loginInfo");
+//				String pm_nickname = "펭펭";
 				System.out.println(pm_nickname);
 				ProMemberDAO daoNick = ProMemberDAO.getInstance();			
 				List<ProMemberDTO> pmListNick = daoNick.selectByNickname(pm_nickname);
@@ -73,7 +73,7 @@ public class ProMemberController extends HttpServlet {
 			}else if(cmd.contentEquals("/insert.pm")) {
 				System.out.println("insert안에 들어왔나요?");
 				//String header = (String)request.getSession().getAttribute("loginInfo"); //header의 닉네임
-				//int pro_seq = (int)request.getSession().getAttribute("projectInfo");
+				int pro_seq = (int)request.getSession().getAttribute("projectInfo");
 				String nicknames = request.getParameter("checkArray");
 				//리스트들의 f_seq들을 찾아 삭제 리스트들의 숫자를 꺼내서 하나하나 삭제해야한다. 
 				System.out.println("dsfajklf;");
@@ -92,7 +92,7 @@ public class ProMemberController extends HttpServlet {
 					String pm_nickname = nicknameA[i];
 					System.out.println(pm_nickname);
 					ProMemberDAO dao = ProMemberDAO.getInstance();
-					ArrayList<String> result = dao.getThree(pm_nickname);
+					ArrayList<String> result = dao.getProfile(pm_nickname);
 					String pm_img = result.get(0);
 					System.out.println("pm_img:"+pm_img);
 					String pm_name = result.get(2);
@@ -117,6 +117,7 @@ public class ProMemberController extends HttpServlet {
 			}else if(cmd.contentEquals("/delete.pm")) {
 				System.out.println("delete.pm in");
 				String pm_nickname = request.getParameter("pm_nickname");
+				int pro_seq = (int)request.getSession().getAttribute("projectInfo");
 				System.out.println(pm_nickname);
 				ProMemberDAO dao = ProMemberDAO.getInstance();
 				int result = dao.delete(pm_nickname);
@@ -148,7 +149,7 @@ public class ProMemberController extends HttpServlet {
 					String pm_nickname = nicknameA[i];
 					System.out.println(pm_nickname);
 					ProMemberDAO dao = ProMemberDAO.getInstance();
-					ArrayList<String> result = dao.getThree(pm_nickname);
+					ArrayList<String> result = dao.getProfile(pm_nickname);
 					String pm_img = result.get(0);
 					System.out.println("pm_img:"+pm_img);
 					String pm_name = result.get(2);
@@ -170,22 +171,6 @@ public class ProMemberController extends HttpServlet {
 					}
 				}
 				response.getWriter().append(jo.toString());
-			}else if(cmd.contentEquals("/search.pm")) {
-				String searchText = request.getParameter("searchText");
-				System.out.println("검색어:"+searchText);
-				String reg = "%" + searchText +"%";
-				System.out.println(reg);
-				ProMemberDAO dao = ProMemberDAO.getInstance();	
-				List<String> searchList = dao.searchNickname(reg);
-				//request.setAttribute("searchList", searchList);
-				//JsonObject jso = new JsonObject();
-				//jso.addProperty
-				//System.out.println(jso);
-				
-				Gson g = new Gson();
-				response.getWriter().append(g.toJson(searchList).toString());
-				
-				System.out.println("확인?");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

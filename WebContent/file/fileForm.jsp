@@ -5,7 +5,14 @@
     <head>
     <title>File-DragDrop</title>
     <script src="http://code.jquery.com/jquery-latest.js"></script>
+    
+    <link href="dist/bootstrap.fd.css" rel="stylesheet">
+<script src="dist/bootstrap.fd.js"></script>
     <style>
+	    body{
+			height: 100%;
+			overflow: hidden;
+		}
         .upload-btn-wrapper {
             position: relative;
             overflow: hidden;

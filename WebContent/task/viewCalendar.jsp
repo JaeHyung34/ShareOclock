@@ -51,7 +51,7 @@ html, body {
 }
 
 #navBar{
-		margin-top: 20px;
+		margin-top: 91px;
 }
 .fc-title{
     font-weight: bold;
@@ -60,6 +60,10 @@ html, body {
 .fc-event-time, .fc-event-title {
 	padding: 0 1px;
 	white-space: nowrap;
+}
+#high, #mid, #low, #highView, #midView, #lowView{
+		width: 52px;
+		margin-left : 5px;
 }
 </style>
 <body id="page-top">
@@ -70,16 +74,17 @@ html, body {
 		<a class="nav-link dropdown-toggle text-dark" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">일정</a>
 		<div class="dropdown-menu">
 			<a class="dropdown-item" href="${pageContext.request.contextPath}/viewTask.pt" aria-selected="true">일정 게시판</a>
-			<a class="dropdown-item" href="${pageContext.request.contextPath}/viewCalendar.pt">일정 캘린더</a>
+			<a class="dropdown-item" href="${pageContext.request.contextPath}/task/viewCalendar.jsp">일정 캘린더</a>
 		</div>
 	</li>
 	<li class="nav-item">
-		<a class="nav-link text-dark" href="#">파일</a>
+		<a class="nav-link text-dark" href="${pageContext.request.contextPath}/list.file">파일</a>
 	</li>
 	<li class="nav-item">
-		<a class="nav-link text-dark" href="#">멤버</a>
+		<a class="nav-link text-dark" href="${pageContext.request.contextPath}/list.pm">멤버</a>
 	</li>
 </ul>
+<!-- 게시판 네비 끝 -->
 <!-- 게시판 네비 끝 -->
 <!-- 캘린더 div -->
 	<div id='calendar'></div>

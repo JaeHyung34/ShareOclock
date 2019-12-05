@@ -42,6 +42,7 @@ public class FileController extends HttpServlet {
 		try {
 			if(cmd.contentEquals("/upload.file")) {
 				System.out.println("upload.file에 도착했나요?");
+//				int pro_seq = (int)request.getSession().getAttribute("projectInfo");
 				String uploadPath = request.getServletContext().getRealPath("/files"); //파일경로를 알아야한다. 뒤에 붙이는기능을하기 때문에 /files를 붙인다. //getServletContext() : ServletContainer의 맥락 환경정보 관리 인스턴스
 				//client가 경로를 보내고 서버가 가져와 db에 경로를 저장하기 위해 uploadPath 구함
 				File uploadFilePath = new File(uploadPath);
@@ -76,7 +77,9 @@ public class FileController extends HttpServlet {
 							System.out.println("일반 폼 필드 :" + name+ "-" + value);
 						}else{
 							String fieldName = item.getFieldName();
+							System.out.println(fieldName);
 							String fileName = item.getName(); //파일이름
+							System.out.println(fileName);
 							boolean isInMemory = item.isInMemory();
 							long sizeInBytes = item.getSize(); //파일 사이즈
 							System.out.println("파일 이름 :" + fileName);

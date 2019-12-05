@@ -13,7 +13,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-import shareOclock.member.Pro_memberDAO;
+import shareOclock.proMember.ProMemberDAO;
 
 @WebServlet("*.pt")
 public class TaskController extends HttpServlet {
@@ -48,7 +48,7 @@ public class TaskController extends HttpServlet {
 			System.out.println("pro_seq : " + pro_seq);
 			System.out.println("user : " + user);
 			try {
-				if(Pro_memberDAO.getInstance().isValidMember(pro_seq, user)) { // 해당 프로젝트 멤버일 시에만 접근 가능
+				if(ProMemberDAO.getInstance().isValidMember(pro_seq, user)) { // 해당 프로젝트 멤버일 시에만 접근 가능
 					String title = xssProtectSummer(request.getParameter("title")); // 일정 타이틀 가져오기
 					System.out.println(title);
 					String contents = xssProtectSummer(request.getParameter("summernote")); // 일정 내용 가져오기
@@ -79,7 +79,7 @@ public class TaskController extends HttpServlet {
 			System.out.println("pro_seq : " + pro_seq);
 			System.out.println("user : " + user);
 			try {
-				if(Pro_memberDAO.getInstance().isValidMember(pro_seq, user)) {
+				if(ProMemberDAO.getInstance().isValidMember(pro_seq, user)) {
 					try {
 						List<TaskDTO> dto = TaskDAO.getInstance().selectAll(pro_seq); // 프로젝트 seq에 따른 일정 모두 가져오기 
 						System.out.println("전송성공");
@@ -100,7 +100,7 @@ public class TaskController extends HttpServlet {
 			System.out.println("pro_seq : " + pro_seq);
 			System.out.println("user : " + user);
 			try {
-				if(Pro_memberDAO.getInstance().isValidMember(pro_seq, user)) {
+				if(ProMemberDAO.getInstance().isValidMember(pro_seq, user)) {
 					Gson g = new Gson();
 					try {
 						List<TaskDTO> dto = TaskDAO.getInstance().selectAll(pro_seq); // 프로젝트 seq에 따른 일정 모두 가져오기 
@@ -123,7 +123,7 @@ public class TaskController extends HttpServlet {
 			System.out.println("user : " + user);
 			System.out.println("pt_seq : " + pt_seq);
 			try {
-				if(Pro_memberDAO.getInstance().isValidMember(pro_seq, user)) {
+				if(ProMemberDAO.getInstance().isValidMember(pro_seq, user)) {
 					try {
 						String taskContent = TaskDAO.getInstance().selectContents(pt_seq); // 일정 seq에 따른 일정 내용 가져오기
 						response.getWriter().append("{\"txt\" : \"" + taskContent + "\"}");
@@ -147,7 +147,7 @@ public class TaskController extends HttpServlet {
 			System.out.println("pt_seq : " + pt_seq);
 			Gson g = new Gson();
 			try {
-				if(Pro_memberDAO.getInstance().isValidMember(pro_seq, user)) {
+				if(ProMemberDAO.getInstance().isValidMember(pro_seq, user)) {
 										
 					TaskDTO dto = TaskDAO.getInstance().selectBySeq(pt_seq); // 일정 seq에 따른 일정 정보 가져오기
 					JsonObject taskDTO = g.fromJson(g.toJson(dto),JsonObject.class); // json형 변환
@@ -169,7 +169,7 @@ public class TaskController extends HttpServlet {
 			System.out.println("user : " + user);
 			
 			try {
-				if(Pro_memberDAO.getInstance().isValidMember(pro_seq, user)) {
+				if(ProMemberDAO.getInstance().isValidMember(pro_seq, user)) {
 					System.out.println("여기가 문제...??");
 					int pt_seq = Integer.parseInt(request.getParameter("hiddenSeq"));
 					System.out.println("pt_seq : " + pt_seq);
@@ -210,7 +210,7 @@ public class TaskController extends HttpServlet {
 			System.out.println("user : " + user);
 			
 			try {
-				if(Pro_memberDAO.getInstance().isValidMember(pro_seq, user)) {
+				if(ProMemberDAO.getInstance().isValidMember(pro_seq, user)) {
 					int pt_seq = Integer.parseInt(request.getParameter("pt_seq")); // 삭제할 일정 seq 받기
 					JsonObject obj = new JsonObject();
 					try {
@@ -237,7 +237,7 @@ public class TaskController extends HttpServlet {
 			System.out.println("user : " + user);
 			
 			try {
-				if(Pro_memberDAO.getInstance().isValidMember(pro_seq, user)) {
+				if(ProMemberDAO.getInstance().isValidMember(pro_seq, user)) {
 					int pt_seq = Integer.parseInt(request.getParameter("hiddenSeq")); // 수정할 일정 seq 받기
 					System.out.println("pt_seq : " + pt_seq);
 					String title = xssProtectSummer(request.getParameter("titleView")); // 일정 타이틀 가져오기
@@ -272,12 +272,11 @@ public class TaskController extends HttpServlet {
 		}else if(cmd.contentEquals("/deleteC_Task.pt")) { // 일정 캘린더에서 일정 삭제
 			String user = (String) request.getSession().getAttribute("loginInfo");
 			int pro_seq = (int) request.getSession().getAttribute("projectInfo");
-			
 			System.out.println("pro_seq : " + pro_seq);
 			System.out.println("user : " + user);
 			
 			try {
-				if(Pro_memberDAO.getInstance().isValidMember(pro_seq, user)) {
+				if(ProMemberDAO.getInstance().isValidMember(pro_seq, user)) {
 					int pt_seq = Integer.parseInt(request.getParameter("pt_seq")); // 삭제할 일정 seq 받기
 					JsonObject obj = new JsonObject();
 					try {
@@ -298,9 +297,7 @@ public class TaskController extends HttpServlet {
 			}
 		}
 	}
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
-
 }

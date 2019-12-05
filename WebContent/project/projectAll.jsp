@@ -31,22 +31,24 @@
         font-family: 'Nanum Gothic', sans-serif;
         color: black;
     }
-#footer{
-	height:200px;
-}
-.btns{
-	margin: 10px;
-	text-align: right;
-}
-textarea{
-	resize: none;
-}
+	#footer{
+		height:200px;
+	}
+	.btns{
+		margin: 10px;
+		text-align: right;
+	}
+	textarea{
+		resize: none;
+	}
+	a{
+		text-decoration: none;
+	}
 </style>
 <body id="page-top">
 
 		<!-- Main Content -->
 		<div id="content">
-
 
 			<!-- Topbar // 모바일환경일 때에만 노출되는 상위네비바 -->
 			<nav
@@ -86,7 +88,6 @@ textarea{
 							class="fas fa-bell fa-fw"></i> <!-- Counter - Alerts --> <span
 							id="msgAlert" class="badge badge-danger badge-counter">N</span>
 					</a></li>
-
 					<div class="topbar-divider d-none d-sm-block"></div>
 
 					<!-- Nav Item - User Information -->
@@ -258,7 +259,7 @@ textarea{
 <!-- 스크립트 코드 시작-->
 <script>     
      	//프로젝트 생성 모달 띄우기
-     	$("#addModal").on("click", function(){
+     	$("#createProject").on("click", function(){
      		$("#title").val("");
         	$("#contents").val("");
         	$("#startDate").val("");
@@ -309,7 +310,7 @@ textarea{
 			$(".checkboxDiv").attr("hidden", false);
         	
         	$("#edit").on("click", function(){
-        		location.href = "${pageContext.request.contextPath}/view.pro";
+        		$(location).attr('href', "${pageContext.request.contextPath}/view.pro");
         	});
         	
         	$("#delete").on("click", function(){ // 삭제 클릭 시 이벤트 
@@ -365,11 +366,6 @@ textarea{
             		console.log(resp.pro_startDate);
             		console.log(resp.pro_endDate);
             		
-            		$("#titleMod").val(resp.pro_title);
-            		$("#contentsMod").val(resp.pro_contents);
-            		$("#startDateMod").val(resp.pro_startDate);
-            		$("#endDateMod").val(resp.pro_endDate);
-            		
             		$("#startDateMod").flatpickr({
                         enableTime: false,
                         dateFormat: "Y-m-d"
@@ -378,6 +374,11 @@ textarea{
                         enableTime: false,
                         dateFormat: "Y-m-d"
                     });//datapicker 인스턴스 생성
+            		
+            		$("#titleMod").val(resp.pro_title);
+            		$("#contentsMod").val(resp.pro_contents);
+            		$("#startDateMod").val(resp.pro_startDate);
+            		$("#endDateMod").val(resp.pro_endDate);
                  // 체크한 프로젝트 내용 받아오기 끝
                     
                     $("#modifyMod").on("click", function(){ //프로젝트 수정 완료 클릭 시 이벤트 
@@ -426,7 +427,7 @@ textarea{
             				}).done(function(resp){ // 프로젝트 수정 권한에 따른 결과값
             					if(resp.result == 'completed'){
             	        			alert("프로젝트 수정이 완료되었습니다.");
-            	        			location.href = "${pageContext.request.contextPath}/view.pro";
+            	        			$(location).attr('href', "${pageContext.request.contextPath}/view.pro");
             	        		}else if(resp.result == 'inaccessible'){
             	        			alert("수정권한이 없는 프로젝트입니다.");
             	        		}else if(resp.result =='fail'){
