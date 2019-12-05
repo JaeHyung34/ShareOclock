@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<jsp:include page="cdn/cdn.jsp" flush="false"/>
+<jsp:include page="cdn/cdn.jsp" flush="false" />
 
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <!-- crisp 메신저 -->
-	<script type="text/javascript">
+<!-- crisp 메신저 -->
+<script type="text/javascript">
 		window.$crisp = [];
 		window.CRISP_WEBSITE_ID = "91fe4c64-51fc-42bb-a431-0c5f4dd24861";
 		(function() {
@@ -18,276 +18,442 @@
 			d.getElementsByTagName("head")[0].appendChild(s);
 		})();
 	</script>
-	
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Start Index</title>
-	<link rel="stylesheet" href="cdn/css/start_main.css" type="text/css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <!-- wow CDN -->
-	<script src="cdn/WOW-master/WOW-master/dist/wow.min.js"></script>
-    <script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Start Index</title>
+<link rel="stylesheet" href="cdn/css/start_main.css" type="text/css">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+	integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+	crossorigin="anonymous"></script>
+<!-- wow CDN -->
+<script src="cdn/WOW-master/WOW-master/dist/wow.min.js"></script>
+<script>
         new WOW().init();
     </script>
-        <!-- CSS animate CDN -->
-	<link rel="stylesheet" type="text/css" href="cdn/css/animate.css">
-	<link rel="stylesheet" type="text/css" href="cdn/css/index.css">
-	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<!-- CSS animate CDN -->
+<link rel="stylesheet" type="text/css" href="cdn/css/animate.css">
+<link rel="stylesheet" type="text/css" href="cdn/css/index.css">
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 
-	<style>
-		.todaycounter, .totalcounter, .projectcounter, .sharecounter {
-			font-size: 50px;
-			font-weight: 500;
-			width: 200px;
-			height: 200px;
-			vertical-align: middle;
-			line-height: 100px;
-			text-align: center;
-			padding-top: 45px;
-		}
-		
-		.card-title {
-			text-align: center;
-		}
-	</style>
+<style>
+.todaycounter, .totalcounter, .projectcounter, .sharecounter {
+	font-size: 50px;
+	font-weight: 500;
+	width: 200px;
+	height: 200px;
+	vertical-align: middle;
+	line-height: 100px;
+	text-align: center;
+	padding-top: 45px;
+}
+
+.card-title {
+	text-align: center;
+}
+</style>
 
 </head>
 <body>
-    <div class="container-fluid ml-0 mr-0 px-0">
-        <div class="top wow fadeIn fixed-top" data-wow-duration="2s">
-            <button data-toggle="modal" data-target="#joinMenu" type="button" id="joinModalBtn" class="btn btn-lg float-right mt-5 mr-5">회원가입</button>
-            <button data-toggle="modal" data-target="#loginMenu" type="button" id="loginModalBtn" class="btn btn-lg float-right mt-5 mr-5">로그인</button>
-        </div>
-        <div class="box1 wow fadeInUp" data-wow-duration="1s"></div>
-        <div class="box2 wow fadeInUp" data-wow-duration="1s"></div>
-        <div class="card mb-12 w-100 text-light bg-dark h-200">
-		  <div class="row no-gutters d-flex justify-content-around">
-		    <div class="col-md-2">
-			  <div class="card-body bg-dark text-light">
-			    <h5 class="card-title">오늘의 방문자</h5>
-				<h1 class="card-text d-flex justify-content-center">
-				  <div class="todaycounter" data-count='${sessionScope.todayCount}'>0</div>
-				</h1>
-				<p class="card-text"></p>
-			  </div>
+	<div class="container-fluid ml-0 mr-0 px-0">
+		<div class="top wow fadeIn fixed-top" data-wow-duration="2s">
+			<button data-toggle="modal" data-target="#joinMenu" type="button"
+				id="joinModalBtn" class="btn btn-lg float-right mt-5 mr-5">회원가입</button>
+			<button data-toggle="modal" data-target="#loginMenu" type="button"
+				id="loginModalBtn" class="btn btn-lg float-right mt-5 mr-5">로그인</button>
+		</div>
+		<div class="box1 wow fadeInUp" data-wow-duration="1s"></div>
+		<div class="box2 wow fadeInUp" data-wow-duration="1s">
+			<div class="card mb-12 w-100 text-light bg-dark h-200">
+				<div class="row no-gutters d-flex justify-content-around">
+					<div class="col-md-2">
+						<div class="card-body bg-dark text-light">
+							<h5 class="card-title">오늘의 방문자</h5>
+							<h1 class="card-text d-flex justify-content-center">
+								<div class="todaycounter"
+									data-count='${sessionScope.todayCount}'>0</div>
+							</h1>
+							<p class="card-text"></p>
+						</div>
+					</div>
+					<div class="col-md-2">
+						<div class="card-body">
+							<h5 class="card-title">전체 방문자</h5>
+							<h1 class="card-text d-flex justify-content-center">
+								<div class="totalcounter"
+									data-count="${sessionScope.totalCount}">0</div>
+							</h1>
+							<p class="card-text">
+								<small class="text-muted"></small>
+							</p>
+						</div>
+					</div>
+					<div class="col-md-2">
+						<div class="card-body">
+							<h5 class="card-title">개설된 프로젝트</h5>
+							<h1 class="card-text d-flex justify-content-center">
+								<div class="projectcounter"
+									data-count="${sessionScope.pro_totalCount}">0</div>
+							</h1>
+							<p class="card-text">
+								<small class="text-muted"></small>
+							</p>
+						</div>
+					</div>
+				</div>
 			</div>
-			<div class="col-md-2">
-			  <div class="card-body">
-			    <h5 class="card-title">전체 방문자</h5>
-				<h1 class="card-text d-flex justify-content-center">
-				  <div class="totalcounter" data-count="${sessionScope.totalCount}">0</div>
-				</h1>
-				<p class="card-text">
-				  <small class="text-muted"></small>
-				</p>
-		      </div>
-			</div>
-	        <div class="col-md-2">
-			  <div class="card-body">
-			    <h5 class="card-title">개설된 프로젝트</h5>
-				<h1 class="card-text d-flex justify-content-center">
-				  <div class="projectcounter" data-count="${sessionScope.pro_totalCount}">0</div>
-				</h1>
-				<p class="card-text">
-				  <small class="text-muted"></small>
-				</p>
-		      </div>
-			</div>
-		  </div>
-	    </div>
-        <div class="box3 wow fadeInUp" data-wow-duration="1s"></div>
-    </div>
-
-    <!-- 로그인 메뉴 -->
-	<div class="modal fade" id="loginMenu" tabindex="-1">
-	  <div class="modal-dialog modal-dialog-centered">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <h5 class="modal-title" id="loginModalCenterTitle">Share O' Clock에 오신 것을 환영합니다!</h5>
-	        <button type="button" class="close" data-dismiss="modal">
-	        <span aria-hidden="true">&times;</span>
-	        </button>
-	      </div>
-	      <div class="modal-body">
-	         <form class="user" action="${pageContext.request.contextPath}/member.login" method="post">
-	           <div class="form-group">
-	             <input type="email"  required="required" name=mb_email class="form-control form-control-user" id="loginInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
-	           </div>
-	           <div class="form-group">
-	             <input type="password" autocomplete="off" required="required" name=mb_pw class="form-control form-control-user" id="loginInputPassword" placeholder="Password">
-	           </div>
-	           <div class="form-group">
-	             <div class="custom-control custom-checkbox small">
-	               <input type="checkbox" class="custom-control-input" id="customCheck">
-	               <label class="custom-control-label" for="customCheck">아이디 기억하기</label>
-	             </div>
-	           </div>
-	           <button class="btn btn-primary btn-user btn-block" id="loginBtn">로그인</button>
-	           <a href="naver.login" class="btn btn-naver btn-user btn-block">
-	           <img src="resources/img/naver_icon.PNG" style="width:25px;height:25px"> 네이버 로그인
-	           </a> 
-	           <a href="javascript:loginWithKakao()" id="custom-login-btn" class="btn btn-kakao btn-user btn-block">
-	           <img src="resources/img/kakao_icon.png" style="width:25px;height:25px"> 카카오 로그인
-	           </a> 
-	           <hr>
-	           <div class="text-center">
-	              <a class="middle" href="#" onclick="forgetMove()">암호를 잊으셨나요?</a>
-	           </div>
-	           <div class="text-center">
-	              <a class="middle" href="#" onclick="signMove()" >계정 생성하기</a>
-	           </div>
-	         </form>
-	      </div>
-	      <div class="modal-footer ">
-	        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-	      </div>
-	    </div>
-	  </div>
+			<div class="box3 wow fadeInUp" data-wow-duration="1s"></div>
+		</div>
 	</div>
-<!-- 회원가입 메뉴 -->
+
+
+	<!-- 로그인 메뉴 -->
+	<div class="modal fade" id="loginMenu" tabindex="-1">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="loginModalCenterTitle">Share O'
+						Clock에 오신 것을 환영합니다!</h5>
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form class="user"
+						action="${pageContext.request.contextPath}/member.login"
+						method="post">
+						<div class="form-group">
+							<input type="email" required="required" name=mb_email
+								class="form-control form-control-user" id="loginInputEmail"
+								aria-describedby="emailHelp"
+								placeholder="Enter Email Address...">
+						</div>
+						<div class="form-group">
+							<input type="password" autocomplete="off" required="required"
+								name=mb_pw class="form-control form-control-user"
+								id="loginInputPassword" placeholder="Password">
+						</div>
+						<div class="form-group">
+							<div class="custom-control custom-checkbox small">
+								<input type="checkbox" class="custom-control-input"
+									id="customCheck"> <label class="custom-control-label"
+									for="customCheck">아이디 기억하기</label>
+							</div>
+						</div>
+						<button class="btn btn-primary btn-user btn-block" id="loginBtn">로그인</button>
+						<a href="naver.login" class="btn btn-naver btn-user btn-block">
+							<img src="resources/img/naver_icon.PNG"
+							style="width: 25px; height: 25px"> 네이버 로그인
+						</a> <a href="javascript:loginWithKakao()" id="custom-login-btn"
+							class="btn btn-kakao btn-user btn-block"> <img
+							src="resources/img/kakao_icon.png"
+							style="width: 25px; height: 25px"> 카카오 로그인
+						</a>
+						<hr>
+						<div class="text-center">
+							<a class="middle" href="#" onclick="forgetMove()">암호를 잊으셨나요?</a>
+						</div>
+						<div class="text-center">
+							<a class="middle" href="#" onclick="signMove()">계정 생성하기</a>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer ">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">취소</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 회원가입 메뉴 -->
 
 	<div class="modal fade" id="joinMenu" tabindex="-1">
-      <div class="modal-dialog modal-dialog">
-        <div class="modal-content">
-      <!-- join modal header -->
-          <div class="modal-header">
-            <div class="px-3">
-        	  <h5 class="modal-title">회원가입</h5>
-     		</div>
-        	<button type="button" class="close bg-white border-0" data-dismiss="modal">
-          	<span>&times;</span>
-        	</button>
-      	  </div>
-      <!-- join modal body -->
-	      <form class="user" onsubmit="return validate()" action="signMember.member" method="post">
-	        <div class="modal-body py-0">
-	          <div class="form-row">
-				<div class="col-9 mt-2" id=signDivEmail>
-	              <label for="signInputEmail">이메일</label>
-	              <input type="text" id="signInputEmail" name=mb_email  class="form-control" placeholder="이메일형식을 입력하세요" oninput = signEmailCheck()>
-	          	  <div class="valid-feedback ml-3">OK</div>
-	          	  <div class="invalid-feedback ml-3">Not Ok</div>
-	            </div>
-	            <div class="col-3 mt-2" id=signDivCertifiedSend>
-	              <label for="btn_emailCertifiedSend">메일전송</label>
-				  <input type=button  class="btn btn-primary" id=btn_emailCertifiedSend value=전송>
-	            </div>
-				<div class="form-row col-12 mb-0" id=signDivCertified>
-		          <div class="col-6 mb-4 mt-2">
-		            <input type="text" id="certifiedNumber" class="form-control" placeholder="인증번호를 입력하세요">
-		          </div>
-		          <div class="col-6 mb-4 mt-2">
-				    <input type=button class="btn btn-primary" id=btn_certifiedCheckSend value=인증>
-		          </div>
-		        </div>
-		        <div class="form-row col-12 mb-0" id=signDivPassword>
-		          <div class="col-6 mb-4 mt-2">
-		            <label for="">비밀번호</label>
-		         	<input type="password"  autocomplete="off"  name=mb_pw id="signInputPassword" class="form-control" placeholder="비밀번호를 입력하세요" oninput = signPasswordCheck()>
-		            <div class="ml-3 valid-feedback">Yes</div>
-		            <div class="invalid-feedback ml-3">Not Ok</div>
-		          </div>
-		          <div class="col-6 mb-4 mt-2">
-		            <label for="signRepeatPassword">비밀번호 확인</label>
-		            <input type="password" id="signRepeatPassword"  autocomplete="off"  class="form-control" placeholder="비밀번호 확인" oninput = signRepeatPasswordCheck()>
-		            <div class="valid-feedback ml-3">Ok</div>
-		            <div class="invalid-feedback ml-3">Not Ok</div>
-		          </div>
-		        </div>
-	          </div>
-	        </div>
-		    <hr>
-		    <div class="form-group">
-		      <div class="form-row col-12">
-		        <div class="col-6">
-		          <label for="">아이디</label>
-		          <input type="text" id=signInputID name ="mb_nickname" class="form-control" placeholder="고유한 아이디를 입력하세요" oninput = signNickNameCheck()>
-		          <div class="valid-feedback ml-3">Ok</div>
-		          <div class="invalid-feedback ml-3">Not Ok</div>
-		        </div>
-		        <div class="col-6">
-		          <label for="">이름</label>
-		          <input type="text" id="signInputName" name="mb_name" class="form-control" placeholder="이름을 입력하세요" oninput = signNameCheck()>
-		          <div class="valid-feedback ml-3">Ok</div>
-		          <div class="invalid-feedback ml-3">Not Ok</div>
-		        </div>
-		      </div>
-		      <div class="form-row col-12 mt-2">
-		        <label for="">전화번호</label>
-		        <input type="text" id="signInputPhone" name = mb_phone class="form-control" placeholder="전화번호를 입력하세요" oninput = signPhoneCheck()>
-		        <div class="valid-feedback ml-3">Ok</div>
-		        <div class="invalid-feedback ml-3">Not Ok</div>
-		      </div>
-		      <div class="form-row col-12 mt-2">
-		        <label for="">그룹</label>
-		        <input type="text" id="signInputGroup" name = mb_group class="form-control" placeholder="소속을 입력해주세요(없으면 비워주세요)"  oninput = signGroupCheck()>
-		        <div class="valid-feedback ml-3">Ok</div>
-		        <div class="invalid-feedback ml-3">Not Ok</div>
-		      </div>
-		    </div>
-		    <div class="modal-footer">
-		        <!-- join modal footer -->
-		      <button class="btn btn-primary" id=btn_signInfoSend>제출</button>
-		      <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-	        </div>
-		  </form>
-	    </div>
-	  </div>
+		<div class="modal-dialog modal-dialog">
+			<div class="modal-content">
+				<!-- join modal header -->
+				<div class="modal-header">
+					<div class="px-3">
+						<h5 class="modal-title">회원가입</h5>
+					</div>
+					<button type="button" class="close bg-white border-0"
+						data-dismiss="modal">
+						<span>&times;</span>
+					</button>
+				</div>
+				<!-- join modal body -->
+				<form class="user" onsubmit="return validate()"
+					action="signMember.member" method="post">
+					<div class="modal-body py-0">
+						<div class="form-row">
+							<div class="col-9 mt-2" id=signDivEmail>
+								<label for="signInputEmail">이메일</label> <input type="text"
+									id="signInputEmail" name=mb_email class="form-control"
+									placeholder="이메일형식을 입력하세요" oninput=signEmailCheck()>
+								<div class="valid-feedback ml-3">OK</div>
+								<div class="invalid-feedback ml-3">Not Ok</div>
+							</div>
+							<div class="col-3 mt-2" id=signDivCertifiedSend>
+								<label for="btn_emailCertifiedSend">메일전송</label> <input
+									type=button class="btn btn-primary" id=btn_emailCertifiedSend
+									value=전송>
+							</div>
+							<div class="form-row col-12 mb-0" id=signDivCertified>
+								<div class="col-6 mb-4 mt-2">
+									<input type="text" id="certifiedNumber" class="form-control"
+										placeholder="인증번호를 입력하세요">
+								</div>
+								<div class="col-6 mb-4 mt-2">
+									<input type=button class="btn btn-primary"
+										id=btn_certifiedCheckSend value=인증>
+								</div>
+							</div>
+							<div class="form-row col-12 mb-0" id=signDivPassword>
+								<div class="col-6 mb-4 mt-2">
+									<label for="">비밀번호</label> <input type="password"
+										autocomplete="off" name=mb_pw id="signInputPassword"
+										class="form-control" placeholder="비밀번호를 입력하세요"
+										oninput=signPasswordCheck()>
+									<div class="ml-3 valid-feedback">Yes</div>
+									<div class="invalid-feedback ml-3">Not Ok</div>
+								</div>
+								<div class="col-6 mb-4 mt-2">
+									<label for="signRepeatPassword">비밀번호 확인</label> <input
+										type="password" id="signRepeatPassword" autocomplete="off"
+										class="form-control" placeholder="비밀번호 확인"
+										oninput=signRepeatPasswordCheck()>
+									<div class="valid-feedback ml-3">Ok</div>
+									<div class="invalid-feedback ml-3">Not Ok</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<hr>
+					<div class="form-group">
+						<div class="form-row col-12">
+							<div class="col-6">
+								<label for="">아이디</label> <input type="text" id=signInputID
+									name="mb_nickname" class="form-control"
+									placeholder="고유한 아이디를 입력하세요" oninput=signNickNameCheck()>
+								<div class="valid-feedback ml-3">Ok</div>
+								<div class="invalid-feedback ml-3">Not Ok</div>
+							</div>
+							<div class="col-6">
+								<label for="">이름</label> <input type="text" id="signInputName"
+									name="mb_name" class="form-control" placeholder="이름을 입력하세요"
+									oninput=signNameCheck()>
+								<div class="valid-feedback ml-3">Ok</div>
+								<div class="invalid-feedback ml-3">Not Ok</div>
+							</div>
+						</div>
+						<div class="form-row col-12 mt-2">
+							<label for="">전화번호</label> <input type="text" id="signInputPhone"
+								name=mb_phone class="form-control" placeholder="전화번호를 입력하세요"
+								oninput=signPhoneCheck()>
+							<div class="valid-feedback ml-3">Ok</div>
+							<div class="invalid-feedback ml-3">Not Ok</div>
+						</div>
+						<div class="form-row col-12 mt-2">
+							<label for="">그룹</label> <input type="text" id="signInputGroup"
+								name=mb_group class="form-control"
+								placeholder="소속을 입력해주세요(없으면 비워주세요)" oninput=signGroupCheck()>
+							<div class="valid-feedback ml-3">Ok</div>
+							<div class="invalid-feedback ml-3">Not Ok</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<!-- join modal footer -->
+						<button class="btn btn-primary" id=btn_signInfoSend>제출</button>
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">취소</button>
+					</div>
+				</form>
+			</div>
+		</div>
 	</div>
 
 	<!-- 비밀번호 값 이메일로 전달-->
 
 	<div class="modal fade" id="forgetPwMenu" tabindex="-1">
-	  <div class="modal-dialog modal-dialog-centered">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <h5 class="modal-title" id="forgetPwModalCenterTitle">Share O' Clock에 오신 것을 환영합니다!</h5>
-	        <button type="button" class="close" data-dismiss="modal">
-	        <span aria-hidden="true">&times;</span>
-	        </button>
-	      </div>
-	      <div class="modal-body">
-    <div class="card o-hidden border-0 shadow-lg my-5">
-      <div class="card-body p-0">
-        <!-- Nested Row within Card Body -->
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="p-5">
-              <div class="text-center">
-                <h1 class="h4 text-gray-900 mb-2">비밀번호를 잊으셨습니까?</h1>
-                <p class="mb-4">이메일 주소를 보내시면 비밀번호를 보내드리겠습니다!</p>
-              </div>
-               <form class="user">
-                    <div class="form-group">
-                      <input type="email" class="form-control form-control-user" id="forgetPwInputEmail" aria-describedby="emailHelp" placeholder="이메일 주소를 입력하세요...">
-                    </div>
-                    <a class="btn btn-primary btn-user btn-block" id="btn_forgetEmailSend">
-                                 비밀번호 초기화
-                    </a>
-                  </form>
-           		  <hr>
-                  <div class="text-center">
-                    <a class="small" href="#" onclick="signMove()">계정 생성하기</a>
-                  </div>
-                  <div class="text-center">
-                    <a class="small" href="#" onclick="loginMove()">계정이 이미 있습니까? 로그인하세요! </a>
-                  </div>
-            </div>
-        </div>
-      </div>
-    </div>
-  </div>
-	      </div>
-	      <div class="modal-footer ">
-	        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-	      </div>
-	    </div>
-	  </div>
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="forgetPwModalCenterTitle">Share O'
+						Clock에 오신 것을 환영합니다!</h5>
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="card o-hidden border-0 shadow-lg my-5">
+						<div class="card-body p-0">
+							<!-- Nested Row within Card Body -->
+							<div class="row">
+								<div class="col-lg-12">
+									<div class="p-5">
+										<div class="text-center">
+											<h1 class="h4 text-gray-900 mb-2">비밀번호를 잊으셨습니까?</h1>
+											<p class="mb-4">이메일 주소를 보내시면 비밀번호를 보내드리겠습니다!</p>
+										</div>
+										<form class="user">
+											<div class="form-group">
+												<input type="email" class="form-control form-control-user"
+													id="forgetPwInputEmail" aria-describedby="emailHelp"
+													placeholder="이메일 주소를 입력하세요...">
+											</div>
+											<a class="btn btn-primary btn-user btn-block"
+												id="btn_forgetEmailSend"> 비밀번호 초기화 </a>
+										</form>
+										<hr>
+										<div class="text-center">
+											<a class="small" href="#" onclick="signMove()">계정 생성하기</a>
+										</div>
+										<div class="text-center">
+											<a class="small" href="#" onclick="loginMove()">계정이 이미
+												있습니까? 로그인하세요! </a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer ">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">취소</button>
+				</div>
+			</div>
+		</div>
 	</div>
-	
+
+<!-- Footer -->
+<footer class="page-footer font-small indigo">
+
+  <!-- Footer Links -->
+
+    <!-- Grid row-->
+    <div class="row text-center d-flex justify-content-center pt-5 mb-3">
+
+      <!-- Grid column -->
+      <div class="col-md-2 mb-3">
+        <h6 class="text-uppercase font-weight-bold">
+          <a href="#!">About us</a>
+        </h6>
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-2 mb-3">
+        <h6 class="text-uppercase font-weight-bold">
+          <a href="#!">Products</a>
+        </h6>
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-2 mb-3">
+        <h6 class="text-uppercase font-weight-bold">
+          <a href="#!">Awards</a>
+        </h6>
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-2 mb-3">
+        <h6 class="text-uppercase font-weight-bold">
+          <a href="#!">Help</a>
+        </h6>
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-2 mb-3">
+        <h6 class="text-uppercase font-weight-bold">
+          <a href="#!">Contact</a>
+        </h6>
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row-->
+    <hr class="rgba-white-light" style="margin: 0 15%;">
+
+    <!-- Grid row-->
+    <div class="row d-flex text-center justify-content-center mb-md-0 mb-4">
+
+      <!-- Grid column -->
+      <div class="col-md-8 col-12 mt-5">
+        <p style="line-height: 1.7rem">Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+          accusantium doloremque laudantium, totam rem
+          aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
+          explicabo.
+          Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur.</p>
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row-->
+    <hr class="clearfix d-md-none rgba-white-light" style="margin: 10% 15% 5%;">
+
+    <!-- Grid row-->
+    <div class="row pb-3">
+
+      <!-- Grid column -->
+      <div class="col-md-12">
+
+        <div class="mb-5 flex-center">
+
+          <!-- Facebook -->
+          <a class="fb-ic">
+            <i class="fab fa-facebook-f fa-lg white-text mr-4"> </i>
+          </a>
+          <!-- Twitter -->
+          <a class="tw-ic">
+            <i class="fab fa-twitter fa-lg white-text mr-4"> </i>
+          </a>
+          <!-- Google +-->
+          <a class="gplus-ic">
+            <i class="fab fa-google-plus-g fa-lg white-text mr-4"> </i>
+          </a>
+          <!--Linkedin -->
+          <a class="li-ic">
+            <i class="fab fa-linkedin-in fa-lg white-text mr-4"> </i>
+          </a>
+          <!--Instagram-->
+          <a class="ins-ic">
+            <i class="fab fa-instagram fa-lg white-text mr-4"> </i>
+          </a>
+          <!--Pinterest-->
+          <a class="pin-ic">
+            <i class="fab fa-pinterest fa-lg white-text"> </i>
+          </a>
+
+        </div>
+
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row-->
+
+  <!-- Footer Links -->
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2018 Copyright:
+    <a href="https://mdbootstrap.com/education/bootstrap/"> MDBootstrap.com</a>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
 	<script>
 		$('.todaycounter').each(function() {
 			var $this = $(this), countTo = $this.attr('data-count');
@@ -396,7 +562,7 @@
 	    }) 
 	    //	회원가입시 정규식 체크부분
 	
-	    $function validate() {
+	    function validate() {
 		    	console.log("emailCheck : "+ emailCheck);
 		    	console.log("idCheck : "+ idCheck);
 				var getMail =  RegExp(/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i);
@@ -507,10 +673,10 @@
 			  }
 	 		// 모달 이동 제어부분
 			function signEmailCheck() {
-			    var getMail =  RegExp(/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i);
-	
+			    var getMail =  RegExp(/[0-9a-zA-Z][_0-9a-zA-Z-]*@[_0-9a-zA-Z-]+(\.[_0-9a-zA-Z-]+){1,2}$/i);
+
 	 			if(!getMail.test($("#signInputEmail").val()) && !naverKakao){
-	
+					emailCheck = false;	
 					$("#signInputEmail").next().next().text("이메일 형식에 맞게 입력해주세요.");
 					$("#signInputEmail").removeClass("is-valid");
 					$("#signInputEmail").addClass("is-invalid");
@@ -592,14 +758,14 @@
 			}
 	
 			function signNameCheck() {
-				 var getName = RegExp(/^[가-힣A-Za-z]+$/);
+				 var getName = RegExp(/^[가-힣A-Za-z]{2,15}$/);
 				if(getName.test($("#signInputName").val())){
 					$("#signInputName").removeClass("is-invalid");
 					$("#signInputName").addClass("is-valid");
 				}else{
 					$("#signInputName").removeClass("is-valid");
 					$("#signInputName").addClass("is-invalid");
-					$("#signInputName").next().next().text("한글 영어 숫자로 5~12");
+					$("#signInputName").next().next().text("한글 영어 숫자로 2~15");
 				}
 			}
 	
@@ -729,7 +895,7 @@
 			 $("#btn_emailCertifiedSend").on("click",function(){
 				var email = $("#signInputEmail").val();
 				console.log("이메일전송중~3    :   " + emailCheck);
-				if(email != "" && emailCheck!=true){
+				if(email != "" && emailCheck==true){
 					$.ajax({ 
 						url: "emailCertifiedSend.member", 
 						data: { email: email }, 
@@ -774,8 +940,8 @@
 				}
 		  	})
 	  	</script>
-	 
-	  <script type='text/javascript'>
+
+	<script type='text/javascript'>
 	  //<![CDATA[
 	    // 사용할 앱의 JavaScript 키를 설정해 주세요.
 	    Kakao.init('38b031e1013e4101511e461da920af47');
@@ -840,6 +1006,6 @@
 	    };
 	  //]]>.
 	</script>
-	
+
 </body>
 </html>
