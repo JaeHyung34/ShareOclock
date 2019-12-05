@@ -42,26 +42,7 @@
 	}
 </style>
 <body id="page-top">
-	<c:choose>
-		<c:when test="${ManagerInfo != null}">
-			<script>
-				alert( "${ManagerInfo}" + "관리자님  환영합니다"); 
-				location.href="../Project/memberList.admin";
-			</script>
-		</c:when>
-		<c:otherwise>
-			<script>
-			  history.back();
-			</script>
-		</c:otherwise>
-	</c:choose>
-	<c:choose>
-		<c:when test="${loginInfo == null}">
-			<script>
-				location.href="/Project/index.jsp";
-			</script>
-		</c:when>
-	</c:choose>
+
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
