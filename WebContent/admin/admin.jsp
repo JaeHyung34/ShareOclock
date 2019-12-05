@@ -34,14 +34,24 @@ body {
 .card-title {
 	text-align: center;
 }
-.projectcounter{
+
+.projectcounter {
+	
 }
 </style>
 <jsp:include page="/cdn/cdn.jsp" flush="false" />
 </head>
 
 <body id="page-top">
-
+   <c:choose>
+      <c:when test="${ManagerInfo == null}">
+         <script>
+         history.back();
+         </script>
+      </c:when>
+    
+   </c:choose>
+	
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 		<!-- Scroll to Top Button-->
@@ -57,7 +67,7 @@ body {
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				href="${pageContext.request.contextPath}/admin.admin">
+				href="#" onclick="generalmemberSiteMove()">
 				<div class="sidebar-brand-icon">
 					<i class="fas fa-radiation"></i>
 				</div>
@@ -66,16 +76,7 @@ body {
 				</div>
 			</a>
 
-			<!-- Divider -->
-			<hr class="sidebar-divider my-0">
 
-			<!-- Nav Item - Dashboard -->
-			<!-- <li class="nav-item active"><a class="nav-link" href="#"> <i
-					class="fas fa-project-diagram"></i> <span>새 프로젝트 <span
-						class="badge badge-danger badge-pill">new</span>
-				</span></a></li> -->
-
-			<!-- Divider -->
 			<hr class="sidebar-divider my-0">
 
 			<!-- Nav Item - Dashboard -->
@@ -100,8 +101,10 @@ body {
 					data-parent="#accordionSidebar">
 					<div class="bg-dark py-2 collapse-inner rounded">
 						<h6 class="collapse-header">회원 :</h6>
-						<a class="collapse-item text-light bg-dark" href="${pageContext.request.contextPath}/memberList.admin">일반회원
-							조회/삭제</a> <a class="collapse-item text-light bg-dark" href="${pageContext.request.contextPath}/blackmember.black">블랙회원
+						<a class="collapse-item text-light bg-dark"
+							href="#" onclick="generalmemberSiteMove()">일반회원
+							조회/삭제</a> <a class="collapse-item text-light bg-dark"
+							href="#" onclick="blackmemberSiteMove()">블랙회원
 							조회/삭제</a>
 					</div></li>
 
@@ -120,10 +123,12 @@ body {
 					data-parent="#accordionSidebar">
 					<div class="bg-dark py-2 collapse-inner rounded">
 						<h6 class="collapse-header">프로젝트 :</h6>
-						<a class="collapse-item text-light bg-dark" href="${pageContext.request.contextPath}/adminProject.adProject">프로젝트 조회/삭제</a>
+						<a class="collapse-item text-light bg-dark"
+							href="#" onclick="adminProjectSiteMove()">프로젝트
+							조회/삭제</a>
 					</div></li>
 
-			
+
 
 
 			<!-- Divider -->
@@ -198,12 +203,15 @@ body {
 					</a> <!-- Dropdown - User Information -->
 						<div
 							class="dropdown-menu dropdown-menu-right shadow animated--grow-in">
-							<a class="dropdown-item" href="${pageContext.request.contextPath}/memberList.admin"> <i
-								class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> 회원관리
+							<a class="dropdown-item"
+								href="#" onclick="generalmemberSiteMove()">
+								<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> 회원관리
 							</a>
 							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="${pageContext.request.contextPath}/adminProject.adProject"> <i
-								class="fas fa-tasks fa-sm fa-fw mr-2 text-gray-400"></i> 프로젝트 관리
+							<a class="dropdown-item"
+								href="#" onclick="adminProjectSiteMove()">
+								<i class="fas fa-tasks fa-sm fa-fw mr-2 text-gray-400"></i> 프로젝트
+								관리
 							</a>
 							<div class="dropdown-divider"></div>
 							<a class="dropdown-item" href="#"> <i
@@ -243,14 +251,19 @@ body {
 						</div></li>
 				</ul>
 			</nav>
+
 			<!-- End of Topbar -->
 
 			<!-- 메인 콘텐츠 시작 부분 -->
-			<span class="d-block p-2 bg-gray-400 text-dark h5"
-				style="margin-bottom: 0px; text-align:center; line-height:70px; height: 10%">방문자 현황</span>
-			<%-- <a
+			<iframe id="iframe" class=embed-responsive-item
+				style="width: 100%; height: 100vh; border: none; border-left: 1px"
+				> </iframe>
+			 <span class="d-block p-2 bg-gray-400 text-dark h5"
+				style="margin-bottom: 0px; text-align: center; line-height: 70px; height: 10%">방문자
+				현황</span>
+			<a
 				href="${pageContext.request.contextPath}/black.black">블랙</a> <a
-				href="${pageContext.request.contextPath}/memberList.black">일반</a> --%>
+				href="${pageContext.request.contextPath}/memberList.black">일반</a>
 
 			<div class="card mb-12 w-100 text-light bg-dark h-200">
 				<div class="row no-gutters">
@@ -283,12 +296,13 @@ body {
 			</div>
 
 			<span class="d-block p-2 bg-gray-400 text-dark h5"
-				style="margin-bottom: 0px; text-align:center; line-height:70px; height: 10%">프로젝트 현황</span>
+				style="margin-bottom: 0px; text-align: center; line-height: 70px; height: 10%">프로젝트
+				현황</span>
 			<%-- <a
 				href="${pageContext.request.contextPath}/black.black">블랙</a> <a
 				href="${pageContext.request.contextPath}/memberList.black">일반</a> --%>
 
-			<div class="card mb-12 w-80 text-light bg-dark h-200">
+			<%-- <div class="card mb-12 w-80 text-light bg-dark h-200">
 				<div class="row no-gutters">
 					<div class="col-md-1  text-light bg-dark h-200"></div>
 					<div class="col-md-4">
@@ -306,8 +320,7 @@ body {
 						<div class="card-body">
 							<h5 class="card-title">공유된 업무</h5>
 							<h1 class="card-text d-flex justify-content-center">
-								<div class="sharecounter"
-									data-count="">0</div>
+								<div class="sharecounter" data-count="">0</div>
 							</h1>
 							<p class="card-text">
 								<small class="text-muted"></small>
@@ -316,13 +329,31 @@ body {
 					</div>
 
 				</div>
-			</div>
+			</div> --%>
 
 			<!-- 메인 콘텐츠 끝 -->
 
 		</div>
 	</div>
 	<script>
+		function blackmemberSiteMove() {
+			$("#iframe")
+					.attr("src",
+							"${pageContext.request.contextPath}/blackmember/blackList.jsp");
+		}
+		
+		function generalmemberSiteMove() {
+			$("#iframe")
+					.attr("src",
+							"${pageContext.request.contextPath}/generalmember/memberList.jsp");
+		}
+		
+		function adminProjectSiteMove() {
+			$("#iframe")
+					.attr("src",
+							"${pageContext.request.contextPath}/adminProject/project.jsp");
+		}
+
 		$('.todaycounter').each(function() {
 			var $this = $(this), countTo = $this.attr('data-count');
 
@@ -419,4 +450,4 @@ body {
 
 </body>
 </html>
-
+	

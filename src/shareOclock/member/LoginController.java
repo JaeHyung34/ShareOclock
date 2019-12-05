@@ -77,7 +77,12 @@ public class LoginController extends HttpServlet {
 					result = MemberDAO.getInstance().getLogin(email, Utils.encrpyt(pw));
 					if(result != null) {
 						System.out.println("로그인성공??");
-						request.getSession().setAttribute("loginInfo", result.getMb_nickname()); 
+						if(result.getMb_check().equals("M")) {
+							request.getSession().setAttribute("ManagerInfo", result.getMb_nickname()); 
+
+						}else {
+							request.getSession().setAttribute("loginInfo", result.getMb_nickname()); 
+						}
 					}
 					response.sendRedirect("/Project/member/loginCheck.jsp");
 				}catch(Exception e) {
@@ -172,7 +177,7 @@ public class LoginController extends HttpServlet {
 							rd.forward(request, response);
 						}else {
 							request.getSession().setAttribute("loginInfo", result.getMb_nickname()); 
-							response.sendRedirect("/Project/main.jsp");
+							response.sendRedirect("/Project/member/loginCheck.jsp");
 						}
 					} catch (Exception e) {
 						e.printStackTrace();

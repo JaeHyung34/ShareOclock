@@ -39,9 +39,10 @@ a:hover {
 	color: gray;
 }
 
-#navBar{
-   margin-top: 20px;
-}
+
+   #navBar{
+      margin-top: 86px;
+   }	
 </style>
 </head>
 <body>

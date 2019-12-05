@@ -19,7 +19,7 @@
 		</c:when>
 		<c:otherwise>
 			<script>
-				alert( "로그인 안되셨는데요 이메일이랑 비밀번호 확인좀해요"); 
+				alert( "로그인이 실패했습니다. 이메일과 비밀번호를 확인해주세요"); 
 				location.href="../index.jsp";
 			</script>
 		

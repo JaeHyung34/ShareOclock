@@ -15,9 +15,10 @@
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/js/bootstrap.min.js"></script>
 	<style>
-	#navBar{
-   margin-top: 20px;
-}
+
+   #navBar{
+      margin-top: 86px;
+   }	
 </style>
 </head>
 <body>

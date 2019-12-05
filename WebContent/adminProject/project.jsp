@@ -45,7 +45,14 @@
 </head>
 
 <body id="page-top">
-
+ <c:choose>
+      <c:when test="${ManagerInfo == null}">
+         <script>
+         history.back();
+         </script>
+      </c:when>
+    
+   </c:choose>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 		<!-- Scroll to Top Button-->
@@ -69,15 +76,6 @@
 					신선놀음 <sup>1.5</sup>
 				</div>
 			</a>
-
-			<!-- Divider -->
-			<hr class="sidebar-divider my-0">
-
-			<!-- Nav Item - Dashboard -->
-			<!-- <li class="nav-item active"><a class="nav-link" href="#"> <i
-					class="fas fa-project-diagram"></i> <span>새 프로젝트 <span
-						class="badge badge-danger badge-pill">new</span>
-				</span></a></li> -->
 
 			<!-- Divider -->
 			<hr class="sidebar-divider my-0">

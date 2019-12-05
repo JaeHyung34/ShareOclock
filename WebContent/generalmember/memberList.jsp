@@ -40,7 +40,14 @@
 </head>
 
 <body id="page-top">
-
+<c:choose>
+      <c:when test="${ManagerInfo == null}">
+         <script>
+         history.back();
+         </script>
+      </c:when>
+    
+   </c:choose>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 		<!-- Scroll to Top Button-->

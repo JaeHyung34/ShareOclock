@@ -65,6 +65,7 @@
 
 </head>
 <body>
+
 	<div class="container-fluid ml-0 mr-0 px-0">
 		<div class="top wow fadeIn fixed-top" data-wow-duration="2s">
 			<button data-toggle="modal" data-target="#joinMenu" type="button"

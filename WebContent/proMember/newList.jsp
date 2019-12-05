@@ -28,9 +28,10 @@
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" type="text/javascript" ></script>
 <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" type="text/javascript" ></script>
 <style>
-#navBar{
-   margin-top: 20px;
-}
+
+   #navBar{
+      margin-top: 86px;
+   }	
 </style>
 
 </head>
