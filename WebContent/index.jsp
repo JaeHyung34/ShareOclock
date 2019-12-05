@@ -334,126 +334,152 @@
 			</div>
 		</div>
 	</div>
-
+	
+	
+	
+	
+	
+	
+	
+	
+	
 <!-- Footer -->
-<footer class="page-footer font-small indigo">
+<footer class="page-footer font-small stylish-color-dark pt-4">
 
   <!-- Footer Links -->
 
-    <!-- Grid row-->
-    <div class="row text-center d-flex justify-content-center pt-5 mb-3">
+   
+    <!-- Grid row -->
+    <div class="row mt-3">
 
       <!-- Grid column -->
-      <div class="col-md-2 mb-3">
-        <h6 class="text-uppercase font-weight-bold">
-          <a href="#!">About us</a>
-        </h6>
+      <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+
+        <!-- Content -->
+        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+        <p>Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit amet,
+          consectetur
+          adipisicing elit.</p>
+
       </div>
       <!-- Grid column -->
 
       <!-- Grid column -->
-      <div class="col-md-2 mb-3">
-        <h6 class="text-uppercase font-weight-bold">
-          <a href="#!">Products</a>
-        </h6>
+      <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+
+        <!-- Links -->
+        <h6 class="text-uppercase font-weight-bold">사이트소개</h6>
+        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+        <p>
+          <a href="#!">사용 방법</a>
+        </p>
+        <p>
+          <a href="#!">방문자확인</a>
+        </p>
+        <p>
+          <a href="#!">사원소개</a>
+        </p>
+
       </div>
       <!-- Grid column -->
 
       <!-- Grid column -->
-      <div class="col-md-2 mb-3">
-        <h6 class="text-uppercase font-weight-bold">
-          <a href="#!">Awards</a>
-        </h6>
+      <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+
+        <!-- Links -->
+        <h6 class="text-uppercase font-weight-bold">참고 사이트</h6>
+        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+        <p>
+          <a href="ttps://www.naver.com">Naver</a>
+        </p>
+        <p>
+          <a href="https://www.daum.net">Daum</a>
+        </p>
+        <p>
+          <a href="https://www.google.co.kr/">Google</a>
+        </p>
       </div>
       <!-- Grid column -->
 
       <!-- Grid column -->
-      <div class="col-md-2 mb-3">
-        <h6 class="text-uppercase font-weight-bold">
-          <a href="#!">Help</a>
-        </h6>
-      </div>
-      <!-- Grid column -->
+      <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
 
-      <!-- Grid column -->
-      <div class="col-md-2 mb-3">
-        <h6 class="text-uppercase font-weight-bold">
-          <a href="#!">Contact</a>
-        </h6>
-      </div>
-      <!-- Grid column -->
-
-    </div>
-    <!-- Grid row-->
-    <hr class="rgba-white-light" style="margin: 0 15%;">
-
-    <!-- Grid row-->
-    <div class="row d-flex text-center justify-content-center mb-md-0 mb-4">
-
-      <!-- Grid column -->
-      <div class="col-md-8 col-12 mt-5">
-        <p style="line-height: 1.7rem">Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-          accusantium doloremque laudantium, totam rem
-          aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
-          explicabo.
-          Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur.</p>
-      </div>
-      <!-- Grid column -->
-
-    </div>
-    <!-- Grid row-->
-    <hr class="clearfix d-md-none rgba-white-light" style="margin: 10% 15% 5%;">
-
-    <!-- Grid row-->
-    <div class="row pb-3">
-
-      <!-- Grid column -->
-      <div class="col-md-12">
-
-        <div class="mb-5 flex-center">
-
-          <!-- Facebook -->
-          <a class="fb-ic">
-            <i class="fab fa-facebook-f fa-lg white-text mr-4"> </i>
-          </a>
-          <!-- Twitter -->
-          <a class="tw-ic">
-            <i class="fab fa-twitter fa-lg white-text mr-4"> </i>
-          </a>
-          <!-- Google +-->
-          <a class="gplus-ic">
-            <i class="fab fa-google-plus-g fa-lg white-text mr-4"> </i>
-          </a>
-          <!--Linkedin -->
-          <a class="li-ic">
-            <i class="fab fa-linkedin-in fa-lg white-text mr-4"> </i>
-          </a>
-          <!--Instagram-->
-          <a class="ins-ic">
-            <i class="fab fa-instagram fa-lg white-text mr-4"> </i>
-          </a>
-          <!--Pinterest-->
-          <a class="pin-ic">
-            <i class="fab fa-pinterest fa-lg white-text"> </i>
-          </a>
-
-        </div>
+        <!-- Links -->
+        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+        <p>
+          <i class="fas fa-home mr-3"></i> 서울특별시 중구 남대문로 120 대일빌딩 </p>
+        <p>
+          <i class="fas fa-envelope mr-3"></i> shareOclock@naver.com</p>
+        <p>
+          <i class="fas fa-phone mr-3"></i> + 1544 - 9970</p>
+        <p>
+          <i class="fas fa-print mr-3"></i> + 010 - 1234 - 1234</p>
 
       </div>
       <!-- Grid column -->
 
     </div>
-    <!-- Grid row-->
+    <!-- Grid row -->
 
+
+  </div>
   <!-- Footer Links -->
+
+  <hr>
+
+  <!-- Call to action -->
+  <ul class="list-unstyled list-inline text-center py-2">
+    <li class="list-inline-item">
+      <h5 class="mb-1">Register for free</h5>
+    </li>
+    <li class="list-inline-item">
+      <a href="#!" class="btn btn-danger btn-rounded">Sign up!</a>
+    </li>
+  </ul>
+  <!-- Call to action -->
+
+  <hr>
+
+  <!-- Social buttons -->
+  <ul class="list-unstyled list-inline text-center">
+    <li class="list-inline-item">
+      <a class="btn-floating btn-fb mx-1">
+        <i class="fab fa-facebook-f"> </i>
+      </a>
+    </li>
+    <li class="list-inline-item">
+      <a class="btn-floating btn-tw mx-1">
+        <i class="fab fa-twitter"> </i>
+      </a>
+    </li>
+    <li class="list-inline-item">
+      <a class="btn-floating btn-gplus mx-1">
+        <i class="fab fa-google-plus-g"> </i>
+      </a>
+    </li>
+    <li class="list-inline-item">
+      <a class="btn-floating btn-li mx-1">
+        <i class="fab fa-linkedin-in"> </i>
+      </a>
+    </li>
+    <li class="list-inline-item">
+      <a class="btn-floating btn-dribbble mx-1">
+        <i class="fab fa-dribbble"> </i>
+      </a>
+    </li>
+  </ul>
+  <!-- Social buttons -->
 
   <!-- Copyright -->
-  <div class="footer-copyright text-center py-3">© 2018 Copyright:
-    <a href="https://mdbootstrap.com/education/bootstrap/"> MDBootstrap.com</a>
+  <div class="footer-copyright text-center py-3">© 2020 Copyright:
+    <a href="https://mdbootstrap.com/education/bootstrap/"> ShareOClock.com</a>
+  </div>
   <!-- Copyright -->
 
 </footer>
 <!-- Footer -->
+
+
 	<script>
 		$('.todaycounter').each(function() {
 			var $this = $(this), countTo = $this.attr('data-count');
